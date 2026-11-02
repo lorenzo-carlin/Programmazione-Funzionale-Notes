@@ -1,11 +1,12 @@
->[!esercizio] Esercizio 6.1
->Scrivere le espressioni per:
->1. Aprire un file in lettura
->2. Leggere 5 caratteri di tale file
->3. Leggere una riga di tale file
->4. Vedere qual è il prossimo carattere sullo stream, senza leggerlo
->5. Leggere tutto il file intero
->6. Chiudere il file
+> **Esercizio 6.1**
+>
+> Scrivere le espressioni per:
+> 1. Aprire un file in lettura
+> 2. Leggere 5 caratteri di tale file
+> 3. Leggere una riga di tale file
+> 4. Vedere qual è il prossimo carattere sullo stream, senza leggerlo
+> 5. Leggere tutto il file intero
+> 6. Chiudere il file
 
 ```sml
 > val input = TextIO.openIn("Test.txt");
@@ -21,8 +22,9 @@
 > TextIO.closeIn(input);
 ```
 
->[!esercizio] Esercizio 6.2
->Scrivere una funzione `getList(filename)` che legge un file, estrae le parole e le mette in una lista.
+> **Esercizio 6.2**
+>
+> Scrivere una funzione `getList(filename)` che legge un file, estrae le parole e le mette in una lista.
 
 ```sml
 > fun getWord(input: TextIO.instream) =
@@ -53,8 +55,9 @@ val getList = fn: TextIO.instream -> string list *)
 (* val it = ["Nel", "mezzo", "del", "cammin", "di", "nostra", "vita", "mi", "ritrovai", "per", ...]: string list *)
 ```
 
->[!esercizio] Esercizio 6.3
->Scrivere una funzione `returnThird(L)` che, data in input una lista di interi `L`, ritorna il terzo elemento. Se la lista è troppo corta, alza un'eccezione `shortList` e ne fa l'handling stampando "List too short.\n It only contains `n` elements.\n", dove `n` è il numero di elementi nella lista.
+> **Esercizio 6.3**
+>
+> Scrivere una funzione `returnThird(L)` che, data in input una lista di interi `L`, ritorna il terzo elemento. Se la lista è troppo corta, alza un'eccezione `shortList` e ne fa l'handling stampando "List too short.\n It only contains `n` elements.\n", dove `n` è il numero di elementi nella lista.
 
 ```sml
 > exception shortList of int;
@@ -84,8 +87,9 @@ It only contains 2 elements.
 val it = 0: int *)
 ```
 
->[!esercizio] Esercizio 6.4
->Scrivere una funzione `fact` che, dato un intero `n`, ritorna $n!$ se $n > 0$, $1$ se $n = 0$ e $0$ se $n < 0$, con il messaggio di errore "Negative argument `x` found", dove `x` è l'argomento.
+> **Esercizio 6.4**
+>
+> Scrivere una funzione `fact` che, dato un intero `n`, ritorna $n!$ se $n > 0$, $1$ se $n = 0$ e $0$ se $n < 0$, con il messaggio di errore "Negative argument `x` found", dove `x` è l'argomento.
 
 ```sml
 > exception negativeArgument of int;
@@ -109,8 +113,9 @@ val it = 0: int *)
 (* val it = 120: int *)
 ```
 
->[!esercizio] Esercizio 6.5
->Scrivere una funzione `tabulate` che prende un valore iniziale `a`, un incremento `delta`, un numero di punti `n` e una funzione `F` (dai reali ai reali) e stampa una tabella con 2 colonne, rispettivamente `x` e `F(x)`, con `x` che parte da `a` e viene incrementato di `delta` `n` volte.
+> **Esercizio 6.5**
+>
+> Scrivere una funzione `tabulate` che prende un valore iniziale `a`, un incremento `delta`, un numero di punti `n` e una funzione `F` (dai reali ai reali) e stampa una tabella con 2 colonne, rispettivamente `x` e `F(x)`, con `x` che parte da `a` e viene incrementato di `delta` `n` volte.
 
 ```sml
 > fun tabulate(a, delta, 0, f) = ()
@@ -130,8 +135,9 @@ val it = 0: int *)
 val it = (): unit *)
 ```
 
->[!esercizio] Esercizio 6.6
->Utilizzando la funzione `simpleMap`, rimpiazzare ogni elemento negativo di una lista di reali con 0.
+> **Esercizio 6.6**
+>
+> Utilizzando la funzione `simpleMap`, rimpiazzare ogni elemento negativo di una lista di reali con 0.
 
 ```sml
 > fun simpleMap (F,nil) = nil
@@ -147,8 +153,9 @@ val pos = fn: real -> real *)
 (* val it = [0.0, 1.0, 0.0, 0.0]: real list *)
 ```
 
->[!esercizio] Esercizio 6.7
->Utilizzando la funzione `reduce`, trovare il massimo in una lista di reali.
+> **Esercizio 6.7**
+>
+> Utilizzando la funzione `reduce`, trovare il massimo in una lista di reali.
 
 ```sml
 > exception EmptyList;
@@ -168,8 +175,9 @@ val max = fn: real * real -> real *)
 (* val it = 4.4: real *)
 ```
 
->[!esercizio] Esercizio 6.8
->Utilizzando la funzione `filter`, trovare gli elementi in una lista di reali che sono maggiori di 0.
+> **Esercizio 6.8**
+>
+> Utilizzando la funzione `filter`, trovare gli elementi in una lista di reali che sono maggiori di 0.
 
 ```sml
 > fun filter(P, nil) = nil
@@ -187,8 +195,9 @@ val pos = fn: real -> bool *)
 (* val it = [1.1, 1.4]: real list *)
 ```
 
->[!esercizio] Esercizio 6.9
->Scrivere una funzione `readAndSum` che, dato un file di testo contenente un numero per ogni riga, trasforma ogni riga nell'intero corrispondente e ritorna la somma di tutti questi.
+> **Esercizio 6.9**
+>
+> Scrivere una funzione `readAndSum` che, dato un file di testo contenente un numero per ogni riga, trasforma ogni riga nell'intero corrispondente e ritorna la somma di tutti questi.
 
 ```sml
 > fun readAndSum1(input: TextIO.instream) =
@@ -216,8 +225,9 @@ val readAndSum = fn: string -> int *)
 (* val it = 23: int *)
 ```
 
->[!esercizio] Esercizio 6.10
->Scrivere, nella forma curried, una funzione `applyList` che prende una lista di funzioni ed un valore e applica ogni funzione a tale valore, producendo una lista dei risultati.
+> **Esercizio 6.10**
+>
+> Scrivere, nella forma curried, una funzione `applyList` che prende una lista di funzioni ed un valore e applica ogni funzione a tale valore, producendo una lista dei risultati.
 
 ```sml
 > fun applyList nil a = nil

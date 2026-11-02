@@ -1,5 +1,6 @@
->[!esercizio] Esercizio 5.1
->Scrivere una funzione `is_lower_than5` che usa il costrutto `case` per simulare un `if-then-else` sul valore 5. Deve ritornare 1 se il valore in input è minore di 5, altrimenti ritorna 2.
+> **Esercizio 5.1**
+>
+> Scrivere una funzione `is_lower_than5` che usa il costrutto `case` per simulare un `if-then-else` sul valore 5. Deve ritornare 1 se il valore in input è minore di 5, altrimenti ritorna 2.
 
 ```sml
 > fun is_lower_than5 x = case x<5 of
@@ -14,8 +15,9 @@
 (* val it = 2: int *)
 ```
 
->[!esercizio] Esercizio 5.2
->Scrivere una funzione `thousandthPower` che, dato un numero reale `x` utilizza `let val` per calcolare $x^{1000}$.
+> **Esercizio 5.2**
+>
+> Scrivere una funzione `thousandthPower` che, dato un numero reale `x` utilizza `let val` per calcolare $x^{1000}$.
 
 ```sml
 > fun thousandthPower (x: real) =
@@ -33,8 +35,9 @@
 (* val it = 2.469932918E41: real *)
 ```
 
->[!esercizio] Esercizio 5.3
->Riscrivere la funzione `split` senza usare un pattern (la tupla) dentro a `let val`, ma usando le referenze alle componenti della tupla.
+> **Esercizio 5.3**
+>
+> Riscrivere la funzione `split` senza usare un pattern (la tupla) dentro a `let val`, ma usando le referenze alle componenti della tupla.
 
 ```sml
 > fun split(nil) = (nil,nil)
@@ -53,8 +56,9 @@
 (* val it = ([1, 3, 5], [2, 4]): int list * int list *)
 ```
 
->[!esercizio] Esercizio 5.4
->Riscrivere la funzione `powerSet` usando `let val` e calcolando `powerSet(xs)` una volta sola.
+> **Esercizio 5.4**
+>
+> Riscrivere la funzione `powerSet` usando `let val` e calcolando `powerSet(xs)` una volta sola.
 
 ```sml
 > fun insertAll (a, nil) = (nil)
@@ -74,8 +78,9 @@ val powerSet = fn: 'a list -> 'a list list *)
 (* val it = [[], [3], [2], [2, 3], [1], [1, 3], [1, 2], [1, 2, 3]]: int list list *)
 ```
 
->[!esercizio] Esercizio 5.5
->Scrivere una funzione `sumPairs` che prende una lista di coppie di interi e ritorna una coppia di interi, dove il primo elemento è la somma di tutti i primi elementi delle coppie e il secondo quella dei secondi elementi.
+> **Esercizio 5.5**
+>
+> Scrivere una funzione `sumPairs` che prende una lista di coppie di interi e ritorna una coppia di interi, dove il primo elemento è la somma di tutti i primi elementi delle coppie e il secondo quella dei secondi elementi.
 
 ```sml
 > fun sumPairs(nil) = (0,0)
@@ -92,8 +97,9 @@ val powerSet = fn: 'a list -> 'a list list *)
 (* val it = (0, 0): int * int *)
 ```
 
->[!esercizio] Esercizio 5.6
->Riscrivere la funzione `maxList` per trovare il massimo in una lista di reali, usando `let val`.
+> **Esercizio 5.6**
+>
+> Riscrivere la funzione `maxList` per trovare il massimo in una lista di reali, usando `let val`.
 
 ```sml
 > fun maxList([x:real]) = x
@@ -110,8 +116,9 @@ val maxList = fn: real list -> real *)
 (* val it = 5.7: real *)
 ```
 
->[!esercizio] Esercizio 5.7
->Scrivere una funzione `doubleExp` che, dato in input un reale `x` e un intero non negativo `i`, calcoli $x^{2^i}$, facendo una sola chiamata ricorsiva.
+> **Esercizio 5.7**
+>
+> Scrivere una funzione `doubleExp` che, dato in input un reale `x` e un intero non negativo `i`, calcoli $x^{2^i}$, facendo una sola chiamata ricorsiva.
 
 ```sml
 > fun doubleExp(x:real, 0) = (x)
@@ -126,8 +133,9 @@ val maxList = fn: real list -> real *)
 (* val it = 2.14358881: real *)
 ```
 
->[!esercizio] Esercizio 5.8
->Scrivere una funzione `sumList` che prende una lista di interi e ritorna una coppia, in cui il primo elemento è la somma degli elementi in posizione dispari e il secondo la somma di quelli in posizione pari.
+> **Esercizio 5.8**
+>
+> Scrivere una funzione `sumList` che prende una lista di interi e ritorna una coppia, in cui il primo elemento è la somma degli elementi in posizione dispari e il secondo la somma di quelli in posizione pari.
 
 ```sml
 > fun sumList(nil) = (0,0)
@@ -145,8 +153,9 @@ val maxList = fn: real list -> real *)
 (* val it = (0, 0): int * int *)
 ```
 
->[!esercizio] Esercizio 5.9
->Scrivere una funzione `printList` che stampa una lista di interi data in input.
+> **Esercizio 5.9**
+>
+> Scrivere una funzione `printList` che stampa una lista di interi data in input.
 
 ```sml
 > fun printList(nil) = print("")
@@ -162,8 +171,9 @@ val it = (): unit *)
 (* val it = (): unit *)
 ```
 
->[!esercizio] Esercizio 5.10
->Scrivere una funzione `comb: int*int -> unit` che calcola $\binom{n}{m}$ e stampa `n`, `m` e il risultato.
+> **Esercizio 5.10**
+>
+> Scrivere una funzione `comb: int*int -> unit` che calcola $\binom{n}{m}$ e stampa `n`, `m` e il risultato.
 
 ```sml
 > fun factorial(0) = 1
@@ -180,8 +190,9 @@ Result is 10
 val it = (): unit *)
 ```
 
->[!esercizio] Esercizio 5.11
->Scrivere una funzione `printXs` che, dato un intero `n`, stampa il carattere `'X'` $2^n$ volte.
+> **Esercizio 5.11**
+>
+> Scrivere una funzione `printXs` che, dato un intero `n`, stampa il carattere `'X'` $2^n$ volte.
 
 ```sml
 > fun printXs(0) = print("X")

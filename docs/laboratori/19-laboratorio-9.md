@@ -1,5 +1,6 @@
->[!esercizio] Esercizio 9.1
->Dato il tipo `tree`, per la rappresentazione di un generico albero, scrivere una funzione `isOn` che, dato un elemento `x` e un albero generico `T`, dice se `x` appare tra le label di `T`.
+> **Esercizio 9.1**
+>
+> Dato il tipo `tree`, per la rappresentazione di un generico albero, scrivere una funzione `isOn` che, dato un elemento `x` e un albero generico `T`, dice se `x` appare tra le label di `T`.
 
 ```sml
 > datatype ('label) tree =
@@ -15,8 +16,9 @@ val isOn = fn: ''a -> ''a tree -> bool
 val it = true: bool *)
 ```
 
->[!esercizio] Esercizio 9.2
->Dato il tipo `tree`, per la rappresentazione di un generico albero, scrivere una funzione `count(T, x)` che, dato un albero `T` e un elemento `x`, ritorna il numero di occorrenze di `x` tra le label di `T`.
+> **Esercizio 9.2**
+>
+> Dato il tipo `tree`, per la rappresentazione di un generico albero, scrivere una funzione `count(T, x)` che, dato un albero `T` e un elemento `x`, ritorna il numero di occorrenze di `x` tra le label di `T`.
 
 ```sml
 > datatype ('label) tree =
@@ -32,8 +34,9 @@ val count = fn: ''a tree -> ''a -> int
 val it = 2: int *)
 ```
 
->[!esercizio] Esercizio 9.3
->Dato il tipo `tree`, per la rappresentazione di un generico albero, scrivere una funzione `depth` che, dato un albero `T`, ritorna la profondità di `T`.
+> **Esercizio 9.3**
+>
+> Dato il tipo `tree`, per la rappresentazione di un generico albero, scrivere una funzione `depth` che, dato un albero `T`, ritorna la profondità di `T`.
 
 ```sml
 > datatype ('label) tree =
@@ -55,8 +58,9 @@ val depth = fn: 'a tree -> int
 val it = 3: int *)
 ```
 
->[!esercizio] Esercizio 9.4
->Dato il tipo `tree`, per la rappresentazione di un generico albero, scrivere una funzione `preOrder` che, dato un albero `T`, ritorna la lista dei nodi di `T` in pre-ordine.
+> **Esercizio 9.4**
+>
+> Dato il tipo `tree`, per la rappresentazione di un generico albero, scrivere una funzione `preOrder` che, dato un albero `T`, ritorna la lista dei nodi di `T` in pre-ordine.
 
 ```sml
 > datatype ('label) tree =
@@ -74,12 +78,13 @@ val preOrder = fn: 'a tree -> 'a list
 val it = [2, 3, 4, 2]: int list *)
 ```
 
->[!esercizio] Esercizio 9.5
->Definire una structure `Tree` contenente il datatype `tree` per la rappresentazione di un albero generico. La structure deve contenere:
->- `create(a)`, che ritorna un nodo dell'albero con label a
->- `build(a, L)`, che ritorna un albero con la radice che ha label a e ha L come lista dei sottoalberi
->- `subtree(i, T)`, che trova l'i-esimo sottoalbero della radice, con tanto di eccezione `Missing` se questo non esiste.
->Costruire un albero `myTree` usando le funzioni della structure e testarne le funzionalità.
+> **Esercizio 9.5**
+>
+> Definire una structure `Tree` contenente il datatype `tree` per la rappresentazione di un albero generico. La structure deve contenere:
+> - `create(a)`, che ritorna un nodo dell'albero con label a
+> - `build(a, L)`, che ritorna un albero con la radice che ha label a e ha L come lista dei sottoalberi
+> - `subtree(i, T)`, che trova l'i-esimo sottoalbero della radice, con tanto di eccezione `Missing` se questo non esiste.
+> Costruire un albero `myTree` usando le funzioni della structure e testarne le funzionalità.
 
 ```sml
 > structure Tree = struct
@@ -119,8 +124,9 @@ val v1 = Node (2, [Node (3, [Node (4, [])]), Node (2, [])]): int Tree.tree
 val it = Node (2, []): int Tree.tree *)
 ```
 
->[!esercizio] Esercizio 9.6
->Nell'esercizio precedente, `create(a)` corrisponde a fare `build(a, nil)`. Definire una nuova structure `SimpleTree` che ha le stesse funzionalità di `Tree` tranne `create()` e che pone le label tutte di interi.
+> **Esercizio 9.6**
+>
+> Nell'esercizio precedente, `create(a)` corrisponde a fare `build(a, nil)`. Definire una nuova structure `SimpleTree` che ha le stesse funzionalità di `Tree` tranne `create()` e che pone le label tutte di interi.
 
 ```sml
 > signature SIMPLE = sig
@@ -168,8 +174,9 @@ structure Tree:
 structure SimpleTree: SIMPLE *)
 ```
 
->[!esercizio] Esercizio 9.7
->Utilizzare la funzione `build()` di `SimpleTree` per costruire un albero con radice con label 1 e tre figli con label 2,3,4. Applicare `subtree` per ottenere il secondo subtree della radice.
+> **Esercizio 9.7**
+>
+> Utilizzare la funzione `build()` di `SimpleTree` per costruire un albero con radice con label 1 e tre figli con label 2,3,4. Applicare `subtree` per ottenere il secondo subtree della radice.
 
 ```sml
 > val root = SimpleTree.build(1, [SimpleTree.build(2, []), SimpleTree.build(3, []), SimpleTree.build(4, [])]);
@@ -181,13 +188,14 @@ structure SimpleTree: SIMPLE *)
 val s2 = Node (3, []): int SimpleTree.tree *)
 ```
 
->[!esercizio] Esercizio 9.8
->Definire una structure `Stack` che rappresenta uno stack di elementi di un tipo arbitrario. Includere le funzioni:
->- `create`, per creare uno stack vuoto
->- `push x s`, che inserisce `x` in cima allo stack
->- `pop s`, che ritorna lo stack senza il primo elemento oppure alza un'eccezione `EmptyStack`
->- `isEmpty s`, che controlla se lo stack è vuoto
->- `top s`, che ritorna l'elemento in cima allo stack o alza `EmptyStack`.
+> **Esercizio 9.8**
+>
+> Definire una structure `Stack` che rappresenta uno stack di elementi di un tipo arbitrario. Includere le funzioni:
+> - `create`, per creare uno stack vuoto
+> - `push x s`, che inserisce `x` in cima allo stack
+> - `pop s`, che ritorna lo stack senza il primo elemento oppure alza un'eccezione `EmptyStack`
+> - `isEmpty s`, che controlla se lo stack è vuoto
+> - `top s`, che ritorna l'elemento in cima allo stack o alza `EmptyStack`.
 
 ```sml
 > structure Stack = struct
@@ -222,8 +230,9 @@ val s2 = Node (3, []): int SimpleTree.tree *)
   end *)
 ```
 
->[!esercizio] Esercizio 9.9
->Si realizzi una signature che permetta di creare una structure `StringStack`, i cui elementi sono di tipo string e che omette l'operazione `top`.
+> **Esercizio 9.9**
+>
+> Si realizzi una signature che permetta di creare una structure `StringStack`, i cui elementi sono di tipo string e che omette l'operazione `top`.
 
 ```sml
 > signature StringStack = sig
@@ -248,13 +257,14 @@ val s2 = Node (3, []): int SimpleTree.tree *)
   end *)
 ```
 
->[!esercizio] Esercizio 9.10
->Realizzare una structure `Queue` che rappresenta una coda di elementi. Includere:
->- `create`, per creare una coda vuota
->- `EmptyQueue`, un'eccezione
->- `Enqueue(x, Q)`, che aggiunge un elemento alla fine e ritorna la coda
->- `Dequeue Q`, che ritorna la coppia del primo elemento della coda e il resto della coda. Se è vuota, alza `EmptyQueue`
->- `isEmpty Q`, che controlla se la coda è vuota
+> **Esercizio 9.10**
+>
+> Realizzare una structure `Queue` che rappresenta una coda di elementi. Includere:
+> - `create`, per creare una coda vuota
+> - `EmptyQueue`, un'eccezione
+> - `Enqueue(x, Q)`, che aggiunge un elemento alla fine e ritorna la coda
+> - `Dequeue Q`, che ritorna la coppia del primo elemento della coda e il resto della coda. Se è vuota, alza `EmptyQueue`
+> - `isEmpty Q`, che controlla se la coda è vuota
 
 ```sml
 > structure Queue = struct
@@ -284,8 +294,9 @@ val s2 = Node (3, []): int SimpleTree.tree *)
   end *)
 ```
 
->[!esercizio] Esercizio 9.11
->Realizzare una signature per creare una structure `PairQueue` di coppie formate da una string e un intero, con le stesse operazioni di `Queue`.
+> **Esercizio 9.11**
+>
+> Realizzare una signature per creare una structure `PairQueue` di coppie formate da una string e un intero, con le stesse operazioni di `Queue`.
 
 ```sml
 > signature PAIR_QUEUE = sig
@@ -310,13 +321,14 @@ val s2 = Node (3, []): int SimpleTree.tree *)
   end *)
 ```
 
->[!esercizio] Esercizio 9.12
->Scrivere una structure `IntTriple` che implementa la signature `TOTALORDER` che, al posto di `string`, definisce gli elementi di un albero binario di ricerca come tuple di 3 interi.
->La funzione `lt((a, b, c), (x, y, z))` è vera se:
->- $a < x$
->- $a = x$ e $b < y$
->- $a = x$, $b = y$ e $c < z$
->Usare il funtore `MakeBST` per ottenere una structure che conserva le triple di interi in alberi binari.
+> **Esercizio 9.12**
+>
+> Scrivere una structure `IntTriple` che implementa la signature `TOTALORDER` che, al posto di `string`, definisce gli elementi di un albero binario di ricerca come tuple di 3 interi.
+> La funzione `lt((a, b, c), (x, y, z))` è vera se:
+> - $a < x$
+> - $a = x$ e $b < y$
+> - $a = x$, $b = y$ e $c < z$
+> Usare il funtore `MakeBST` per ottenere una structure che conserva le triple di interi in alberi binari.
 
 ```sml
 > signature TOTALORDER = sig

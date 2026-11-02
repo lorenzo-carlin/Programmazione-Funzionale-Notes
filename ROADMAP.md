@@ -121,7 +121,7 @@ Dispensa.pdf                  # repo root, linked from docs/index.md
 - [x] Reconcile lab `15` exercises 7.7 and 7.8 so both use the same `('a, 'b) mapTree` label type (a list of pairs).
 - [x] Normalize formatting:
   - [x] remove leftover top-of-page `---` separators;
-  - [x] normalize callouts to `>[!type]` (map `NOTE`/`TIP` to `[!osservazione]`);
+  - [x] convert Obsidian callouts to portable bold blockquotes (bold label + `>` body), so they render on GitHub and can be mapped to Material admonitions in Phase 2;
   - [x] unify fence spelling (`sml`, `C++`, `txt`, bare fences) and add blank lines around headings and fences;
   - [x] trim trailing whitespace, remove tabs outside code, replace curly quotes, and remove `//` comments from SML.
 - [x] Remove spurious `val it = (): unit` output after declarations, while keeping legitimate unit results from `print` and side-effecting expressions.
@@ -129,7 +129,7 @@ Dispensa.pdf                  # repo root, linked from docs/index.md
 
 **Done when:** prose is Italian, SML examples and inferred types are internally consistent, Markdown renders without broken fences/callouts, and all relative links resolve.
 
-**Completed:** 2026-11-02. 20 content pages edited; 30 relative links check clean. No SML toolchain is installed, so transcripts were verified by reasoning rather than execution.
+**Completed:** 2026-11-02. 20 content pages edited; 167 callouts converted to portable bold blockquotes; 30 relative links check clean. No SML toolchain is installed, so transcripts were verified by reasoning rather than execution.
 
 **Re-audit trigger:** after adding new notes, after converting callouts for Phase 2, or whenever `Dispensa.pdf` is rebuilt.
 
@@ -147,13 +147,13 @@ Dispensa.pdf                  # repo root, linked from docs/index.md
   - theme features: `navigation.sections`, `navigation.top`, `search.highlight`, `content.code.copy`, `toc.follow`
   - `markdown_extensions`: `admonition`, `pymdownx.details`, `pymdownx.superfences`, `pymdownx.arithmatex`, `attr_list`, `md_in_html`, `tables`, `toc`
   - `nav` mirroring Phase 1 (Teoria / Laboratori / Dispensa)
-- [ ] Convert Obsidian callouts to Material admonitions. Mapping:
-  - `[!esercizio]` → `!!! question`
-  - `[!esempio]` / `[!Esempio]` → `!!! example`
-  - `[!osservazione]` → `!!! note`
-  - `[!warning]` → `!!! warning`
-  - `[!teorema]` → `!!! abstract` (or a custom `theorem` type with CSS)
-  - Do it with a one-off script, then review the diff. Keep the Italian labels.
+- [ ] Convert portable bold-blockquote callouts to Material admonitions. Mapping:
+  - `> **Esercizio ...**` → `!!! question`
+  - `> **Esempio**` / `> **Esempi ...**` → `!!! example`
+  - `> **Osservazione ...**` → `!!! note`
+  - `> **⚠️ Attenzione ...**` → `!!! warning`
+  - `> **Teorema ...**` → `!!! abstract` (or a custom `theorem` type with CSS)
+  - Keep the Italian label as the admonition title. Do it with a one-off script, then review the diff.
 - [ ] Normalize fences: `C++` → `cpp`; bare fences → `text`; verify `sml` highlighting works (Pygments has an SML lexer). Do not reformat the REPL transcripts.
 - [ ] Math: enable `arithmatex` and MathJax (CDN or `docs/javascripts/mathjax.js`). Check inline `$...$` and display `$$...$$`.
 - [ ] Add `.github/workflows/docs.yml`: build with `mkdocs build --strict`, upload artifact, deploy to Pages via `actions/deploy-pages`.
@@ -170,7 +170,7 @@ Dispensa.pdf                  # repo root, linked from docs/index.md
 
 ### Tasks
 
-- [ ] Make every lab solution collapsible (`???` / `pymdownx.details` or `<details>`), hidden by default. There are ~107 `[!esercizio]` blocks; audit them and wrap the answers that are currently visible.
+- [ ] Make every lab solution collapsible (`???` / `pymdownx.details` or `<details>`), hidden by default. There are ~107 `**Esercizio ...**` blockquotes; audit them and wrap the answers that are currently visible.
 - [ ] Add per-theory "Ripasso lampo": 3–5 self-check questions with collapsible answers. Prioritize the highest-yield topics (types, scope, recursion, higher-order functions, data types, lambda calculus).
 - [ ] Add a back-to-index link or breadcrumb on every page (or rely on the theme nav + `back_to_top`).
 - [ ] Add `tags` metadata (`teoria`, `laboratori`, topic) and a tags index page.

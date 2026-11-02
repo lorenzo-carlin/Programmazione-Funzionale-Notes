@@ -19,7 +19,7 @@
 ## Conventions
 
 - Keep prose in Italian; do not translate the notes. Preserve SML keywords and identifiers. Math uses `$...$` / `$$...$$`.
-- Callouts use Obsidian syntax with a lowercase type and no space after `>`: `>[!esercizio]`, `>[!esempio]`, `>[!osservazione]`, `>[!warning]`, `>[!teorema]`. Every body line starts with `>`. GitHub renders them as plain blockquotes; Phase 2 converts them, so do not convert ad hoc.
+- Callouts are portable bold blockquotes: `> **Esercizio 1.1**`, `> **Esempio**`, `> **Osservazione**`, `> **⚠️ Attenzione**`, `> **Teorema**`. Add a `>` blank line between the label and the body, and prefix every body line with `>`. Use `> **Osservazione — Titolo**` or `> **⚠️ Attenzione — Titolo**` when a custom title is needed. Do not reintroduce Obsidian `>[!type]` markers: GitHub only understands five native alert types, and the Italian custom types would render literally. Phase 2 maps these labels to Material admonitions.
 - `sml` fences are REPL transcripts with `>` prompts and `(* val it = ... *)` expected output, not standalone runnable programs. Fence languages seen: `sml`, `C++` (capitalized), `txt`, and bare fences.
 - Pages intentionally start at `##`; do not add `#` headings or YAML front matter.
 
@@ -42,7 +42,7 @@ Re-read a page for meaning, not only for spelling. The notes were migrated from 
 ### Formatting and migration artifacts
 
 - Watch for a leftover `---` at the top of a page. It is an Obsidian artifact, not a horizontal rule.
-- Normalize `> [!WARNING]` to `>[!warning]`; map `NOTE`/`TIP` to `[!osservazione]`. A callout ends at the first blank line, so every continuation line needs `>`.
+- Convert Obsidian callouts (`>[!warning]`, `> [!WARNING]`) to portable bold blockquotes. Do not leave `[!type]` markers in the Markdown: GitHub only understands five native alert types, and the Italian custom types would render literally. A callout block ends at the first blank line, so every body line needs `>` and the label needs a `>` blank line after it.
 - Fences must start at column 0 unless intentionally nested. Do not leave a fence indented after converting an Obsidian list.
 - Add a blank line before and after headings and fenced blocks. Trim trailing whitespace; replace tabs outside code with spaces.
 - Replace curly quotes (`‘ ’ “ ”`) with ASCII quotes, especially in type variables (`‘a` → `'a`) and SML strings.

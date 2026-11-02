@@ -10,8 +10,9 @@
 (* val reverse = fn: 'a list -> 'a list *)
 ```
 
->[!esempio]
->Scriviamo una funzione `merge` che unisca due liste di interi `L` e `M`, assumendo che entrambe siano ordinate in modo crescente, in modo tale che anche la lista finale risulti ordinata.
+> **Esempio**
+>
+> Scriviamo una funzione `merge` che unisca due liste di interi `L` e `M`, assumendo che entrambe siano ordinate in modo crescente, in modo tale che anche la lista finale risulti ordinata.
 
 - Caso base: se `L` è vuota, allora restituiamo `M` (e viceversa)
 - Passo induttivo: confrontiamo la testa di `L` e la testa di `M`. Aggiungiamo quella minore alla lista finale e ricorsivamente chiamiamo la funzione sull'altra lista e la tail di quella usata.
@@ -37,14 +38,16 @@ Se vogliamo catturare una variabile ma non ci interessa usarla si può usare una
 (* val comb = fn: int * int -> int *)
 ```
 
->[!warning] Attenzione
->Una variabile non può essere ripetuta in un pattern.
+> **⚠️ Attenzione**
+>
+> Una variabile non può essere ripetuta in un pattern.
 
->[!warning] Attenzione
->Nei pattern non è consentito inserire:
->- operatori aritmetici
->- concatenazione di liste (`@`)
->- valori reali
+> **⚠️ Attenzione**
+>
+> Nei pattern non è consentito inserire:
+> - operatori aritmetici
+> - concatenazione di liste (`@`)
+> - valori reali
 
 Il pattern matching si può usare anche con la dichiarazione di funzione con `fn`.
 
@@ -91,8 +94,9 @@ Per definire un environment locale si usa la seguente sintassi:
 
 Dopo `let` si dichiarano le variabili locali e dopo `in` si possono usare nelle espressioni.
 
->[!esempio]
->Scrivere una funzione che calcola la potenza centesima di un reale `x`
+> **Esempio**
+>
+> Scrivere una funzione che calcola la potenza centesima di un reale `x`
 
 ```sml
 > fun hundredthPower (x:real) =
@@ -122,10 +126,11 @@ O anche, equivalentemente,
 (* val hundredthPower = fn: real -> real *)
 ```
 
->[!esempio]
->Scrivere una funzione `split(L)` che divide una lista `L` in 2 liste:
->- una contenente il primo elemento, il terzo, il quinto, ...
->- una contenente il secondo, il quarto, ...
+> **Esempio**
+>
+> Scrivere una funzione `split(L)` che divide una lista `L` in 2 liste:
+> - una contenente il primo elemento, il terzo, il quinto, ...
+> - una contenente il secondo, il quarto, ...
 
 ```sml
 > fun split(nil) = (nil,nil)
@@ -142,8 +147,9 @@ O anche, equivalentemente,
 (* val it = ([1,3,5], [2,4]): int list * int list *)
 ```
 
->[!esempio]
->Scrivere la funzione `mergeSort` che esegue l'algoritmo di merge sort su una lista, usando `merge` e `split`.
+> **Esempio**
+>
+> Scrivere la funzione `mergeSort` che esegue l'algoritmo di merge sort su una lista, usando `merge` e `split`.
 
 ```sml
 > fun merge (nil,M) = M

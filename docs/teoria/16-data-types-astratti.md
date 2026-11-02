@@ -4,8 +4,9 @@ Quando definiamo una nuova struttura dati e non nascondiamo la sua specifica imp
 
 Con l'astrazione dei dati si vuole **nascondere l'implementazione interna** del tipo di dato, che allo user deve essere invisibile. Si vuole **separare l'interfaccia dall'implementazione**.
 
->[!esempio]
->Supponiamo di avere un set. Con l'astrazione possiamo chiamare su di esso le funzioni dedicate (`empty`, `union`, `insert`, `is_member`), ma non conosciamo come è implementato il set (se è un vector, una lista o altro).
+> **Esempio**
+>
+> Supponiamo di avere un set. Con l'astrazione possiamo chiamare su di esso le funzioni dedicate (`empty`, `union`, `insert`, `is_member`), ma non conosciamo come è implementato il set (se è un vector, una lista o altro).
 
 In ML (come in Java) esistono dei modi per "nascondere" l'implementazione di un tipo di dato e di renderne disponibile solo l'interfaccia: `signatures` e `structures`.
 
@@ -17,9 +18,10 @@ Le **`signature`** sono la parte di "interfaccia" e contengono tutto quello che 
 
 La relazione tra `structure` e `signature` è many-to-many.
 
->[!osservazione]
->Questo è il meccanismo che viene utilizzato anche quando noi chiamiamo i tipi `String`, `Int`, `Real`, ...
->Questi tipi, che noi consideriamo come "primitivi", sono però costruiti nello stesso esatto modo in cui noi possiamo costruire strutture (tipi) personalizzate.
+> **Osservazione**
+>
+> Questo è il meccanismo che viene utilizzato anche quando noi chiamiamo i tipi `String`, `Int`, `Real`, ...
+> Questi tipi, che noi consideriamo come "primitivi", sono però costruiti nello stesso esatto modo in cui noi possiamo costruire strutture (tipi) personalizzate.
 
 ### `Structure`
 
@@ -67,9 +69,10 @@ end; *)
 
 In questo esempio invece la struttura `IntDiv` dichiara il tipo `t` (alias di `int`) e implementa due funzioni, `lt` e `eq`, che controllano rispettivamente se un valore è divisibile per un altro e se due valori sono uguali.
 
->[!warning] Attenzione
->La funzione `lt` è introdotta dalla keyword `fun` perché si tratta di una definizione sintattica della funzione, ovvero stiamo definendo cosa fa quella funzione, che parametri riceve in input e cosa dà in output.
->La funzione `eq` invece è introdotta dalla keyword `val` perché di fatto stiamo assegnando l'operatore `=`, quindi un'operazione già fatta e finita. ad una funzione di nome `eq`. Stiamo facendo quindi un binding e non una definizione di funzione.
+> **⚠️ Attenzione**
+>
+> La funzione `lt` è introdotta dalla keyword `fun` perché si tratta di una definizione sintattica della funzione, ovvero stiamo definendo cosa fa quella funzione, che parametri riceve in input e cosa dà in output.
+> La funzione `eq` invece è introdotta dalla keyword `val` perché di fatto stiamo assegnando l'operatore `=`, quindi un'operazione già fatta e finita. ad una funzione di nome `eq`. Stiamo facendo quindi un binding e non una definizione di funzione.
 
 #### Long identifiers
 
@@ -146,8 +149,9 @@ structure Stack = struct
 end:> STACK;
 ```
 
->[!warning] Attenzione
->La dichiarazione `:>` dice che `Stack` è una implementazione della signature `STACK`. I componenti che non sono presenti nella signature non sono visibili all'esterno.
+> **⚠️ Attenzione**
+>
+> La dichiarazione `:>` dice che `Stack` è una implementazione della signature `STACK`. I componenti che non sono presenti nella signature non sono visibili all'esterno.
 
 ## Alberi binari di ricerca (BST)
 
@@ -369,8 +373,9 @@ Per accedere alle variabili e alle funzioni definite dentro alle strutture dobbi
 
 Se invece volessimo accedere a variabili e funzioni di una struttura senza anteporre il nome, una possibile soluzione sarebbe quella di "aprire" la struttura, ossia di portarla al livello del programma principale. Tutte le variabili e le funzioni definite nella struttura diventano quindi delle variabili e funzioni accettate dal linguaggio ML. Questa operazione di apertura si fa con la keyword `open`.
 
->[!warning] Attenzione
->Quando apriamo una struttura con `open` dobbiamo ricordare che tutto ciò che normalmente ha lo stesso nome di ciò che è stato definito dentro alla struttura in questione verrà rinominato. Questo potrebbe portare a situazioni di disagio non volute.
+> **⚠️ Attenzione**
+>
+> Quando apriamo una struttura con `open` dobbiamo ricordare che tutto ciò che normalmente ha lo stesso nome di ciò che è stato definito dentro alla struttura in questione verrà rinominato. Questo potrebbe portare a situazioni di disagio non volute.
 
 ```sml
 > 2 > 1;

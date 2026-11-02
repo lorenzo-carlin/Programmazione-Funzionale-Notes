@@ -10,8 +10,9 @@ fun <identifier> (<first pattern>) = <first expression>
   | <identifier> (<last pattern>) = <last expression>;
 ```
 
->[!esempio]
->Riscriviamo la funzione `reverse` per invertire una lista, con e senza il pattern matching.
+> **Esempio**
+>
+> Riscriviamo la funzione `reverse` per invertire una lista, con e senza il pattern matching.
 
 - usando il pattern matching:
 
@@ -32,7 +33,8 @@ Il pattern `x::xs` matcha quando trova `elemento::lista`.
 (* val reverse = fn: ''a list -> ''a list *)
 ```
 
->[!warning] Attenzione
+> **⚠️ Attenzione**
+>
 > La lista di alternative espressa nei pattern deve essere esaustiva (come un `if-then-else`). Altrimenti viene restituito un errore, come segue.
 
 ```sml

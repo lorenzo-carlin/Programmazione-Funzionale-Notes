@@ -11,9 +11,10 @@ Il comando `print()` stampa una stringa.
 (* val it = fn: string -> unit *)
 ```
 
->[!osservazione]
->Il tipo di `print` è `string -> unit`.
->`unit` è usato per espressioni e funzioni che non ritornano nulla ed ha un unico valore: `()`.
+> **Osservazione**
+>
+> Il tipo di `print` è `string -> unit`.
+> `unit` è usato per espressioni e funzioni che non ritornano nulla ed ha un unico valore: `()`.
 
 ```sml
 > print ("ab");
@@ -73,8 +74,9 @@ ML dà anche la possibilità di scrivere dei **compound statements**, che permet
 (* 1E50123val it = (): unit *)
 ```
 
->[!osservazione]
->Il tipo di un compound statement è sempre quello dell'ultimo statement che contiene.
+> **Osservazione**
+>
+> Il tipo di un compound statement è sempre quello dell'ultimo statement che contiene.
 
 ### Input in ML
 
@@ -125,12 +127,13 @@ ab
 (* val it = NONE: string option *)
 ```
 
->[!osservazione]
->Il tipo di ritorno di queste ultime funzioni è **`string option`**. In generale, `T option` vale:
->- `SOME v`, se il valore da ritornare è `v` di tipo `T`
->- `NONE`, altrimenti
+> **Osservazione**
 >
->È utile perché permette, ad esempio, di accorgersi di quando siamo arrivati al termine dello stream.
+> Il tipo di ritorno di queste ultime funzioni è **`string option`**. In generale, `T option` vale:
+> - `SOME v`, se il valore da ritornare è `v` di tipo `T`
+> - `NONE`, altrimenti
+>
+> È utile perché permette, ad esempio, di accorgersi di quando siamo arrivati al termine dello stream.
 
 - **chiusura** del file:
 
@@ -155,11 +158,13 @@ ab
 (* val it = fn: TextIO.instream -> char option *)
 ```
 
->[!osservazione]
->Queste funzioni di I/O possono essere usate anche all'interno di altre funzioni da noi definite.
+> **Osservazione**
+>
+> Queste funzioni di I/O possono essere usate anche all'interno di altre funzioni da noi definite.
 
->[!esercizio] Esercizio
->Scrivere una funzione `makeList1` che legge i caratteri di un file e li mette in una lista.
+> **Esercizio**
+>
+> Scrivere una funzione `makeList1` che legge i caratteri di un file e li mette in una lista.
 
 ```sml
 > fun makeList1 (infile, NONE) = nil
@@ -220,11 +225,13 @@ Esempi di **eccezioni predefinite** in ML:
 (* Exception- Foo raised *)
 ```
 
->[!osservazione]
->`exn` è il tipo delle eccezioni.
+> **Osservazione**
+>
+> `exn` è il tipo delle eccezioni.
 
->[!esempio]
->Scriviamo una funzione che calcola $\binom{n}{m}$.
+> **Esempio**
+>
+> Scriviamo una funzione che calcola $\binom{n}{m}$.
 
 ```sml
 > exception BadN;
@@ -299,8 +306,9 @@ Tramite la sintassi
 
 Il **polimorfismo** di una funzione è la sua capacità di essere applicata a valori di tipi differenti (polimorfismo parametrico) o di avere comportamenti diversi in base ai tipi (overloading). Dal momento che ML è un linguaggio strongly typed, deve essere possibile determinare tutti i tipi prima ancora di eseguire il codice. Nonostante ciò, possiamo definire funzioni i cui tipi sono parzialmente o completamente flessibili.
 
->[!osservazione]
->Il tipo `'a` è usato per indicare il **generico tipo polimorfico**.
+> **Osservazione**
+>
+> Il tipo `'a` è usato per indicare il **generico tipo polimorfico**.
 
 ```sml
 > fun identity (x) = x;
@@ -332,8 +340,9 @@ Gli operatori di uguaglianza `=` e `<>` non sono pienamente polimorfici: richied
 
 I tipi che permettono l'uso di `=` e `<>` sono gli interi, i booleani, i caratteri, le stringhe, le tuple e le liste i cui elementi sono tipi di uguaglianza; non lo sono i reali e le funzioni.
 
->[!osservazione]
->Le variabili di tipo che sono limitate a tipi che supportano gli operatori di uguaglianza vengono indicate con `''a`.
+> **Osservazione**
+>
+> Le variabili di tipo che sono limitate a tipi che supportano gli operatori di uguaglianza vengono indicate con `''a`.
 
 ### Esempi
 
@@ -399,8 +408,9 @@ Found near first_eq ([2.0])
 Static Errors *)
 ```
 
->[!osservazione]
->Per controllare se una lista è vuota si può usare la funzione `null L`.
+> **Osservazione**
+>
+> Per controllare se una lista è vuota si può usare la funzione `null L`.
 
 ```sml
 > fun rev3 (L) =

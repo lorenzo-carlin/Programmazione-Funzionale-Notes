@@ -60,7 +60,8 @@ Un **data type** è un insieme di valori e di operatori definiti su tali valori.
 (* val it = ~292: int *)
 ```
 
->[!warning] Simbolo di Negazione
+> **⚠️ Attenzione — Simbolo di Negazione**
+>
 > In ML non si utilizza il simbolo `-` per indicare il segno meno dei numeri, si usa invece il simbolo `~`.
 > Il simbolo `-` è riservato esclusivamente all'operatore di sottrazione.
 
@@ -98,7 +99,8 @@ Un **data type** è un insieme di valori e di operatori definiti su tali valori.
 (* val it = "foo": string *)
 ```
 
->[!osservazione] Caratteri Speciali nelle Stringhe
+> **Osservazione — Caratteri Speciali nelle Stringhe**
+>
 > ML prevede i classici caratteri di escape:
 > - `\n`: newline
 > - `\t`: tab
@@ -163,7 +165,8 @@ Function: + : int * int -> int *)
 Reason: Can't unify ''a to real (Requires equality type) *)
 ```
 
->[!warning] Eguaglianza sui Reali
+> **⚠️ Attenzione — Eguaglianza sui Reali**
+>
 > Non sono consentite le operazioni di eguaglianza `=` e diversità `<>` sui numeri di tipo `real` a causa della precisione in virgola mobile.
 
 ```sml
@@ -188,7 +191,8 @@ Reason: Can't unify ''a to real (Requires equality type) *)
 (* val it = true: bool *)
 ```
 
->[!osservazione] Precedenza Logica
+> **Osservazione — Precedenza Logica**
+>
 > `not` ha la precedenza massima, seguito da `andalso`, e infine `orelse`.
 
 ### Construct `if-then-else`

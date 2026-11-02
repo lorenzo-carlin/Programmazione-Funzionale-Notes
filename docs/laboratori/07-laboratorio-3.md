@@ -1,5 +1,6 @@
->[!esercizio] Esercizio 3.1
->Scrivere una funzione `fact` che calcola il fattoriale di `n` ($n \ge 0$).
+> **Esercizio 3.1**
+>
+> Scrivere una funzione `fact` che calcola il fattoriale di `n` ($n \ge 0$).
 
 ```sml
 > fun fact (n) =
@@ -12,8 +13,9 @@
 (* val it = 3628800: int *)
 ```
 
->[!esercizio] Esercizio 3.2
->Scrivere una funzione `cyclei` che, dato un intero `i` e una lista $L = [a_1, ..., a_n]$, cicla la lista `L` per `i` volte, ossia produce $[a_{i+1}, a_{i+2}, ..., a_n, a_1, ..., a_i]$.
+> **Esercizio 3.2**
+>
+> Scrivere una funzione `cyclei` che, dato un intero `i` e una lista $L = [a_1, ..., a_n]$, cicla la lista `L` per `i` volte, ossia produce $[a_{i+1}, a_{i+2}, ..., a_n, a_1, ..., a_i]$.
 
 ```sml
 > fun cyclei (i, L) =
@@ -26,8 +28,9 @@
 (* val it = ["e", "a", "b", "c", "d"]: string list *)
 ```
 
->[!esercizio] Esercizio 3.3
->Scrivere una funzione `duplicate` che duplica ogni elemento di una lista. Quindi, data la lista $L = [a_1, ..., a_n]$, restituisce $[a_1, a_1, a_2, a_2, ..., a_n, a_n]$.
+> **Esercizio 3.3**
+>
+> Scrivere una funzione `duplicate` che duplica ogni elemento di una lista. Quindi, data la lista $L = [a_1, ..., a_n]$, restituisce $[a_1, a_1, a_2, a_2, ..., a_n, a_n]$.
 
 ```sml
 > fun duplicate (L) =
@@ -40,8 +43,9 @@
 (* val it = ["a", "a", "b", "b", "c", "c"]: string list *)
 ```
 
->[!esercizio] Esercizio 3.4
->Scrivere una funzione `len` che calcola la lunghezza di una lista.
+> **Esercizio 3.4**
+>
+> Scrivere una funzione `len` che calcola la lunghezza di una lista.
 
 ```sml
 > fun len (L) =
@@ -54,8 +58,9 @@
 (* val it = 3: int *)
 ```
 
->[!esercizio] Esercizio 3.5
->Scrivere una funzione `pow` che calcola $x^i$, dove `x` è un numero reale e `i` un intero non negativo.
+> **Esercizio 3.5**
+>
+> Scrivere una funzione `pow` che calcola $x^i$, dove `x` è un numero reale e `i` un intero non negativo.
 
 ```sml
 > fun pow(x:real, i:int) =
@@ -68,8 +73,9 @@
 (* val it = 8.0: real *)
 ```
 
->[!esercizio] Esercizio 3.6
->Scrivere una funzione `maxList` che calcola l'elemento maggiore di una lista di stringhe (in ordine lessicografico). La lista è non vuota.
+> **Esercizio 3.6**
+>
+> Scrivere una funzione `maxList` che calcola l'elemento maggiore di una lista di stringhe (in ordine lessicografico). La lista è non vuota.
 
 ```sml
 > fun max(a: string, b: string) =
@@ -87,8 +93,9 @@ val maxList = fn: string list -> string *)
 
 > La teoria del pattern matching è nella pagina [07. Pattern matching](../teoria/07-pattern-matching.md).
 
->[!esercizio] Esercizio 3.7
->Scrivere la funzione `fact` che calcola il fattoriale, usando i pattern.
+> **Esercizio 3.7**
+>
+> Scrivere la funzione `fact` che calcola il fattoriale, usando i pattern.
 
 ```sml
 > fun fact (0) = 1
@@ -100,8 +107,9 @@ val maxList = fn: string list -> string *)
 (* val it = 3628800: int *)
 ```
 
->[!esercizio] Esercizio 3.8
->Scrivere la funzione `cycle1` che cicla una lista di una posizione usando i pattern. Se la lista è vuota, ritornare la lista vuota.
+> **Esercizio 3.8**
+>
+> Scrivere la funzione `cycle1` che cicla una lista di una posizione usando i pattern. Se la lista è vuota, ritornare la lista vuota.
 
 ```sml
 > fun cycle1 (nil) = nil
@@ -116,8 +124,9 @@ val maxList = fn: string list -> string *)
 val it = []: _a list *)
 ```
 
->[!esercizio] Esercizio 3.9
->Scrivere una funzione `cycleip` che, dato un intero `i` e una lista $L = [a_1, ..., a_n]$, cicla la lista per `i` volte, ossia produce $[a_{i+1}, a_{i+2}, ..., a_n, a_1, ..., a_i]$.
+> **Esercizio 3.9**
+>
+> Scrivere una funzione `cycleip` che, dato un intero `i` e una lista $L = [a_1, ..., a_n]$, cicla la lista per `i` volte, ossia produce $[a_{i+1}, a_{i+2}, ..., a_n, a_1, ..., a_i]$.
 
 ```sml
 > fun cycleip (0, L) = L
@@ -129,8 +138,9 @@ val it = []: _a list *)
 (* val it = ["e", "a", "b", "c", "d"]: string list *)
 ```
 
->[!esercizio] Esercizio 3.10
->Scrivere una funzione `duplicatep` che duplica ogni elemento di una lista, usando i pattern.
+> **Esercizio 3.10**
+>
+> Scrivere una funzione `duplicatep` che duplica ogni elemento di una lista, usando i pattern.
 
 ```sml
 > fun duplicatep (nil) = nil
@@ -142,8 +152,9 @@ val it = []: _a list *)
 (* val it = [2.0, 2.0]: real list *)
 ```
 
->[!esercizio] Esercizio 3.11
->Scrivere una funzione `power` che calcola $x^i$, dove `x` è un reale e `i` è un intero non negativo.
+> **Esercizio 3.11**
+>
+> Scrivere una funzione `power` che calcola $x^i$, dove `x` è un reale e `i` è un intero non negativo.
 
 ```sml
 > fun power (n, 0) = 1.0
@@ -155,8 +166,9 @@ val it = []: _a list *)
 (* val it = 8.0: real *)
 ```
 
->[!esercizio] Esercizio 3.12
->Scrivere una funzione `maxList` che calcola il massimo di una lista di reali, assumendo che la lista sia non vuota.
+> **Esercizio 3.12**
+>
+> Scrivere una funzione `maxList` che calcola il massimo di una lista di reali, assumendo che la lista sia non vuota.
 
 ```sml
 > fun max (a: real, b: real) =

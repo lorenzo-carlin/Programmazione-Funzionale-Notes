@@ -1,10 +1,11 @@
->[!esercizio] Esercizio 8.1
->Definire la signature `SET` che preveda:
->- un parametro di tipo: `'a set`
->- un valore per un set vuoto: `emptyset`
->- un operatore per testare se un elemento fa parte del set o no: `isin`
->- un operatore per aggiungere un elemento ad un set: `addin`
->- un operatore per rimuovere un elemento da un set: `removefrom`
+> **Esercizio 8.1**
+>
+> Definire la signature `SET` che preveda:
+> - un parametro di tipo: `'a set`
+> - un valore per un set vuoto: `emptyset`
+> - un operatore per testare se un elemento fa parte del set o no: `isin`
+> - un operatore per aggiungere un elemento ad un set: `addin`
+> - un operatore per rimuovere un elemento da un set: `removefrom`
 
 ```sml
 signature SET = sig
@@ -24,8 +25,9 @@ end;
 end;*)
 ```
 
->[!esercizio] Esercizio 8.2
->Con la signature `SET` data, aggiungere la definizione per la struttura `Set` che implementi tale signature.
+> **Esercizio 8.2**
+>
+> Con la signature `SET` data, aggiungere la definizione per la struttura `Set` che implementi tale signature.
 
 ```sml
 signature SET = sig
@@ -40,8 +42,9 @@ end:>SET;
 structure Set: SET*)
 ```
 
->[!esercizio] Esercizio 8.3
->Con la signature `SET` data, aggiungere la definizione per la struttura `Set` che implementi tale signature e aggiungere dei casi di test.
+> **Esercizio 8.3**
+>
+> Con la signature `SET` data, aggiungere la definizione per la struttura `Set` che implementi tale signature e aggiungere dei casi di test.
 
 ```sml
 signature SET = sig
@@ -61,8 +64,9 @@ structure Set: SET
 val a = []: 'a Set.set*)
 ```
 
->[!esercizio] Esercizio 8.4
->Con la signature `SET` data, aggiungere la definizione per la struttura `Set` che implementi tale signature e aggiungere dei casi di test.
+> **Esercizio 8.4**
+>
+> Con la signature `SET` data, aggiungere la definizione per la struttura `Set` che implementi tale signature e aggiungere dei casi di test.
 
 ```sml
 signature SET = sig
@@ -88,8 +92,9 @@ val a = ?: ''a Set.set
 val b = false: bool*)
 ```
 
->[!esercizio] Esercizio 8.5
->Con la signature `SET` data, aggiungere la definizione per la struttura `Set` che implementi tale signature e aggiungere dei casi di test.
+> **Esercizio 8.5**
+>
+> Con la signature `SET` data, aggiungere la definizione per la struttura `Set` che implementi tale signature e aggiungere dei casi di test.
 
 ```sml
 signature SET = sig
@@ -126,8 +131,9 @@ val c = ?: int Set.set
 val d = true: bool*)
 ```
 
->[!esercizio] Esercizio 8.6
->Con la signature `SET` data, aggiungere la definizione per la struttura `Set` che implementi tale signature e aggiungere dei casi di test.
+> **Esercizio 8.6**
+>
+> Con la signature `SET` data, aggiungere la definizione per la struttura `Set` che implementi tale signature e aggiungere dei casi di test.
 
 ```sml
 signature SET = sig
@@ -174,11 +180,12 @@ val f = ?: int Set.set
 val g = false: bool*)
 ```
 
->[!esercizio] Esercizio 8.7
->Con il datatype `'a T` dato, si definisca una signature `TREE` che preveda:
->- una funzione per calcolare il numero di nodi nell'albero, escludendo le foglie: `countNodes`
->- una funzione per calcolare la profondità dell'albero, escludendo le foglie: `depth`
->- una funzione che calcola l'albero specchiato, ossia l'albero ottenuto invertendo left e right subtree di ogni nodo: `mirror`
+> **Esercizio 8.7**
+>
+> Con il datatype `'a T` dato, si definisca una signature `TREE` che preveda:
+> - una funzione per calcolare il numero di nodi nell'albero, escludendo le foglie: `countNodes`
+> - una funzione per calcolare la profondità dell'albero, escludendo le foglie: `depth`
+> - una funzione che calcola l'albero specchiato, ossia l'albero ottenuto invertendo left e right subtree di ogni nodo: `mirror`
 
 ```sml
 datatype 'a T =
@@ -200,8 +207,9 @@ signature TREE =
   end*)
 ```
 
->[!esercizio] Esercizio 8.8
->Data la signature `TREE`, definire la struttura `Tree`. Aggiungere dei casi di test.
+> **Esercizio 8.8**
+>
+> Data la signature `TREE`, definire la struttura `Tree`. Aggiungere dei casi di test.
 
 ```sml
 signature TREE = sig
@@ -256,9 +264,10 @@ val d = Br (1, Br (3, Br (5, Lf, Lf), Br (4, Lf, Lf)), Br (2, Lf, Lf)):
    int Tree.T*)
 ```
 
->[!esercizio] Esercizio 8.9
->Dato il tipo `('a,'b) mapTree`, definito come un BST in cui l'ordine è definito dalla prima componente della tupla, scrivere una funzione `lookup lt T a` che cerca una coppia `(a, b)` la cui prima componente sia `a`. Se la trova, ritorna `b`, altrimenti solleva l'eccezione `Missing`.
->Scrivere un `(int, string) mapTree` per testare la funzione.
+> **Esercizio 8.9**
+>
+> Dato il tipo `('a,'b) mapTree`, definito come un BST in cui l'ordine è definito dalla prima componente della tupla, scrivere una funzione `lookup lt T a` che cerca una coppia `(a, b)` la cui prima componente sia `a`. Se la trova, ritorna `b`, altrimenti solleva l'eccezione `Missing`.
+> Scrivere un `(int, string) mapTree` per testare la funzione.
 
 ```sml
 datatype 'a btree =
@@ -313,9 +322,10 @@ val test3 = "sei": string
 val test4 = "dieci": string*)
 ```
 
->[!esercizio] Esercizio 8.10
->Dato il tipo `('a, 'b) mapTree` definito in precedenza, scrivere la funzione `assign lt T a b` che cerca nel BST la coppia `(a, c)`. Se la trova, sostituisce `c` con `b`, altrimenti inserisce la coppia `(a, b)` nel posto corretto nel BST.
->Scrivere un `(int, string) mapTree` per testare la funzione.
+> **Esercizio 8.10**
+>
+> Dato il tipo `('a, 'b) mapTree` definito in precedenza, scrivere la funzione `assign lt T a b` che cerca nel BST la coppia `(a, c)`. Se la trova, sostituisce `c` con `b`, altrimenti inserisce la coppia `(a, b)` nel posto corretto nel BST.
+> Scrivere un `(int, string) mapTree` per testare la funzione.
 
 ```sml
 datatype 'a btree =

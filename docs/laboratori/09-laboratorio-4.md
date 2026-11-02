@@ -1,6 +1,7 @@
->[!esercizio] Esercizio 4.1
->Scrivere una funzione `flip` che flippa gli elementi alternati, usando i pattern. Se la dimensione della lista è dispari, si lasci l'ultimo elemento invariato.
->Quindi la lista $[a_1,a_2,...,a_{n-1},a_n]$ diventa $[a_2,a_1,...,a_n,a_{n-1}]$.
+> **Esercizio 4.1**
+>
+> Scrivere una funzione `flip` che flippa gli elementi alternati, usando i pattern. Se la dimensione della lista è dispari, si lasci l'ultimo elemento invariato.
+> Quindi la lista $[a_1,a_2,...,a_{n-1},a_n]$ diventa $[a_2,a_1,...,a_n,a_{n-1}]$.
 
 ```sml
 > fun flip (nil) = (nil)
@@ -13,8 +14,9 @@
 (* val it = [2, 1, 4, 3]: int list *)
 ```
 
->[!esercizio] Esercizio 4.2
->Scrivere una funzione `remove` che, data una lista `L` e un intero `i`, ritorna `L` con l'`i`-esimo elemento eliminato. Se la lunghezza di `L` è minore di `i`, ritorna `L` invariata.
+> **Esercizio 4.2**
+>
+> Scrivere una funzione `remove` che, data una lista `L` e un intero `i`, ritorna `L` con l'`i`-esimo elemento eliminato. Se la lunghezza di `L` è minore di `i`, ritorna `L` invariata.
 
 ```sml
 > fun remove (nil, i) = nil
@@ -29,8 +31,9 @@
 (* val it = [1, 2]: int list *)
 ```
 
->[!esercizio] Esercizio 4.3
->Scrivere una funzione `square` che prende in input un intero `n` e calcola il quadrato di `n` tramite la formula $n^2 = (n-1)^2 + 2n -1$, usando i pattern.
+> **Esercizio 4.3**
+>
+> Scrivere una funzione `square` che prende in input un intero `n` e calcola il quadrato di `n` tramite la formula $n^2 = (n-1)^2 + 2n -1$, usando i pattern.
 
 ```sml
 > fun square (0) = (0)
@@ -44,8 +47,9 @@
 (* val it = 0: int *)
 ```
 
->[!esercizio] Esercizio 4.4
->Scrivere una funzione `flip` che prende in input una lista di coppie di interi e ordina ogni coppia in modo che il primo numero della coppia sia il minore.
+> **Esercizio 4.4**
+>
+> Scrivere una funzione `flip` che prende in input una lista di coppie di interi e ordina ogni coppia in modo che il primo numero della coppia sia il minore.
 
 ```sml
 > fun flip (nil) = (nil)
@@ -63,8 +67,9 @@
 (* val it = []: (int * int) list *)
 ```
 
->[!esercizio] Esercizio 4.5
->Scrivere una funzione `vowel` che prende in input una lista di caratteri e ritorna `true` se il primo elemento della lista è una vocale, usando i pattern.
+> **Esercizio 4.5**
+>
+> Scrivere una funzione `vowel` che prende in input una lista di caratteri e ritorna `true` se il primo elemento della lista è una vocale, usando i pattern.
 
 ```sml
 > fun vowel (nil) = false
@@ -85,9 +90,10 @@
 (* val it = false: bool *)
 ```
 
->[!esercizio] Esercizio 4.6
->Assumiamo, per il momento, di rappresentare i set tramite liste: gli elementi possono trovarsi in qualsiasi ordine, senza ripetizioni.
->Scrivere una funzione `member(x,S)` per testare se `x` è un membro del set `S`, usando i pattern.
+> **Esercizio 4.6**
+>
+> Assumiamo, per il momento, di rappresentare i set tramite liste: gli elementi possono trovarsi in qualsiasi ordine, senza ripetizioni.
+> Scrivere una funzione `member(x,S)` per testare se `x` è un membro del set `S`, usando i pattern.
 
 ```sml
 > fun member (x, nil) = false
@@ -105,8 +111,9 @@
 (* val it = false: bool *)
 ```
 
->[!esercizio] Esercizio 4.7
->Scrivere una funzione `delete` che elimina l'elemento `x` dal set `S`, usando i pattern. Se `x` non appartiene al set `S`, la funzione ritorna `S` invariato.
+> **Esercizio 4.7**
+>
+> Scrivere una funzione `delete` che elimina l'elemento `x` dal set `S`, usando i pattern. Se `x` non appartiene al set `S`, la funzione ritorna `S` invariato.
 
 ```sml
 > fun delete (x, nil) = (nil)
@@ -124,8 +131,9 @@
 (* val it = [#"c", #"b"]: char list *)
 ```
 
->[!esercizio] Esercizio 4.8
->Scrivere una funzione `insert` che inserisce un elemento `x` nel set `S` (in qualsiasi posizione), usando i pattern. `x` viene inserita solo se non è già presente.
+> **Esercizio 4.8**
+>
+> Scrivere una funzione `insert` che inserisce un elemento `x` nel set `S` (in qualsiasi posizione), usando i pattern. `x` viene inserita solo se non è già presente.
 
 ```sml
 > fun insert (x, nil) = ([x])
@@ -143,8 +151,9 @@
 (* val it = [#"b", #"c", #"a"]: char list *)
 ```
 
->[!esercizio] Esercizio 4.9
->Scrivere una funzione `insertAll` che prende un elemento `a` e una lista `L` e inserisce `a` come primo elemento di ogni elemento di `L`.
+> **Esercizio 4.9**
+>
+> Scrivere una funzione `insertAll` che prende un elemento `a` e una lista `L` e inserisce `a` come primo elemento di ogni elemento di `L`.
 
 ```sml
 > fun insertAll (a, nil) = (nil)
@@ -158,8 +167,9 @@
 (* val it = [[#"c", #"a", #"t"], [#"c", #"a", #"r"], [#"c"]]: char list list *)
 ```
 
->[!esercizio] Esercizio 4.10
->Scrivere una funzione `powerSet` che prende una lista `L` e produce l'insieme delle parti di `L` (in qualsiasi ordine).
+> **Esercizio 4.10**
+>
+> Scrivere una funzione `powerSet` che prende una lista `L` e produce l'insieme delle parti di `L` (in qualsiasi ordine).
 
 ```sml
 > fun insertAll (a, nil) = (nil)
@@ -181,8 +191,9 @@ val it = [[]]: _a list list *)
 (* val it = [[], [#"c"], [#"a"], [#"a", #"c"]]: char list list *)
 ```
 
->[!esercizio] Esercizio 4.11
->Scrivere una funzione `prodDiff` che, data una lista di reali $[a_1,...,a_n]$, calcoli $\displaystyle \prod_{i < j} (a_i - a_j)$.
+> **Esercizio 4.11**
+>
+> Scrivere una funzione `prodDiff` che, data una lista di reali $[a_1,...,a_n]$, calcoli $\displaystyle \prod_{i < j} (a_i - a_j)$.
 
 ```sml
 > fun mulDif (x, nil) = 1.0
@@ -200,8 +211,9 @@ val prodDiff = fn: real list -> real *)
 (* val it = 1.0: real *)
 ```
 
->[!esercizio] Esercizio 4.12
->Scrivere una funzione `is_one` che ritorna `"one"` se il parametro passato è `1` e `"anything else"` altrimenti, usando il costrutto `case` e il pattern matching con `fun` e `fn`.
+> **Esercizio 4.12**
+>
+> Scrivere una funzione `is_one` che ritorna `"one"` se il parametro passato è `1` e `"anything else"` altrimenti, usando il costrutto `case` e il pattern matching con `fun` e `fn`.
 
 ```sml
 > fun is_one (1) = "one"

@@ -20,9 +20,10 @@ Se la macchina di Turing è il fondamento matematico per i linguaggi di programm
 2. **funzioni**, che sono delle lambda astrazioni sulle variabili
 3. **applicazione** delle funzioni ai valori
 
->[!esempio]
->$(\lambda x.x^2)$ corrisponde alla funzione di elevamento al quadrato.
->$(\lambda x.x^2)7 = 49$ è l'applicazione di tale funzione ad un'espressione.
+> **Esempio**
+>
+> $(\lambda x.x^2)$ corrisponde alla funzione di elevamento al quadrato.
+> $(\lambda x.x^2)7 = 49$ è l'applicazione di tale funzione ad un'espressione.
 
 Un'**espressione** nel $\lambda$-calcolo può essere:
 - $x$, una variabile $\in V$
@@ -54,8 +55,9 @@ L'insieme delle **variabili free** di un'espressione è definito (a seconda del 
 - $F_v(\lambda x.e) = F_v(e) \setminus \{x\}$
 - $F_v(e_1e_2) = F_v(e_1) \cup F_v(e_2)$
 
->[!esempio]
->Le variabili free dell'espressione $\lambda x.y(\lambda y.xyu)$ sono la prima $y$ e $u$.
+> **Esempio**
+>
+> Le variabili free dell'espressione $\lambda x.y(\lambda y.xyu)$ sono la prima $y$ e $u$.
 
 ### Variabili bound
 
@@ -64,8 +66,9 @@ L'insieme delle **variabili bound** di una espressione è definito (a seconda de
 - $B_v(\lambda x.e) = \{x\} \cup B_v(e)$
 - $B_v(e_1e_2) = B_v(e_1) \cup B_v(e_2)$
 
->[!esempio]
->Le variabili bound dell'espressione $\lambda x.y(\lambda y.xyu)$ sono $x$ e la seconda $y$.
+> **Esempio**
+>
+> Le variabili bound dell'espressione $\lambda x.y(\lambda y.xyu)$ sono $x$ e la seconda $y$.
 
 ### Convenzioni
 
@@ -75,44 +78,49 @@ L'insieme delle **variabili bound** di una espressione è definito (a seconda de
 - Il corpo di una lambda si estende il più a destra possibile.
   Ad esempio, $\lambda x.x \lambda z.xzx$ corrisponde a $\lambda x.(x \lambda z.(xzx))$
 
->[!esercizio]
->Rendere le parentesi esplicite nella seguente espressione: $(\lambda p.pz) \lambda q.w \lambda w.wqzp$
+> **Esercizio**
 >
->$((\lambda p.(p z)) (\lambda q.(w (\lambda w.(((w q) z) p)))))$
+> Rendere le parentesi esplicite nella seguente espressione: $(\lambda p.pz) \lambda q.w \lambda w.wqzp$
+>
+> $((\lambda p.(p z)) (\lambda q.(w (\lambda w.(((w q) z) p)))))$
 
->[!esercizio]
->Nella seguente espressione dire quali sono, se ce ne sono, le variabili bound e a quali $\lambda$ sono associate, e quali sono free: $\lambda s.sz \lambda q.sq$
->- la prima $s$ è bound al $\lambda s$
->- la $z$ è free
->- la seconda $s$ è bound al $\lambda s$
->- la $q$ è bound al $\lambda q$
+> **Esercizio**
+>
+> Nella seguente espressione dire quali sono, se ce ne sono, le variabili bound e a quali $\lambda$ sono associate, e quali sono free: $\lambda s.sz \lambda q.sq$
+> - la prima $s$ è bound al $\lambda s$
+> - la $z$ è free
+> - la seconda $s$ è bound al $\lambda s$
+> - la $q$ è bound al $\lambda q$
 
->[!esercizio]
->Nella seguente espressione dire quali sono, se ce ne sono, le variabili bound e a quali $\lambda$ sono associate, e quali sono free: $( \lambda s.sz) \lambda q.w \lambda w.wqzs$
->- la prima $s$ è bound al $\lambda s$
->- la prima $z$ è free
->- la prima $w$ è free
->- la seconda $w$ è bound al $\lambda w$
->- la $q$ è bound al $\lambda q$
->- la seconda $z$ è free
->- la seconda $s$ è free
+> **Esercizio**
+>
+> Nella seguente espressione dire quali sono, se ce ne sono, le variabili bound e a quali $\lambda$ sono associate, e quali sono free: $( \lambda s.sz) \lambda q.w \lambda w.wqzs$
+> - la prima $s$ è bound al $\lambda s$
+> - la prima $z$ è free
+> - la prima $w$ è free
+> - la seconda $w$ è bound al $\lambda w$
+> - la $q$ è bound al $\lambda q$
+> - la seconda $z$ è free
+> - la seconda $s$ è free
 
 ## Riduzione-$\beta$
 
 La **riduzione-$\beta$** è il processo che riduce le espressioni del $\lambda$-calcolo, valutandole.
 
->[!esempio] Esempi di riduzione-$\beta$
->- $(\lambda x.x + x)5 \to 5+5 \to 10$
->- $(\lambda x.3)5 \to 3$
->- $(\lambda x.(\lambda y.y - x)) 4 \space 5 \to (\lambda y.y - 4) 5 \to 5 - 4 \to 1$
->- $(\lambda f.f \space 3)(\lambda x.x + 1) \to (\lambda x.x + 1) 3 \to 4$
+> **Esempi di riduzione-$\beta$**
+>
+> - $(\lambda x.x + x)5 \to 5+5 \to 10$
+> - $(\lambda x.3)5 \to 3$
+> - $(\lambda x.(\lambda y.y - x)) 4 \space 5 \to (\lambda y.y - 4) 5 \to 5 - 4 \to 1$
+> - $(\lambda f.f \space 3)(\lambda x.x + 1) \to (\lambda x.x + 1) 3 \to 4$
 
->[!esempio] Esempi generici di riduzione-$\beta$
->- $(\lambda x.x)z \to z$
->- $(\lambda x.y)z \to y$
->- $(\lambda x.x \space y)z \to z \space y$
->- $(\lambda x.x \space y)(\lambda z.z) \to (\lambda z.z)y \to y$
->- $(\lambda x. \lambda y.x \space y)z \to \lambda y.z \space y$
+> **Esempi generici di riduzione-$\beta$**
+>
+> - $(\lambda x.x)z \to z$
+> - $(\lambda x.y)z \to y$
+> - $(\lambda x.x \space y)z \to z \space y$
+> - $(\lambda x.x \space y)(\lambda z.z) \to (\lambda z.z)y \to y$
+> - $(\lambda x. \lambda y.x \space y)z \to \lambda y.z \space y$
 
 Come abbiamo visto dagli esempi precedenti, la riduzione-$\beta$ può essere applicata alle funzioni di ordine superiore. Consideriamo, per esempio, una funzione che data una funzione $f$ restituisca la funzione $f \circ f$: $\lambda f. \lambda x. f(fx)$
 Per verificare se funziona, applichiamola alla funzione successore, definita come $\lambda y.y + 1$:
@@ -156,19 +164,23 @@ L'$\alpha$-conversione viene usata proprio per evitare il problema di cui abbiam
 4. Altrimenti, la precedenza è data a sinistra
 5. Attenzione a quando una variabile viene catturata, in particolare quando una variabile free diventa bound. Ciò genera un errore e si deve procedere a rinominare tale variabile.
 
->[!warning] Attenzione
->Le riduzioni $\beta$ non sono simmetriche.
+> **⚠️ Attenzione**
+>
+> Le riduzioni $\beta$ non sono simmetriche.
 
->[!osservazione]
->Un'espressione si dice in forma normale se non si può $\beta$-ridurre ulteriormente.
+> **Osservazione**
+>
+> Un'espressione si dice in forma normale se non si può $\beta$-ridurre ulteriormente.
 
 Una riduzione-$\beta$ può terminare in una forma normale o può anche andare avanti all'infinito, come nell'esempio $(\lambda x.xx)(\lambda x.xx)$.
 
->[!teorema]
->Se $e$ può essere ridotta a $e_1$ grazie ad una riduzione-$\beta$ e $e$ può essere ridotta a $e_2$ grazie ad una riduzione-$\beta$, allora esiste un $e_3$ tale che sia $e_1$ che $e_2$ possono essere ridotti a $e_3$ tramite una riduzione-$\beta$.
+> **Teorema**
+>
+> Se $e$ può essere ridotta a $e_1$ grazie ad una riduzione-$\beta$ e $e$ può essere ridotta a $e_2$ grazie ad una riduzione-$\beta$, allora esiste un $e_3$ tale che sia $e_1$ che $e_2$ possono essere ridotti a $e_3$ tramite una riduzione-$\beta$.
 
->[!esercizio] Esercizio
->Ridurre alla forma normale l'espressione $(\lambda x.x(xy))(\lambda z.zx)$.
+> **Esercizio**
+>
+> Ridurre alla forma normale l'espressione $(\lambda x.x(xy))(\lambda z.zx)$.
 
 **Soluzione**:
 $(\lambda x.x(xy))(\lambda z.zx) \rightarrow$
@@ -191,9 +203,10 @@ Il $\lambda$-calcolo, per come visto finora, è molto astratto e molto limitato.
 
 - **If a then b else c** = a b c
 
->[!esempio]
->- **If true then b else c** = $(\lambda x. \lambda y.x) b \; c \to (\lambda y.b)c \to b$
->- **If false then b else c** = $(\lambda x. \lambda y.y)b \; c \to (\lambda y.y)c \to c$
+> **Esempio**
+>
+> - **If true then b else c** = $(\lambda x. \lambda y.x) b \; c \to (\lambda y.b)c \to b$
+> - **If false then b else c** = $(\lambda x. \lambda y.y)b \; c \to (\lambda y.y)c \to c$
 
 ### Operatori booleani
 

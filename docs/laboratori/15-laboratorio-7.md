@@ -1,5 +1,6 @@
->[!esercizio] Esercizio 7.1
->Data una funzione `F`, che prende n parametri (con n fissato, in questo caso 3), definire una funzione curried che applica `F` e produce una funzione `G` tale che: $G x_1 ... x_n = F(x_1, ..., x_n)$.
+> **Esercizio 7.1**
+>
+> Data una funzione `F`, che prende n parametri (con n fissato, in questo caso 3), definire una funzione curried che applica `F` e produce una funzione `G` tale che: $G x_1 ... x_n = F(x_1, ..., x_n)$.
 
 ```sml
 > fun curry f a b c = f(a,b,c);
@@ -8,8 +9,9 @@
 (* val it = 6: int *)
 ```
 
->[!esercizio] Esercizio 7.2
->Usare `map`, `foldr`, `foldl` per convertire una lista di interi in una lista di reali.
+> **Esercizio 7.2**
+>
+> Usare `map`, `foldr`, `foldl` per convertire una lista di interi in una lista di reali.
 
 ```sml
 > fun toReal(l) = map (real) l;
@@ -18,8 +20,9 @@
 (* val it = [1.0, 2.0, 3.0]: real list *)
 ```
 
->[!esercizio] Esercizio 7.3
->Usare `map`, `foldr`, `foldl` per calcolare l'AND logico di una lista di booleani.
+> **Esercizio 7.3**
+>
+> Usare `map`, `foldr`, `foldl` per calcolare l'AND logico di una lista di booleani.
 
 ```sml
 > fun andb(L: bool list) = foldr (fn(a,b) => (a andalso b)) true L;
@@ -28,8 +31,9 @@
 (* val it = false: bool *)
 ```
 
->[!esercizio] Esercizio 7.4
->Usare `map`, `foldr`, `foldl` per definire la funzione `implode`.
+> **Esercizio 7.4**
+>
+> Usare `map`, `foldr`, `foldl` per definire la funzione `implode`.
 
 ```sml
 > fun implode(L) = foldl (fn(a: char, b: string) => (b^str(a))) "" L;
@@ -38,8 +42,9 @@
 (* val it = "bc": string *)
 ```
 
->[!esercizio] Esercizio 7.5
->Dato un datatype `btree`, scrivere la funzione `postOrder` che ritorna la lista dei nodi di un albero binario visitato in post-order. Ossia la label di un nodo segue l'attraversamento post-order di entrambi i suoi sottoalberi.
+> **Esercizio 7.5**
+>
+> Dato un datatype `btree`, scrivere la funzione `postOrder` che ritorna la lista dei nodi di un albero binario visitato in post-order. Ossia la label di un nodo segue l'attraversamento post-order di entrambi i suoi sottoalberi.
 
 ```sml
 > datatype 'a btree =
@@ -56,8 +61,9 @@ val postOrder = fn: 'a btree -> 'a list *)
 (* val it = ["a", "in", "as", "types", "ML"]: string list *)
 ```
 
->[!esercizio] Esercizio 7.6
->Dato il datatype `btree`, scrivere una funzione `inOrder` che ritorna la lista dei nodi di un albero binario visitato in in-order. Ossia la label di un nodo si trova tra l'attraversamento in-order del suo sottoalbero di sinistra e quello di destra.
+> **Esercizio 7.6**
+>
+> Dato il datatype `btree`, scrivere una funzione `inOrder` che ritorna la lista dei nodi di un albero binario visitato in in-order. Ossia la label di un nodo si trova tra l'attraversamento in-order del suo sottoalbero di sinistra e quello di destra.
 
 ```sml
 > datatype 'a btree =
@@ -71,8 +77,9 @@ val postOrder = fn: 'a btree -> 'a list *)
 (* val it = ["a", "as", "in", "ML", "types"]: string list *)
 ```
 
->[!esercizio] Esercizio 7.7
->Definire un tipo `mapTree` che è una specializzazione di `btree` tale per cui ogni label è una lista di coppie. Definire un albero `t1` che ha un singolo nodo e ha la lista di coppie `[("a", 1)]` come label.
+> **Esercizio 7.7**
+>
+> Definire un tipo `mapTree` che è una specializzazione di `btree` tale per cui ogni label è una lista di coppie. Definire un albero `t1` che ha un singolo nodo e ha la lista di coppie `[("a", 1)]` come label.
 
 ```sml
 > datatype ('a, 'b) mapTree =
@@ -87,8 +94,9 @@ val postOrder = fn: 'a btree -> 'a list *)
 val t1 = Node ([("a", 1)], Empty, Empty): (string, int) mapTree *)
 ```
 
->[!esercizio] Esercizio 7.8
->Scrivere una funzione `sumTree` per un `mapTree` T di tipo `('a, 'b) mapTree`. La funzione visita l'albero e ritorna la somma della seconda componente di tutte le coppie presenti nelle label dei nodi.
+> **Esercizio 7.8**
+>
+> Scrivere una funzione `sumTree` per un `mapTree` T di tipo `('a, 'b) mapTree`. La funzione visita l'albero e ritorna la somma della seconda componente di tutte le coppie presenti nelle label dei nodi.
 
 ```sml
 > datatype ('a, 'b) mapTree =
@@ -112,8 +120,9 @@ val sumTree = fn: ('a, int) mapTree -> int *)
 (* val it = 6: int *)
 ```
 
->[!esercizio] Esercizio 7.9
->Dato il datatype `btree`, definire una funzione `countInternalNodes` di tipo `('a -> bool) -> 'a btree -> int` che prende un predicato `p` (una funzione di tipo `'a -> bool`) e un `'a btree` e ritorna il numero di nodi interni (ossia nodi che hanno almeno un subtree non vuoto), il cui valore soddisfa il predicato.
+> **Esercizio 7.9**
+>
+> Dato il datatype `btree`, definire una funzione `countInternalNodes` di tipo `('a -> bool) -> 'a btree -> int` che prende un predicato `p` (una funzione di tipo `'a -> bool`) e un `'a btree` e ritorna il numero di nodi interni (ossia nodi che hanno almeno un subtree non vuoto), il cui valore soddisfa il predicato.
 
 ```sml
 > datatype 'a btree =
@@ -133,8 +142,9 @@ val countInternalNodes = fn: ('a -> bool) -> 'a btree -> int *)
 (* val it = 1: int *)
 ```
 
->[!esercizio] Esercizio 7.10
->Dato il datatype `bltree`, definire una funzione `doubleTree` di tipo `int bltree -> int bltree` che prende un albero di interi e ritorna un nuovo albero dove ogni valore (sia sulle foglie che sui nodi) viene moltiplicato per 2.
+> **Esercizio 7.10**
+>
+> Dato il datatype `bltree`, definire una funzione `doubleTree` di tipo `int bltree -> int bltree` che prende un albero di interi e ritorna un nuovo albero dove ogni valore (sia sulle foglie che sui nodi) viene moltiplicato per 2.
 
 ```sml
 > datatype 'a bltree =

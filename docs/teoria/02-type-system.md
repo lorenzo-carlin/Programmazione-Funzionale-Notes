@@ -29,8 +29,9 @@ Ad esempio, `type intlist = int list;` rende `intlist` un altro nome per `int li
 - **Strongly typed**: il linguaggio impedisce le operazioni non valide per il tipo di un valore e garantisce che gli errori di tipo non passino inosservati (di solito tramite controlli statici).
 - **Weakly typed**: il linguaggio è più permissivo e può permettere che errori di tipo passino inosservati (ad esempio tramite conversioni implicite o cast non controllati).
 
->[!warning] Attenzione
->ML è un linguaggio **strongly typed** che controlla i tipi in modo **statico**.
+> **⚠️ Attenzione**
+>
+> ML è un linguaggio **strongly typed** che controlla i tipi in modo **statico**.
 
 ### Type safety
 
@@ -52,13 +53,14 @@ Esistono due regole per l'equivalenza di tipo:
 
 `T` è compatibile con `S` se gli oggetti di tipo `T` possono essere usati in contesti dove ci si aspetta oggetti di tipo `S`.
 
->[!esempio]
->```C++
->int n;
->float r;
->r = r + n;
->```
->In alcuni linguaggi questo si può fare; in quei casi `int` e `float` sono compatibili.
+> **Esempio**
+>
+> ```C++
+> int n;
+> float r;
+> r = r + n;
+> ```
+> In alcuni linguaggi questo si può fare; in quei casi `int` e `float` sono compatibili.
 
 La compatibilità è riflessiva e transitiva ma non è simmetrica.
 
@@ -94,7 +96,8 @@ Found near 1.0 + 2
 Static Errors *)
 ```
 
->[!warning] Attenzione
+> **⚠️ Attenzione**
+>
 > L'operatore `+` è overloaded: ML ne deduce il tipo unificando i tipi degli argomenti. L'errore nasce quando i due argomenti hanno tipi che non possono essere unificati.
 
 ```sml
@@ -174,13 +177,15 @@ Il **binding** è l'associazione tra un nome e un oggetto denotabile. Tali assoc
 L'**environment** è la collezione di tutte le associazioni tra nomi e oggetti denotabili a runtime a uno specifico punto del programma in uno specifico momento dell'esecuzione.
 La **dichiarazione** è il meccanismo (implicito o esplicito) che crea le associazioni.
 
->[!osservazione]
->Lo stesso nome può indicare oggetti denotabili differenti in punti diversi del programma. Uno stesso oggetto può avere più nomi (alias) associati in punti diversi del codice.
+> **Osservazione**
+>
+> Lo stesso nome può indicare oggetti denotabili differenti in punti diversi del programma. Uno stesso oggetto può avere più nomi (alias) associati in punti diversi del codice.
 
 Una **variabile** è un oggetto che può assumere dei valori all'interno di un dominio.
 
->[!warning]
->In ML un'associazione creata con `val` non può essere riassegnata; esistono però le referenze (`ref`) per gestire stato mutabile.
+> **⚠️ Attenzione**
+>
+> In ML un'associazione creata con `val` non può essere riassegnata; esistono però le referenze (`ref`) per gestire stato mutabile.
 
 ### Variabili
 
@@ -198,8 +203,9 @@ Questo comando crea un'associazione tra un nome e un valore.
 (* val v = 5.0: real *)
 ```
 
->[!osservazione]
->Non è necessario specificare il tipo delle variabili; un'associazione creata con `val` non può essere modificata.
+> **Osservazione**
+>
+> Non è necessario specificare il tipo delle variabili; un'associazione creata con `val` non può essere modificata.
 
 Se avviene una nuova dichiarazione di una variabile con lo stesso nome di una già precedentemente dichiarata, esisteranno due versioni diverse di tale variabile e, quando si proverà ad accedere alla variabile in questione, si accederà alla seconda. Ma la prima rimane in memoria.
 
@@ -223,8 +229,9 @@ Se avviene una nuova dichiarazione di una variabile con lo stesso nome di una gi
 (* val t = (4, 5.0, "six"): int * real * string *)
 ```
 
->[!osservazione]
->Una tupla può contenere al suo interno valori dai tipi diversi tra di loro.
+> **Osservazione**
+>
+> Una tupla può contenere al suo interno valori dai tipi diversi tra di loro.
 
 ```sml
 > val t = (4, 5.0, "six");
@@ -271,8 +278,9 @@ Can't unify int (*In Basis*) with real (*In Basis*)
 (* val it = []: 'a list *)
 ```
 
->[!osservazione]
->Il tipo `'a` è un tipo generico: viene specificato solamente quando viene utilizzato.
+> **Osservazione**
+>
+> Il tipo `'a` è un tipo generico: viene specificato solamente quando viene utilizzato.
 
 - `hd` → primo elemento della lista
 
@@ -329,8 +337,9 @@ Con `::` si può combinare un elemento e una lista dello stesso tipo. Questa ope
 (* val it = [1, 2, 3]: int list *)
 ```
 
->[!osservazione]
->`nil` corrisponde ad una lista vuota.
+> **Osservazione**
+>
+> `nil` corrisponde ad una lista vuota.
 
 Con `explode` si trasforma una stringa in una lista di caratteri.
 
@@ -407,8 +416,9 @@ In caso di ambiguità, ML assegna dei tipi di default. Ad esempio, nella prima d
 
 Tutte le funzioni in ML hanno un solo parametro, ma questo può essere una tupla.
 
->[!esempio]
->Scriviamo una funzione che trova il massimo di tre numeri reali.
+> **Esempio**
+>
+> Scriviamo una funzione che trova il massimo di tre numeri reali.
 
 ```sml
 > fun max3(a:real,b,c) =

@@ -146,8 +146,9 @@ fie(z);
 
 In questo caso `x` è definita come `z` e quindi quando si va ad eseguire `x = x+1` in verità si sta eseguendo anche `z = z+1`. Dunque alla fine della funzione `z` vale 2.
 
->[!warning] Problema
->Se, all'interno della funzione, viene dichiarata una nuova variabile con lo stesso nome di una che definisce un parametro formale, come nell'esempio seguente, il risultato sarebbe incorretto.
+> **⚠️ Attenzione — Problema**
+>
+> Se, all'interno della funzione, viene dichiarata una nuova variabile con lo stesso nome di una che definisce un parametro formale, come nell'esempio seguente, il risultato sarebbe incorretto.
 
 ```C++
 int x = 0;
@@ -168,8 +169,9 @@ In questo modo `y` ha memoria della `x` dichiarata nell'environment del chiamant
 
 ### Esercizi
 
->[!esercizio] Esercizio 5.1
->Dire cosa verrà stampato dal seguente frammento di codice che usa scoping dinamico. I parametri sono passati per riferimento.
+> **Esercizio 5.1**
+>
+> Dire cosa verrà stampato dal seguente frammento di codice che usa scoping dinamico. I parametri sono passati per riferimento.
 
 ```C++
 {
@@ -188,8 +190,9 @@ In questo modo `y` ha memoria della `x` dichiarata nell'environment del chiamant
 
 **Output**: `10 2`
 
->[!esercizio] Esercizio 5.2
->Dire cosa verrà stampato dal seguente frammento di codice che usa scoping dinamico. I parametri sono passati per nome.
+> **Esercizio 5.2**
+>
+> Dire cosa verrà stampato dal seguente frammento di codice che usa scoping dinamico. I parametri sono passati per nome.
 
 ```C++
 {
@@ -211,8 +214,9 @@ In questo modo `y` ha memoria della `x` dichiarata nell'environment del chiamant
 
 **Output**: `6 7`
 
->[!esercizio] Esercizio 5.3
->Dire cosa verrà stampato dal seguente frammento di codice. I parametri sono passati per valore risultato.
+> **Esercizio 5.3**
+>
+> Dire cosa verrà stampato dal seguente frammento di codice. I parametri sono passati per valore risultato.
 
 ```C++
 int X = 2;
@@ -229,10 +233,11 @@ write(X);
 
 ## Ricorsione
 
->[!esempio] Esempio
->Scriviamo la funzione `reverse`, che inverte il contenuto di una lista.
->- Caso base: una lista vuota ritorna una lista vuota
->- Passo induttivo: invertiamo la `tail` della lista e vi concateniamo la `head`
+> **Esempio**
+>
+> Scriviamo la funzione `reverse`, che inverte il contenuto di una lista.
+> - Caso base: una lista vuota ritorna una lista vuota
+> - Passo induttivo: invertiamo la `tail` della lista e vi concateniamo la `head`
 
 ```sml
 > fun reverse L =
@@ -246,17 +251,19 @@ write(X);
 (* val it = ["cd", "bc", "ab"]: string list *)
 ```
 
->[!warning] Attenzione
->Se, in ML, scriviamo una funzione usando la sintassi `val <nome> = fn <param> => <expression>`, nel caso in cui la funzione sia ricorsiva bisogna aggiungere la keyword `rec`.
->In questo caso diventerebbe, `val rec <nome> = fn <param> => <expression>`.
->Ciò non è più necessario quando definiamo la funzione con `fun`.
+> **⚠️ Attenzione**
+>
+> Se, in ML, scriviamo una funzione usando la sintassi `val <nome> = fn <param> => <expression>`, nel caso in cui la funzione sia ricorsiva bisogna aggiungere la keyword `rec`.
+> In questo caso diventerebbe, `val rec <nome> = fn <param> => <expression>`.
+> Ciò non è più necessario quando definiamo la funzione con `fun`.
 
 ### Ricorsione mutua
 
 In ML, due funzioni possono chiamarsi a vicenda ricorsivamente.
 
->[!esempio] Esempio
->Scriviamo una funzione che prende una lista `L` e produce una lista che contiene solo gli elementi di `L` che si trovano a indice dispari (in posizione dispari: il primo, il terzo, ...).
+> **Esempio**
+>
+> Scriviamo una funzione che prende una lista `L` e produce una lista che contiene solo gli elementi di `L` che si trovano a indice dispari (in posizione dispari: il primo, il terzo, ...).
 
 Proviamo a scrivere tale funzione così:
 

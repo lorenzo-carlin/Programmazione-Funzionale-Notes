@@ -7,10 +7,11 @@ ML si aspetta che:
 - se un'espressione viene usata come **argomento di una funzione**, allora il parametro deve essere di quel tipo
 - se l'espressione che definisce il **risultato di una funzione** è di un determinato tipo, allora la funzione ritorna tale tipo
 
->[!osservazione]
->Se non c'è modo di determinare il tipo degli argomenti di una funzione overloaded (ad esempio `+` e `*`), ML usa il tipo di default (per somme e prodotti è `int`).
+> **Osservazione**
 >
->Se invece non c'è modo di determinare i tipi degli argomenti e gli operatori non vengono usati, viene usato il tipo generico `'a`. Se ci sono due argomenti di cui non possiamo determinare il tipo, che non vengono usati e che non hanno relazione tra loro, vengono usati i tipi generici `'a` e `'b`.
+> Se non c'è modo di determinare il tipo degli argomenti di una funzione overloaded (ad esempio `+` e `*`), ML usa il tipo di default (per somme e prodotti è `int`).
+>
+> Se invece non c'è modo di determinare i tipi degli argomenti e gli operatori non vengono usati, viene usato il tipo generico `'a`. Se ci sono due argomenti di cui non possiamo determinare il tipo, che non vengono usati e che non hanno relazione tra loro, vengono usati i tipi generici `'a` e `'b`.
 
 ## Environment
 
@@ -109,9 +110,10 @@ In questo caso, se cambiassimo il nome della seconda `x` in `y`, l'output sarebb
 - rende più difficile la lettura del programma
 - è meno efficiente
 
->[!esercizio] Esercizio 4.1
->Considera il seguente frammento di codice scritto in pseudo-codice e che usa scope statico. `read(Y)` consente la lettura di `Y` da standard input.
->Qual è l'output del programma?
+> **Esercizio 4.1**
+>
+> Considera il seguente frammento di codice scritto in pseudo-codice e che usa scope statico. `read(Y)` consente la lettura di `Y` da standard input.
+> Qual è l'output del programma?
 
 ```C++
 int X = 0;
@@ -135,9 +137,10 @@ write(X);
 
 L'output è `2`, in quanto la `X` da considerare è la prima dichiarata e viene incrementata due volte: una da `fie()` e una da `foo()`.
 
->[!esercizio] Esercizio 4.2
->Considera il seguente frammento di codice scritto in pseudo-codice e che usa scope dinamico.
->Qual è l'output del programma?
+> **Esercizio 4.2**
+>
+> Considera il seguente frammento di codice scritto in pseudo-codice e che usa scope dinamico.
+> Qual è l'output del programma?
 
 ```C++
 int X;
@@ -165,5 +168,6 @@ write(X);
 - Assumiamo `Y > 0`: `foo()` crea una sua `X` locale che sparisce quando termina la funzione; `fie()` azzera la `X` creata all'interno dell'if, che però sparisce uscendo dall'istruzione condizionale. La `X` globale non viene toccata e vale ancora 1, quindi l'output è `1`.
 - Assumiamo `Y <= 0`: `foo()` lavora sempre sulla sua variabile locale, che poi scompare, mentre `fie()` inizializza a 0 la variabile globale. Dunque l'output è `0`.
 
->[!warning] Attenzione
->In ML si usa lo scope statico!
+> **⚠️ Attenzione**
+>
+> In ML si usa lo scope statico!

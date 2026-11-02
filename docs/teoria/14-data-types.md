@@ -1,7 +1,8 @@
 ## Funzioni built-in di ordine superiore
 
->[!osservazione]
->In ML le funzioni built-in sono in forma curried.
+> **Osservazione**
+>
+> In ML le funzioni built-in sono in forma curried.
 
 ### Funzione `map`
 
@@ -180,8 +181,9 @@ Possiamo usare questi tipi per creare unioni di tipi diversi, ad esempio possiam
 (* val it = S ["a", "b"]: (string list, 'a) element *)
 ```
 
->[!esempio]
->Data una lista di `elements`, scrivere una funzione `sumElList` che somma gli interi al secondo posto, quando esistono.
+> **Esempio**
+>
+> Data una lista di `elements`, scrivere una funzione `sumElList` che somma gli interi al secondo posto, quando esistono.
 
 ```sml
 > fun sumElList (nil) = 0
@@ -215,8 +217,9 @@ L'esempio tipico è quello dell'albero binario, in cui ogni nodo può:
 (* val myTree = Node ("ML", Node ("as", Node ("a", Empty, Empty), Node ("in", Empty, Empty)), Node ("types", Empty, Empty)): string btree *)
 ```
 
->[!esempio]
->Scrivere una funzione `printTree` che, data una `string btree`, stampa le label dell'albero: prima la label del primo nodo, poi quelle del suo sottoalbero di sinistra e poi quelle del suo sottoalbero di destra.
+> **Esempio**
+>
+> Scrivere una funzione `printTree` che, data una `string btree`, stampa le label dell'albero: prima la label del primo nodo, poi quelle del suo sottoalbero di sinistra e poi quelle del suo sottoalbero di destra.
 
 ```sml
 > fun printTree Empty = ()
@@ -230,8 +233,9 @@ L'esempio tipico è quello dell'albero binario, in cui ogni nodo può:
 
 Si utilizza la keyword `and`, come per le funzioni.
 
->[!esempio]
->Consideriamo i binary tree pari (ogni path dalla radice a una foglia attraversa un numero pari di nodi) e i binary tree dispari. Proviamo a definirli.
+> **Esempio**
+>
+> Consideriamo i binary tree pari (ogni path dalla radice a una foglia attraversa un numero pari di nodi) e i binary tree dispari. Proviamo a definirli.
 
 ```sml
 > datatype 'label evenTree =

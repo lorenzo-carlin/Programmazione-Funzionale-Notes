@@ -36,8 +36,9 @@ Quando una procedura viene passata come parametro, si crea una referenza tra un 
 
 Nell'esempio precedente con deep binding si userebbe la terza `x`, mentre con shallow binding la seconda.
 
->[!warning] Attenzione
->Lo scope statico corrisponde sempre al deep binding.
+> **⚠️ Attenzione**
+>
+> Lo scope statico corrisponde sempre al deep binding.
 
 ## Funzioni come valore di ritorno di funzioni
 
@@ -67,8 +68,9 @@ La generazione di funzioni come valore di ritorno di una funzione permette la cr
 
 ## Funzioni di ordine superiore
 
->[!esempio]
->Supponiamo di voler scrivere una funzione che calcola l'approssimazione dell'integrale $\int_{a}^{b}f(x)dx$.
+> **Esempio**
+>
+> Supponiamo di voler scrivere una funzione che calcola l'approssimazione dell'integrale $\int_{a}^{b}f(x)dx$.
 
 Quello che la funzione deve fare è dividere l'intervallo da `a` a `b` in `n` parti uguali e sommare le aree degli `n` trapezi risultanti.
 
@@ -92,8 +94,9 @@ Definiamo la funzione `trap(a,b,n,F)`, dove `F` è la funzione da integrare e vi
 (* val it = 0.3359375: real *)
 ```
 
->[!esempio]
->Scriviamo una funzione `simpleMap` che prende una lista $[a_1, ... a_n]$ e una funzione $f(x)$ in input e ritorna la lista $[f(a_1), ..., f(a_n)]$.
+> **Esempio**
+>
+> Scriviamo una funzione `simpleMap` che prende una lista $[a_1, ... a_n]$ e una funzione $f(x)$ in input e ritorna la lista $[f(a_1), ..., f(a_n)]$.
 
 ```sml
 > fun simpleMap (F,nil) = nil
@@ -107,13 +110,15 @@ Definiamo la funzione `trap(a,b,n,F)`, dove `F` è la funzione da integrare e vi
 (* val it = [1.0, 4.0, 9.0]: real list *)
 ```
 
->[!osservazione]
->`#1` è una funzione polimorfica: il tipo della tupla viene inferito dall'uso. Ad esempio `fun f x = #1 x` ha tipo `'a * 'b -> 'a`.
+> **Osservazione**
+>
+> `#1` è una funzione polimorfica: il tipo della tupla viene inferito dall'uso. Ad esempio `fun f x = #1 x` ha tipo `'a * 'b -> 'a`.
 
->[!esercizio]
->Scrivere una funzione `reduce` come segue:
->- $[a_1]$ ritorna $a_1$
->- $[a_1, ..., a_n]$: riduce la tail applicando una funzione $F$ che prende una coppia e ritorna $b$, poi calcola $F(a_1,b)$, ossia $reduce(F,[a_1, ..., a_n])=F(a_1,F(a_2,...F(a_{n-1},a_n)))$
+> **Esercizio**
+>
+> Scrivere una funzione `reduce` come segue:
+> - $[a_1]$ ritorna $a_1$
+> - $[a_1, ..., a_n]$: riduce la tail applicando una funzione $F$ che prende una coppia e ritorna $b$, poi calcola $F(a_1,b)$, ossia $reduce(F,[a_1, ..., a_n])=F(a_1,F(a_2,...F(a_{n-1},a_n)))$
 
 Questa funzione è tale che se la funzione in input è la somma restituisce la somma di tutti gli elementi, se è l'operatore di prodotto ritorna il prodotto di tutti gli elementi, e così via...
 
@@ -127,8 +132,9 @@ Questa funzione è tale che se la funzione in input è la somma restituisce la s
 (* val reduce = fn: ('a * 'a -> 'a) * 'a list -> 'a *)
 ```
 
->[!esercizio]
->Usare le funzioni `simpleMap` e `reduce` per calcolare la varianza di una lista di reali.
+> **Esercizio**
+>
+> Usare le funzioni `simpleMap` e `reduce` per calcolare la varianza di una lista di reali.
 
 La varianza di una lista di reali è definita come
 $$
@@ -176,8 +182,9 @@ Usando `op` è possibile convertire un operatore infisso in un operatore prefiss
 (* val it = 6: int *)
 ```
 
->[!esercizio]
->Scrivere una funzione `filter` che prende come input una funzione booleana ed una lista e ritorna la lista contenente soltanto gli elementi che soddisfano la condizione della funzione booleana.
+> **Esercizio**
+>
+> Scrivere una funzione `filter` che prende come input una funzione booleana ed una lista e ritorna la lista contenente soltanto gli elementi che soddisfano la condizione della funzione booleana.
 
 ```sml
 > fun filter (P,nil) = nil
@@ -195,8 +202,9 @@ In ML una funzione ha un solo parametro. Quindi una funzione a due argomenti in 
 - una funzione che prende come argomento una tupla
 - oppure una funzione che restituisce un'altra funzione (currying)
 
->[!esempio]
->Scriviamo una funzione che calcola l'elevamento a potenza.
+> **Esempio**
+>
+> Scriviamo una funzione che calcola l'elevamento a potenza.
 
 ```sml
 > fun exponent1 (x,0) = 1.0

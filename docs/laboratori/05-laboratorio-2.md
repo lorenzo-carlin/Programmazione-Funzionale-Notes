@@ -1,5 +1,6 @@
->[!esercizio] Esercizio 2.1
->Scrivere una funzione che calcola il cubo di un numero reale.
+> **Esercizio 2.1**
+>
+> Scrivere una funzione che calcola il cubo di un numero reale.
 
 ```sml
 > val cube = fn n:real => n * n * n;
@@ -12,8 +13,9 @@
 (* val it = 24.389: real *)
 ```
 
->[!esercizio] Esercizio 2.2
->Scrivere una funzione `min3` che calcola il minore di una tupla di tre elementi del tipo `int*int*int`.
+> **Esercizio 2.2**
+>
+> Scrivere una funzione `min3` che calcola il minore di una tupla di tre elementi del tipo `int*int*int`.
 
 ```sml
 > fun min3 (a, b, c) =
@@ -32,8 +34,9 @@
 (* val it = 13: int *)
 ```
 
->[!esercizio] Esercizio 2.3
->Scrivere una funzione `third` che calcola il terzo elemento di una lista (che ha almeno 3 elementi).
+> **Esercizio 2.3**
+>
+> Scrivere una funzione `third` che calcola il terzo elemento di una lista (che ha almeno 3 elementi).
 
 ```sml
 > fun third (l) = hd(tl(tl(l)));
@@ -44,8 +47,9 @@
 
 Il warning esce perché ML indica che la funzione potrebbe dare problemi con liste di meno di 3 elementi. Per il momento lo ignoriamo.
 
->[!esercizio] Esercizio 2.4
->Scrivere una funzione `reverse` che inverte una tupla di lunghezza 3.
+> **Esercizio 2.4**
+>
+> Scrivere una funzione `reverse` che inverte una tupla di lunghezza 3.
 
 ```sml
 > fun reverse (a, b, c) = (c, b, a);
@@ -54,8 +58,9 @@ Il warning esce perché ML indica che la funzione potrebbe dare problemi con lis
 (* val it = (14, 13, 12): int * int * int *)
 ```
 
->[!esercizio] Esercizio 2.5
->Scrivere una funzione `thirdchar` che trova la stringa contenente il terzo carattere di una stringa data (la stringa ha almeno 3 caratteri).
+> **Esercizio 2.5**
+>
+> Scrivere una funzione `thirdchar` che trova la stringa contenente il terzo carattere di una stringa data (la stringa ha almeno 3 caratteri).
 
 ```sml
 > fun thirdchar (s:string) = str (hd(tl(tl(explode(s)))));
@@ -64,8 +69,9 @@ Il warning esce perché ML indica che la funzione potrebbe dare problemi con lis
 (* val it = "a": string *)
 ```
 
->[!esercizio] Esercizio 2.6
->Scrivere una funzione `cycle` che shifta una lista di un elemento (la lista ha almeno un elemento).
+> **Esercizio 2.6**
+>
+> Scrivere una funzione `cycle` che shifta una lista di un elemento (la lista ha almeno un elemento).
 
 ```sml
 > fun cycle (l) = tl(l @ [hd(l)]);
@@ -74,8 +80,9 @@ Il warning esce perché ML indica che la funzione potrebbe dare problemi con lis
 (* val it = [2, 3, 4, 5, 6, 7, 1]: int list *)
 ```
 
->[!esercizio] Esercizio 2.7
->Scrivere una funzione `min_max_pair` che, dati 3 interi (sotto forma di tupla), produca una coppia composta dall'elemento più piccolo e da quello più grande.
+> **Esercizio 2.7**
+>
+> Scrivere una funzione `min_max_pair` che, dati 3 interi (sotto forma di tupla), produca una coppia composta dall'elemento più piccolo e da quello più grande.
 
 ```sml
 fun min3 (a, b, c) =
@@ -106,8 +113,9 @@ fun min_max_pair (a, b, c) = (min3(a, b, c), max3(a, b, c));
 (* val it = (2, 4): int * int *)
 ```
 
->[!esercizio] Esercizio 2.8
->Scrivere una funzione `sort` che, dati 3 interi (sotto forma di tupla), produca una lista ordinata dei 3.
+> **Esercizio 2.8**
+>
+> Scrivere una funzione `sort` che, dati 3 interi (sotto forma di tupla), produca una lista ordinata dei 3.
 
 ```sml
 fun sort (a, b, c) =
@@ -132,8 +140,9 @@ fun sort (a, b, c) =
 (* val it = [1, 2, 2]: int list *)
 ```
 
->[!esercizio] Esercizio 2.9
->Scrivere una funzione `rnd` che arrotonda un numero reale al decimo più vicino.
+> **Esercizio 2.9**
+>
+> Scrivere una funzione `rnd` che arrotonda un numero reale al decimo più vicino.
 
 ```sml
 fun rnd (x: real) = real(round(x * 10.0)) / 10.0;
@@ -144,8 +153,9 @@ fun rnd (x: real) = real(round(x * 10.0)) / 10.0;
 (* val it = 5.7: real *)
 ```
 
->[!esercizio] Esercizio 2.10
->Scrivere una funzione `rem` che, data una lista, rimuove il secondo elemento (la lista ha 2 o più elementi).
+> **Esercizio 2.10**
+>
+> Scrivere una funzione `rem` che, data una lista, rimuove il secondo elemento (la lista ha 2 o più elementi).
 
 ```sml
 fun rem (l) = [hd(l)] @ tl(tl(l));
