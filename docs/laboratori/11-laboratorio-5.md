@@ -1,6 +1,3 @@
- 
----
-
 >[!esercizio] Esercizio 5.1
 >Scrivere una funzione `is_lower_than5` che usa il costrutto `case` per simulare un `if-then-else` sul valore 5. Deve ritornare 1 se il valore in input è minore di 5, altrimenti ritorna 2.
 
@@ -64,7 +61,7 @@
     | insertAll (a, x::xs) = ([a]@x)::insertAll(a,xs);
 
 > fun powerSet (nil) = ([[]])
-    | powerSet (x::xs) = 
+    | powerSet (x::xs) =
       let
         val t = powerSet(xs);
       in
@@ -130,7 +127,7 @@ val maxList = fn: real list -> real *)
 ```
 
 >[!esercizio] Esercizio 5.8
->Scrivere una funzione `sumList` che prende una lista di interi e ritorna una coppia, in cui il primo elemento è la somma degli elementi in posizione pari e il secondo la somma di quelli in posizione dispari.
+>Scrivere una funzione `sumList` che prende una lista di interi e ritorna una coppia, in cui il primo elemento è la somma degli elementi in posizione dispari e il secondo la somma di quelli in posizione pari.
 
 ```sml
 > fun sumList(nil) = (0,0)
@@ -158,15 +155,15 @@ val maxList = fn: real list -> real *)
 (* val printList = fn: int list -> unit *)
 > printList [1,2,3];
 (* 1
-(* 2
-(* 3
-(* val it = (): unit *)
+2
+3
+val it = (): unit *)
 > printList nil;
 (* val it = (): unit *)
 ```
 
 >[!esercizio] Esercizio 5.10
->Scrivere una funzione `comb: int*int -> unit` che calcola $\binom{n}{k}$ e stampa `m`, `n` e il risultato.
+>Scrivere una funzione `comb: int*int -> unit` che calcola $\binom{n}{m}$ e stampa `n`, `m` e il risultato.
 
 ```sml
 > fun factorial(0) = 1
@@ -184,7 +181,7 @@ val it = (): unit *)
 ```
 
 >[!esercizio] Esercizio 5.11
->Scrivere una funzione `printXs` che, dato un intero `n`, stampa il carattere `'X'` $2^N$ volte.
+>Scrivere una funzione `printXs` che, dato un intero `n`, stampa il carattere `'X'` $2^n$ volte.
 
 ```sml
 > fun printXs(0) = print("X")

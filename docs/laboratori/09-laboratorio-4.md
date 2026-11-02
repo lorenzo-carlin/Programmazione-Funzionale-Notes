@@ -1,6 +1,3 @@
-
----
-
 >[!esercizio] Esercizio 4.1
 >Scrivere una funzione `flip` che flippa gli elementi alternati, usando i pattern. Se la dimensione della lista è dispari, si lasci l'ultimo elemento invariato.
 >Quindi la lista $[a_1,a_2,...,a_{n-1},a_n]$ diventa $[a_2,a_1,...,a_n,a_{n-1}]$.
@@ -89,9 +86,9 @@
 ```
 
 >[!esercizio] Esercizio 4.6
->Assumiamo, per il momento, di rappresentare i set tramite liste: gli elementi sono ordinati in qualsiasi ordine, senza ripetizioni.
+>Assumiamo, per il momento, di rappresentare i set tramite liste: gli elementi possono trovarsi in qualsiasi ordine, senza ripetizioni.
 >Scrivere una funzione `member(x,S)` per testare se `x` è un membro del set `S`, usando i pattern.
- 
+
 ```sml
 > fun member (x, nil) = false
     | member (x, a::xs) =
@@ -113,7 +110,7 @@
 
 ```sml
 > fun delete (x, nil) = (nil)
-    | delete (x, a::xs) = 
+    | delete (x, a::xs) =
       if(x = a) then xs
       else a::delete(x, xs);
 (* val delete = fn: ''a * ''a list -> ''a list *)
@@ -170,7 +167,7 @@
 
 > fun powerSet (nil) = ([[]])
     | powerSet (x::xs) = (powerSet(xs)@insertAll(x,powerSet(xs)));
-  
+
 (* val insertAll = fn: 'a * 'a list list -> 'a list list
 val powerSet = fn: 'a list -> 'a list list *)
 > powerSet([3]);
@@ -204,14 +201,27 @@ val prodDiff = fn: real list -> real *)
 ```
 
 >[!esercizio] Esercizio 4.12
->Scrivere una funzione `is_one` che ritorna `"one"` se il parametro passato è `1` e `"anything else"` altrimenti, usando il costrutto `case`e il pattern matching con `fun` e `fn`.
+>Scrivere una funzione `is_one` che ritorna `"one"` se il parametro passato è `1` e `"anything else"` altrimenti, usando il costrutto `case` e il pattern matching con `fun` e `fn`.
 
 ```sml
 > fun is_one (1) = "one"
     | is_one (_) = "anything else";
 (* val is_one = fn: int -> string *)
+
+> fun is_one_case x = case x of
+      1 => "one"
+    | _ => "anything else";
+(* val is_one_case = fn: int -> string *)
+
+> val is_one_fn = fn 1 => "one" | _ => "anything else";
+(* val is_one_fn = fn: int -> string *)
+
 > is_one(1);
 (* val it = "one": string *)
 > is_one(3);
+(* val it = "anything else": string *)
+> is_one_case(1);
+(* val it = "one": string *)
+> is_one_fn(3);
 (* val it = "anything else": string *)
 ```

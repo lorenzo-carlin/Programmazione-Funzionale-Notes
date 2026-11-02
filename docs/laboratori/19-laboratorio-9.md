@@ -1,5 +1,3 @@
-
----
 >[!esercizio] Esercizio 9.1
 >Dato il tipo `tree`, per la rappresentazione di un generico albero, scrivere una funzione `isOn` che, dato un elemento `x` e un albero generico `T`, dice se `x` appare tra le label di `T`.
 
@@ -14,8 +12,7 @@
 
 (* datatype 'a tree = Node of 'a * 'a tree list
 val isOn = fn: ''a -> ''a tree -> bool
-val it = true: bool
-val it = (): unit *)
+val it = true: bool *)
 ```
 
 >[!esercizio] Esercizio 9.2
@@ -32,8 +29,7 @@ val it = (): unit *)
 
 (* datatype 'a tree = Node of 'a * 'a tree list
 val count = fn: ''a tree -> ''a -> int
-val it = 2: int
-val it = (): unit *)
+val it = 2: int *)
 ```
 
 >[!esercizio] Esercizio 9.3
@@ -44,7 +40,7 @@ val it = (): unit *)
     Node of 'label * 'label tree list;
 
 > fun depth (Node(y, nil)) = 1
-    | depth (Node(y, u::ux)) = 
+    | depth (Node(y, u::ux)) =
       let
         val t1 = depth (Node(y, ux))
         val t2 = depth u + 1
@@ -56,8 +52,7 @@ val it = (): unit *)
 
 (* datatype 'a tree = Node of 'a * 'a tree list
 val depth = fn: 'a tree -> int
-val it = 3: int
-val it = (): unit *)
+val it = 3: int *)
 ```
 
 >[!esercizio] Esercizio 9.4
@@ -67,17 +62,16 @@ val it = (): unit *)
 > datatype ('label) tree =
     Node of 'label * 'label tree list;
 
-> fun preOrder (Node(0, nil)) = []
-    | preOrder (Node(y, nil)) = [y]
-    | preOrder (Node(0, u::ux)) = (preOrder u) @ (preOrder (Node(0, ux)))
-    | preOrder (Node(y, u::ux)) = [y] @ (preOrder u) @ (preOrder (Node(0, ux)));
+> fun preOrderList nil = nil
+    | preOrderList (t::ts) = preOrder t @ preOrderList ts
+  and preOrder (Node(y, children)) = y :: preOrderList children;
 
 > preOrder(Node(2, [Node(3, [Node(4, nil)]), Node(2, nil)]));
 
 (* datatype 'a tree = Node of 'a * 'a tree list
-val preOrder = fn: int tree -> int list
-val it = [2, 3, 4, 2]: int list
-val it = (): unit *)
+val preOrderList = fn: 'a tree list -> 'a list
+val preOrder = fn: 'a tree -> 'a list
+val it = [2, 3, 4, 2]: int list *)
 ```
 
 >[!esercizio] Esercizio 9.5
@@ -99,7 +93,7 @@ val it = (): unit *)
     fun build(a, L) = Node(a, L)
 
     fun subtree(i, (Node(a, nil))) = raise Missing
-      | subtree(1, (Node(a, L))) = L
+      | subtree(1, (Node(a, x::xs))) = x
       | subtree(i, (Node(a, x::xs))) = subtree(i-1, (Node(a,xs)))
 end;
 
@@ -115,15 +109,14 @@ end;
     exception Missing
     val build: 'a * 'a tree list -> 'a tree
     val create: 'a -> 'a tree
-    val subtree: int * 'a tree -> 'a tree list
+    val subtree: int * 'a tree -> 'a tree
     datatype 'a tree = Node of 'a * 'a tree list
   end
 val v4 = Node (4, []): int Tree.tree
 val v3 = Node (3, [Node (4, [])]): int Tree.tree
 val v2 = Node (2, []): int Tree.tree
 val v1 = Node (2, [Node (3, [Node (4, [])]), Node (2, [])]): int Tree.tree
-val it = [Node (2, [])]: int Tree.tree list
-val it = (): unit *)
+val it = Node (2, []): int Tree.tree *)
 ```
 
 >[!esercizio] Esercizio 9.6
@@ -172,8 +165,7 @@ structure Tree:
     val subtree: int * 'a tree -> 'a tree
     datatype 'a tree = Node of 'a * 'a tree list
   end
-structure SimpleTree: SIMPLE
-val it = (): unit *)
+structure SimpleTree: SIMPLE *)
 ```
 
 >[!esercizio] Esercizio 9.7
@@ -186,8 +178,7 @@ val it = (): unit *)
 
 (* val root = Node (1, [Node (2, []), Node (3, []), Node (4, [])]):
    int SimpleTree.tree
-val s2 = Node (3, []): int SimpleTree.tree
-val it = (): unit *)
+val s2 = Node (3, []): int SimpleTree.tree *)
 ```
 
 >[!esercizio] Esercizio 9.8
@@ -228,18 +219,17 @@ val it = (): unit *)
     val push: 'a -> 'a list -> 'a list
     eqtype 'a stack
     val top: 'a list -> 'a
-  end
-val it = (): unit *)
+  end *)
 ```
 
 >[!esercizio] Esercizio 9.9
->Si realizzi una signature che permetta di creare una structure `StringStack`, i cui elementi  sono ti dipo string e che omette l'operazione `top`.
+>Si realizzi una signature che permetta di creare una structure `StringStack`, i cui elementi sono di tipo string e che omette l'operazione `top`.
 
 ```sml
 > signature StringStack = sig
     type 'a stack
     exception EmptyStack
-    val emptyStack: string list
+    val emptyStack: string stack
     val create: unit -> string stack
     val push: string -> string stack -> string stack
     val pop: string stack -> string stack
@@ -250,21 +240,20 @@ val it = (): unit *)
   sig
     exception EmptyStack
     val create: unit -> string stack
-    val emptyStack: string list
+    val emptyStack: string stack
     val isEmpty: string stack -> bool
     val pop: string stack -> string stack
     val push: string -> string stack -> string stack
     type 'a stack
-  end
-val it = (): unit *)
+  end *)
 ```
 
 >[!esercizio] Esercizio 9.10
->Realizzare una structure `Queue` che rappresenta una cosa di elementi. Includere:
+>Realizzare una structure `Queue` che rappresenta una coda di elementi. Includere:
 >- `create`, per creare una coda vuota
 >- `EmptyQueue`, un'eccezione
 >- `Enqueue(x, Q)`, che aggiunge un elemento alla fine e ritorna la coda
->- `Dequeue Q`, che ritorna la coppa del primo elemento della cosa e il resto della cosa. Se è vuota, alza `EmptyQueue`
+>- `Dequeue Q`, che ritorna la coppia del primo elemento della coda e il resto della coda. Se è vuota, alza `EmptyQueue`
 >- `isEmpty Q`, che controlla se la coda è vuota
 
 ```sml
@@ -292,8 +281,7 @@ val it = (): unit *)
     val create: 'a list
     val isEmpty: 'a list -> bool
     eqtype 'a queue
-  end
-val it = (): unit *)
+  end *)
 ```
 
 >[!esercizio] Esercizio 9.11
@@ -319,16 +307,15 @@ val it = (): unit *)
     val create: (string * int) queue
     val isEmpty: (string * int) queue -> bool
     type 'a queue
-  end
-val it = (): unit *)
+  end *)
 ```
 
 >[!esercizio] Esercizio 9.12
 >Scrivere una structure `IntTriple` che implementa la signature `TOTALORDER` che, al posto di `string`, definisce gli elementi di un albero binario di ricerca come tuple di 3 interi.
->lt: (a, b, c) < x, y, z) if:
->- a < x
->- a = x and b < y
->- a = x, b = y and c < z
+>La funzione `lt((a, b, c), (x, y, z))` è vera se:
+>- $a < x$
+>- $a = x$ e $b < y$
+>- $a = x$, $b = y$ e $c < z$
 >Usare il funtore `MakeBST` per ottenere una structure che conserva le triple di interi in alberi binari.
 
 ```sml
@@ -337,7 +324,7 @@ val it = (): unit *)
 	val lt : element * element -> bool
   end;
 (* signature TOTALORDER = sig type element val lt: element * element -> bool end; *)
-*
+
 functor MakeBST(Lt: TOTALORDER):
 	sig
 		type 'label btree;
@@ -397,7 +384,9 @@ end;
 structure IntTriple: TOTALORDER = struct
 	type element = int * int * int;
 	fun lt((l1, l2, l3), (r1, r2, r3)) =
-	l1<r1 orelse l1=r1 andalso l2<r2 orelse l1=r1 andalso l2=r2 andalso l3<r3;
+		l1 < r1 orelse
+		(l1 = r1 andalso l2 < r2) orelse
+		(l1 = r1 andalso l2 = r2 andalso l3 < r3);
 end;
 
 (* structure IntTriple: TOTALORDER *)

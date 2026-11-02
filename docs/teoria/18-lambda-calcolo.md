@@ -1,9 +1,6 @@
+Il **Lambda calcolo** è un linguaggio di programmazione molto semplice e Turing completo. È il primo linguaggio ed è stato creato addirittura prima del concetto stesso di linguaggio di programmazione.
 
----
-
-Il **Lambda calcolo** è un linguaggio di programmazione molto semplice e Turing completo. È il primo linguaggio ed è stato creato, addirittura prima del concetto di linguaggio di programmazione stesso.
-
-Il suo **scopo** è di porre delle basi matematiche formali per la programmazione funzionale. 
+Il suo **scopo** è di porre delle basi matematiche formali per la programmazione funzionale.
 
 ## Breve storia del lambda-calcolo
 
@@ -43,7 +40,7 @@ Un'**espressione** nel $\lambda$-calcolo può essere:
 
 Nella scrittura $\lambda x.e$ abbiamo che:
 - $\lambda x$ si chiama **binder**
-- $e$ si chiama **scope** della funzione $x$
+- $e$ si chiama **corpo** (o scope) dell'astrazione
 
 Se abbiamo $\lambda x.xy$ invece:
 - $\lambda x$ è il **binder**
@@ -53,8 +50,8 @@ Se abbiamo $\lambda x.xy$ invece:
 ### Variabili free
 
 L'insieme delle **variabili free** di un'espressione è definito (a seconda del tipo di espressione) come:
-- $F_v(x) = {x}$
-- $F_v(\lambda x.e) = F_v(e)\textbackslash{x}$
+- $F_v(x) = \{x\}$
+- $F_v(\lambda x.e) = F_v(e) \setminus \{x\}$
 - $F_v(e_1e_2) = F_v(e_1) \cup F_v(e_2)$
 
 >[!esempio]
@@ -63,8 +60,8 @@ L'insieme delle **variabili free** di un'espressione è definito (a seconda del 
 ### Variabili bound
 
 L'insieme delle **variabili bound** di una espressione è definito (a seconda del tipo di espressione) come:
-- $B_v = \emptyset$
-- $B_v(\lambda x.e) = {x} \cup B_v(e)$
+- $B_v(x) = \emptyset$
+- $B_v(\lambda x.e) = \{x\} \cup B_v(e)$
 - $B_v(e_1e_2) = B_v(e_1) \cup B_v(e_2)$
 
 >[!esempio]
@@ -72,16 +69,16 @@ L'insieme delle **variabili bound** di una espressione è definito (a seconda de
 
 ### Convenzioni
 
-- L'associatività di una applicazione è alla sua sinistra.
+- L'applicazione è associativa a sinistra.
   Ad esempio, $yzx$ corrisponde a $(yz)x$
 - Le parentesi possono essere utilizzate per leggibilità, ma non sono necessarie
-- Il corpo della lambda si estende il più a destra possibile.
+- Il corpo di una lambda si estende il più a destra possibile.
   Ad esempio, $\lambda x.x \lambda z.xzx$ corrisponde a $\lambda x.(x \lambda z.(xzx))$
 
 >[!esercizio]
 >Rendere le parentesi esplicite nella seguente espressione: $(\lambda p.pz) \lambda q.w \lambda w.wqzp$
 >
->$(\lambda p.(pz)) \lambda q.(w \lambda (((w.wq)z)p)))$
+>$((\lambda p.(p z)) (\lambda q.(w (\lambda w.(((w q) z) p)))))$
 
 >[!esercizio]
 >Nella seguente espressione dire quali sono, se ce ne sono, le variabili bound e a quali $\lambda$ sono associate, e quali sono free: $\lambda s.sz \lambda q.sq$
@@ -102,7 +99,7 @@ L'insieme delle **variabili bound** di una espressione è definito (a seconda de
 
 ## Riduzione-$\beta$
 
-La **riduzione-$\lambda$** non è altro che il processo che serve per ridurre le espressioni-$\lambda$, valutandole.
+La **riduzione-$\beta$** è il processo che riduce le espressioni del $\lambda$-calcolo, valutandole.
 
 >[!esempio] Esempi di riduzione-$\beta$
 >- $(\lambda x.x + x)5 \to 5+5 \to 10$
@@ -114,10 +111,10 @@ La **riduzione-$\lambda$** non è altro che il processo che serve per ridurre le
 >- $(\lambda x.x)z \to z$
 >- $(\lambda x.y)z \to y$
 >- $(\lambda x.x \space y)z \to z \space y$
->- $(\lambda x,x \space y)(\lambda z.z) \to (\lambda z.z)y \to y$
+>- $(\lambda x.x \space y)(\lambda z.z) \to (\lambda z.z)y \to y$
 >- $(\lambda x. \lambda y.x \space y)z \to \lambda y.z \space y$
 
-Come  abbiamo visto dagli esempi precedenti, la riduzione-$\beta$ può essere applicata alle funzioni di ordine superiore. Consideriamo, per esempio, una funzione che data una funzione $f$ restituisca la funzione $f \circ f$: $\lambda f. \lambda x. f(fx)$
+Come abbiamo visto dagli esempi precedenti, la riduzione-$\beta$ può essere applicata alle funzioni di ordine superiore. Consideriamo, per esempio, una funzione che data una funzione $f$ restituisca la funzione $f \circ f$: $\lambda f. \lambda x. f(fx)$
 Per verificare se funziona, applichiamola alla funzione successore, definita come $\lambda y.y + 1$:
 $(\lambda f. \lambda x.f(f x))(\lambda y.y + 1) \rightarrow$
 $\lambda x.(\lambda y. y+1 ) (( \lambda y. y+1 ) x) \rightarrow$
@@ -127,29 +124,27 @@ Ed effettivamente $\beta$-ridurre l'espressione ci porta ad ottenere il successi
 
 ## Sostituzione
 
-Sostituzione, nel caso di un **valore**:
-$(\lambda x.e_1)e_2 \mapsto e_1[e_2/x]$ diventa
-- $e_2$, se $e_1 = x$
-- $e_1$, se $e_1 \neq x$
+La sostituzione $e[e'/x]$ rimpiazza ogni occorrenza **libera** di $x$ in $e$ con $e'$.
 
-Sostituzione, nel caso di un'**applicazione**
-$(\lambda x.e_1)e_2 \mapsto e_1[e_2/x]$ diventa $(e_{11}e_{12})[e_2/x] = (e_{11}[e_2/x]e_{12}[e_2/x])$
-
-Sostituzione, nel caso di un'**astrazione**
-$(\lambda x.e_1)e_2 \mapsto e_1[e_2/x]$, con $e_1 = \lambda y.e$, diventa:
-- $(\lambda y.e)[e_2/x] = \lambda y.e[e_2/x]$
-- $(\lambda y.e)[e_2/x] = \lambda y.e$
+- Se $e$ è una variabile:
+  - $x[e'/x] = e'$
+  - $y[e'/x] = y$, se $y \neq x$
+- Se $e$ è un'applicazione $e_1 e_2$:
+  $(e_1 e_2)[e'/x] = (e_1[e'/x])(e_2[e'/x])$
+- Se $e$ è un'astrazione $\lambda y.e_1$:
+  - se $y = x$: $(\lambda x.e_1)[e'/x] = \lambda x.e_1$ (le occorrenze di $x$ nel corpo sono bound e non si sostituiscono)
+  - se $y \neq x$ e $y \notin F_v(e')$: $(\lambda y.e_1)[e'/x] = \lambda y.e_1[e'/x]$
+  - se $y \neq x$ e $y \in F_v(e')$: si rinomina prima $y$ tramite $\alpha$-conversione, poi si sostituisce
 
 ## $\alpha$-equivalenza e $\alpha$-conversione
 
 Cosa succede, invece, se abbiamo $y \in F_v(e_2)$?
-Ad esempio in $(\lambda x. \lambda y.x y)y$, otterremmo:
-$(\lambda x. \lambda y.x y)y \mapsto (\lambda x. \lambda y y y)$, ma ciò è un errore perché la seconda $y$ è prima una variabile libera e poi diventa una variabile bound. Errore!
-La soluzione è rinominare la prima $y$ (quella dentro la $\lambda$). Rinominiamola, ad esempio, $v$.
-In questo modo otteniamo $(\lambda x. \lambda y.x y)y \mapsto (\lambda x. \lambda v y v)$
+Ad esempio in $(\lambda x. \lambda y.x y)y$: sostituendo banalmente $y$ al posto di $x$ otterremmo $\lambda y.y y$, ma ciò è un errore perché la $y$ era una variabile libera e diventa bound (cattura di variabile).
+La soluzione è rinominare la $y$ legata dalla $\lambda$ interna. Rinominiamola, ad esempio, $v$:
+$(\lambda x. \lambda y.x y)y \mapsto (\lambda x. \lambda v.x v)y \mapsto \lambda v.y v$
 
-Due **espressioni** $e_1$ e $e_2$ si dicono **equivalenti** quando differiscono solo nei nomi delle variabili bound.
-Ad esempio, se $y$ non è presente nell'espressione $e$, allora $\lambda x.e = \lambda y.e[y/x]$.
+Due **espressioni** $e_1$ e $e_2$ si dicono **$\alpha$-equivalenti** quando differiscono solo nei nomi delle variabili bound.
+Ad esempio, se $y$ non è presente nell'espressione $e$, allora $\lambda x.e \equiv_{\alpha} \lambda y.e[y/x]$.
 
 L'$\alpha$-conversione viene usata proprio per evitare il problema di cui abbiamo parlato prima.
 
@@ -167,10 +162,10 @@ L'$\alpha$-conversione viene usata proprio per evitare il problema di cui abbiam
 >[!osservazione]
 >Un'espressione si dice in forma normale se non si può $\beta$-ridurre ulteriormente.
 
-Una riduzione-$\beta$ può terminare in una forma normale o può anche andare avanti all'infinito, come nell'esempio $(\lambda x.xx)(\lambda x.xx)$
+Una riduzione-$\beta$ può terminare in una forma normale o può anche andare avanti all'infinito, come nell'esempio $(\lambda x.xx)(\lambda x.xx)$.
 
 >[!teorema]
->Se $e$ può essere ridotta  a $e_1$ grazie ad una riduzione-$\beta$ e $e$ può essere ridotta a $e_2$ grazie ad una riduzione-$\beta$, allora esiste un $e_3$ tale che sia $e_1$ che $e_2$ possono essere ridotti a $e_3$ tramite una riduzione-$\beta$.
+>Se $e$ può essere ridotta a $e_1$ grazie ad una riduzione-$\beta$ e $e$ può essere ridotta a $e_2$ grazie ad una riduzione-$\beta$, allora esiste un $e_3$ tale che sia $e_1$ che $e_2$ possono essere ridotti a $e_3$ tramite una riduzione-$\beta$.
 
 >[!esercizio] Esercizio
 >Ridurre alla forma normale l'espressione $(\lambda x.x(xy))(\lambda z.zx)$.
@@ -181,17 +176,19 @@ $(\lambda z.zx)((\lambda z.zx)y) \rightarrow$
 $(\lambda z.zx)(yx) \rightarrow$
 $(yx)x$
 
-
 ## Codifiche in $\lambda$-calcolo
 
 Il $\lambda$-calcolo, per come visto finora, è molto astratto e molto limitato. Nonostante ciò, è molto potente ed espressivo:
 - è Turing completo
 - i booleani, le coppie, le costanti e le operazioni aritmetiche possono essere espresse tramite il $\lambda$-calcolo, vediamo come:
 
-### - Booleani
+### Booleani
+
 - **True** = $\lambda x. \lambda y.x$
 - **False** = $\lambda x. \lambda y.y$
-### - Costrutto `if`
+
+### Costrutto `if`
+
 - **If a then b else c** = a b c
 
 >[!esempio]
@@ -199,21 +196,24 @@ Il $\lambda$-calcolo, per come visto finora, è molto astratto e molto limitato.
 >- **If false then b else c** = $(\lambda x. \lambda y.y)b \; c \to (\lambda y.y)c \to c$
 
 ### Operatori booleani
+
 - Not: $\lambda x.x \space false \space true$
 - And: $\lambda x. \lambda y.x y \space false$
 - Or: $\lambda x. \lambda y.x \space true \space y$
 
 ### Coppie
+
 Codifica di una coppia $(a,b)$:
-- $(a,b) = \lambda x.if \; x \; then \; a \; else \; b$
+- $(a,b) = \lambda x.x \; a \; b$
 - $first = \lambda f. f \; true$
 - $second = \lambda f.f \; false$
 
 ### Numeri naturali
+
 Per codificare i numeri naturali si fa uso degli assiomi di Peano:
 - 0 è un numero naturale
-- se `n` è  un numero naturale, anche `succ(n)` lo è
-Dunque si codifica 0 come $\lambda f. \lambda x.x$, e poi si applica la funzione `succ()` n volte per arrivare ad ottenere n. In particolare, n è rappresentato tramite la funzione di ordine superiore che mappa una funzione $f$ alla sua composizione n volte.
+- se `n` è un numero naturale, anche `succ(n)` lo è
+Dunque si codifica 0 come $\lambda f. \lambda x.x$, e poi si applica la funzione `succ()` $n$ volte per ottenere $n$. In particolare, $n$ è rappresentato tramite la funzione di ordine superiore che mappa una funzione $f$ alla sua composizione $n$ volte.
 Ricapitolando, si ha che:
 - $0 = \lambda f. \lambda x.x$
 - $1 = \lambda f. \lambda x. f \; x$
@@ -221,19 +221,22 @@ Ricapitolando, si ha che:
 - $3 = \lambda f. \lambda x. f(f(f \; x))$
 - $4 = \lambda f. \lambda x. f(f(f(f \; x)))$
 - ...
-La funzione `succ()` viene così definita: $succ(n) = \lambda n . \lambda f. \lambda x.f (n \; f \; x)$, in quanto prende $n \; f \; x$, che è $f$ applicata n volte a x, e ci applica $f$ ancora una volta.
+La funzione `succ()` viene così definita: $succ = \lambda n.\lambda f.\lambda x.f \,(n \; f \; x)$, in quanto prende $n \; f \; x$, che è $f$ applicata $n$ volte a $x$, e vi applica $f$ ancora una volta.
 
 ### Operazioni sui numeri naturali
+
 - verifica che un numero sia zero: $\lambda z.z(\lambda y.false)true$
-- addizione: se $n$ significa "*f viene applicata n volte a x*", allora n+m significa "*applica f n volte al risultato dell'applicazione di f m volte a x*". Da cui si ricava: $\lambda n. \lambda m. \lambda f. \lambda x. n f(m f x)$
+- addizione: se $n$ significa "*$f$ viene applicata $n$ volte a $x$*", allora $n+m$ significa "*applica $f$ $n$ volte al risultato dell'applicazione di $f$ $m$ volte a $x$*". Da cui si ricava: $\lambda n. \lambda m. \lambda f. \lambda x. n f(m f x)$
 
 ### Considerazioni finali
-La sintassi del $\lambda$-calcolo è complessa. Perciò è possibile fare un leggero abuso di notazione, utilizzando numero, operazioni ed espressioni, come nel caso di $\lambda x.(x+2)$ o $\lambda x.if \; x = 1 \; then$, dove vengono usate come abbreviazioni di espressioni del $\lambda$-calcolo puro.
+
+La sintassi del $\lambda$-calcolo è complessa. Perciò è possibile fare un leggero abuso di notazione, utilizzando numeri, operazioni ed espressioni, come nel caso di $\lambda x.(x+2)$ o $\lambda x. if \; x = 1 \; then \; x \; else \; 0$, dove vengono usate come abbreviazioni di espressioni del $\lambda$-calcolo puro.
 
 ### Ricorsione
+
 Supponiamo di voler scrivere la funzione ricorsiva per il calcolo del fattoriale.
 $\lambda n.if \; (n = 0) \; then \; 1 \; else \; (n * (f (n-1)))$
-Questa scrittura non funziona, perché non possiamo definire quale sia la variabile $f$, dal momento che non possiamo dare un nome alle funzioni.
+Questa scrittura non funziona, perché non possiamo definire quale sia la variabile $f$, dal momento che non possiamo riferirci alla funzione stessa tramite un nome.
 Scriviamo allora la funzione come: $G = \lambda f. \lambda n. if \; n = 0 \; then \; 1 \; else \; n * f(n-1)$
 Vogliamo allora trovare una funzione $f$ tale che $f = G(f)$, dove $G$ è una funzione di ordine superiore che prende una funzione come argomento e ritorna una funzione.
 Un modo per calcolare tale funzione è la **Y combinator**: $\lambda f. (\lambda x. f(xx))(\lambda x. f(xx))$

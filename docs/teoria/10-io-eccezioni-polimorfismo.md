@@ -1,8 +1,7 @@
-
----
 ## Input e Output in ML
 
 Dal momento che uno dei principi fondanti del paradigma di programmazione funzionale è di non avere side effects, input e output non dovrebbero essere ammessi. Nonostante ciò, ML permette di effettuarli.
+
 ### Output
 
 Il comando `print()` stampa una stringa.
@@ -15,7 +14,7 @@ Il comando `print()` stampa una stringa.
 >[!osservazione]
 >Il tipo di `print` è `string -> unit`.
 >`unit` è usato per espressioni e funzioni che non ritornano nulla ed ha un unico valore: `()`.
- 
+
 ```sml
 > print ("ab");
 (* abval it = (): unit *)
@@ -32,6 +31,7 @@ val it = (): unit *)
 
 Per stampare un valore che ha tipo diverso da `string` è necessario usare funzioni di casting che trasformano altri tipi in `string`, permettendo di stamparli. Di seguito alcuni esempi:
 - stampare un carattere:
+
 ```sml
 > val c = #"a";
 (* val c = #"a": char *)
@@ -40,19 +40,25 @@ Per stampare un valore che ha tipo diverso da `string` è necessario usare funzi
 > print(str(c));
 (* aval it = (): unit *)
 ```
+
 - stampare un **reale**:
+
 ```sml
 > val x = 1.0E50;
 (* val x = 1E50: real *)
 > print(Real.toString(x));
 (* 1E50val it = (): unit *)
 ```
+
 - stampare un **intero**:
+
 ```sml
 > print(Int.toString(123));
 (* 123val it = (): unit *)
 ```
+
 - stampare un **booleano**:
+
 ```sml
 > print(Bool.toString(true));
 (* trueval it = (): unit *)
@@ -61,6 +67,7 @@ Per stampare un valore che ha tipo diverso da `string` è necessario usare funzi
 ### Compound statements
 
 ML dà anche la possibilità di scrivere dei **compound statements**, che permettono di eseguire più comandi nella stessa linea di codice. Ritornano molto utili per le stampe.
+
 ```sml
 > (print(Real.toString(1.0E50)); print(Int.toString(123)) );
 (* 1E50123val it = (): unit *)
@@ -71,26 +78,31 @@ ML dà anche la possibilità di scrivere dei **compound statements**, che permet
 
 ### Input in ML
 
-ML a disposizione numerose funzioni per la lettura in **input da un file di testo**. Di seguito sono riportate le principali:
+ML mette a disposizione numerose funzioni per la lettura in **input da un file di testo**. Di seguito sono riportate le principali:
 
 (si assuma che il file in lettura sia come segue)
+
 ```txt
 12
 ab
 ```
 
-
 - **apertura** di un file:
+
 ```sml
 > val infile = TextIO.openIn("test");
 (* val infile = ?: TextIO.instream  *)
 ```
+
 - **controllo** se è stata raggiunta la **fine dello stream**:
+
 ```sml
 > TextIO.endOfStream(infile);
 (* val it = false: bool *)
 ```
+
 - **lettura di n caratteri** (in questo caso 4):
+
 ```sml
 > TextIO.inputN(infile,4);
 (* val it = "12\na": string *)
@@ -99,7 +111,9 @@ ab
 > TextIO.inputN(infile,1);
 (* val it = "\n": string *)
 ```
+
 - **lettura di una riga** intera:
+
 ```sml
 > val infile = TextIO.openIn("test");
 (* val infile = ?: TextIO.instream *)
@@ -113,24 +127,29 @@ ab
 
 >[!osservazione]
 >Il tipo di ritorno di queste ultime funzioni è **`string option`**. In generale, `T option` vale:
->- `SOME`, se il valore da ritornare è di tipo `T`
+>- `SOME v`, se il valore da ritornare è `v` di tipo `T`
 >- `NONE`, altrimenti
 >
 >È utile perché permette, ad esempio, di accorgersi di quando siamo arrivati al termine dello stream.
 
 - **chiusura** del file:
+
 ```sml
 > TextIO.closeIn(infile);
 (* val it = (): unit *)
 ```
+
 - **lettura del file completo**:
+
 ```sml
 > val infile = TextIO.openIn ("test");
 (* val infile = ?: TextIO.instream *)
 > val s = TextIO.input (infile);
 (* val s = "12\nab\n": string *)
 ```
+
 - **lettura** di un **singolo carattere**:
+
 ```sml
 > TextIO.input1;
 (* val it = fn: TextIO.instream -> char option *)
@@ -151,22 +170,26 @@ ab
 ```
 
 - **lettura del prossimo carattere**, **senza modificare lo stream**:
+
 ```sml
 > TextIO.lookahead;
 (* val it = fn: TextIO.instream -> char option *)
 ```
-- **controllo** se ci sono **almeno n caratteri rimanenti** nello stream (ritorna `SOME n` o `SOME m<n`)
+
+- **controllo** di quanti caratteri sono disponibili nello stream, fino a un massimo di `n` (ritorna `SOME m`, con `m <= n`, oppure `NONE` a fine stream)
+
 ```sml
 > TextIO.canInput;
 (* val it = fn: TextIO.instream * int -> int option *)
-> TextIO.canInput(f,50);
+> TextIO.canInput(infile,50);
 (* val it = SOME 10: int option *)
 ```
 
-Per trasformare un tipo `'a option` nel rispettivo tipo `'a` si usa la funzione `valOf`. Se però il valore è `NONE`, ritorna un'eccezione.
+Per trasformare un tipo `'a option` nel rispettivo tipo `'a` si usa la funzione `valOf`. Se però il valore è `NONE`, solleva l'eccezione `Option`.
+
 ```sml
 > valOf;
-(* val it = fn: 'a option -> ‘a *)
+(* val it = fn: 'a option -> 'a *)
 > fun convert (a: 'a option) = valOf(a);
 (* val convert = fn: 'a option -> 'a *)
 ```
@@ -174,6 +197,7 @@ Per trasformare un tipo `'a option` nel rispettivo tipo `'a` si usa la funzione 
 ## Eccezioni in ML
 
 Esempi di **eccezioni predefinite** in ML:
+
 ```sml
 > 5 div 0;
 (* Exception- Div raised *)
@@ -186,6 +210,7 @@ Esempi di **eccezioni predefinite** in ML:
 ```
 
 È possibile anche definire noi delle **eccezioni personalizzate**:
+
 ```sml
 > exception Foo;
 (* exception Foo *)
@@ -221,6 +246,7 @@ Esempi di **eccezioni predefinite** in ML:
 ```
 
 È possibile definire delle eccezioni che accettano dei tipi come argomento, con la seguente sintassi:
+
 ```sml
 exception <identifier> of <type>
 ```
@@ -239,9 +265,11 @@ exception <identifier> of <type>
 ```
 
 Tramite la sintassi
+
 ```sml
 <expression> handle <match>
 ```
+
 è possibile fare **handling delle eccezioni**.
 
 ```sml
@@ -268,8 +296,8 @@ Tramite la sintassi
 ```
 
 ## Polimorfismo delle funzioni in ML
-****
-Il **polimorfismo** di una funzione è la sua capacità di ricevere argomenti differenti in numero e/o tipo. Dal momento che ML è un linguaggio strongly typed, deve essere possibile determinare tutti i tipi prima ancora di fare il run del codice. Nonostante ciò, possiamo definire delle funzioni i cui tipi sono parzialmente o completamente flessibili.
+
+Il **polimorfismo** di una funzione è la sua capacità di essere applicata a valori di tipi differenti (polimorfismo parametrico) o di avere comportamenti diversi in base ai tipi (overloading). Dal momento che ML è un linguaggio strongly typed, deve essere possibile determinare tutti i tipi prima ancora di eseguire il codice. Nonostante ciò, possiamo definire funzioni i cui tipi sono parzialmente o completamente flessibili.
 
 >[!osservazione]
 >Il tipo `'a` è usato per indicare il **generico tipo polimorfico**.
@@ -285,22 +313,24 @@ Il **polimorfismo** di una funzione è la sua capacità di ricevere argomenti di
 (* val it = 5: int *)
 ```
 
-**Operatori che limitano il polimorfismo**:
+**Operatori che impongono vincoli di tipo**:
 - operazioni aritmetiche: `+`, `-`, `*`, `~`
 - divisioni: `/`, `div`, `mod`
-- operatori di disuguaglianza
+- operatori di confronto: `<`, `>`, `<=`, `>=`
 - connettivi booleani: `andalso`, `orelse` e `not`
-- operatori di concatenazione delle stringhe
-- operatori di conversione di tipi: `ord`,  `chr`, `real`, `str`, `floor`, `ceiling`, `round` e `truncate`
+- operatore di concatenazione delle stringhe: `^`
+- operatori di conversione di tipi: `ord`, `chr`, `real`, `str`, `floor`, `ceil`, `round` e `trunc`
 
-Operatori che permettono il polimorfismo:
-- operatori delle tuple: `(..,..)`, `#1`, `#2`, ...
-- operatori delle liste: `::`, `@`, `hd`, `tl`, `nil`, `[]`
-- operatori di uguaglianza: `=`, `<>`
+Operatori che non impongono un tipo concreto (restano polimorfici):
+- costruttori e selettori delle tuple: `(..,..)`, `#1`, `#2`, ...
+- costruttori e selettori delle liste: `::`, `@`, `hd`, `tl`, `nil`, `[]`
+- `null`
+
+Gli operatori di uguaglianza `=` e `<>` non sono pienamente polimorfici: richiedono tipi di uguaglianza (`''a`), come spiegato sotto.
 
 ## Uguaglianza di tipi in ML
 
-I tipi che permettono l'uso di `=` e `<>` sono:gli interi, i booleani, i caratteri, tuple o liste, ma non i reali e le funzioni.
+I tipi che permettono l'uso di `=` e `<>` sono gli interi, i booleani, i caratteri, le stringhe, le tuple e le liste i cui elementi sono tipi di uguaglianza; non lo sono i reali e le funzioni.
 
 >[!osservazione]
 >Le variabili di tipo che sono limitate a tipi che supportano gli operatori di uguaglianza vengono indicate con `''a`.
@@ -357,9 +387,9 @@ Static Errors *)
 > fun first_eq(L) =
 	if (hd(L)=hd(L)) then hd(L)
 	else hd(L);
-// val first_eq = fn: ''a list -> ''a *)
+(* val first_eq = fn: ''a list -> ''a *)
 > first_eq([2]);
-// val it = 2: int *)
+(* val it = 2: int *)
 > first_eq([2.0]);
 (* poly: : error: Type error in function application.
 Function: first_eq : ''a list -> ''a
@@ -370,7 +400,7 @@ Static Errors *)
 ```
 
 >[!osservazione]
->Per controllare se una lista è vuota si può usare il comando `null(lista)`. 
+>Per controllare se una lista è vuota si può usare la funzione `null L`.
 
 ```sml
 > fun rev3 (L) =

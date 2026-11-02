@@ -1,8 +1,5 @@
-
----
-
 >[!esercizio] Esercizio 3.1
->Scrivere una funzione `fact` che calcola il fattoriale di `n` ( > 1).
+>Scrivere una funzione `fact` che calcola il fattoriale di `n` ($n \ge 0$).
 
 ```sml
 > fun fact (n) =
@@ -16,12 +13,12 @@
 ```
 
 >[!esercizio] Esercizio 3.2
->Scrivere una funzione `cyclei` che, dato un intero `i` e una lista `L = [a1, ..., an]`, cicla la lista `L` per `i` volte, ossia produce `[a_i+1, a_i+2, ..., a_n, a_1, ... a_i]`.
+>Scrivere una funzione `cyclei` che, dato un intero `i` e una lista $L = [a_1, ..., a_n]$, cicla la lista `L` per `i` volte, ossia produce $[a_{i+1}, a_{i+2}, ..., a_n, a_1, ..., a_i]$.
 
 ```sml
 > fun cyclei (i, L) =
     if i = 0 then L
-    else cycle(i-1, tl(L)@[hd(L)]);
+    else cyclei(i-1, tl(L)@[hd(L)]);
 (* val cyclei = fn: int * 'a list -> 'a list *)
 > cyclei(2,[1,2,3,4]);
 (* val it = [3, 4, 1, 2]: int list *)
@@ -30,7 +27,7 @@
 ```
 
 >[!esercizio] Esercizio 3.3
->Scrivere una funzione `duplicate` che duplica ogni elemento di una lista. Quindi, data la lista `L = [a_1, ..., a_n], restituisce [a_1, a_1, a_2, a_2, ..., a_n, a_n]`.
+>Scrivere una funzione `duplicate` che duplica ogni elemento di una lista. Quindi, data la lista $L = [a_1, ..., a_n]$, restituisce $[a_1, a_1, a_2, a_2, ..., a_n, a_n]$.
 
 ```sml
 > fun duplicate (L) =
@@ -79,10 +76,9 @@
     if a > b then a
     else b;
 
-> fun maxList(L: string list) =
-    if L = nil then "a"
-    else max(hd(L), maxList(tl(L)));
-  
+> fun maxList([x]: string list) = x
+    | maxList(x::xs) = max(x, maxList(xs));
+
 (* val max = fn: string * string -> string
 val maxList = fn: string list -> string *)
 > maxList(["a","abc","ab"]);
@@ -116,12 +112,12 @@ val maxList = fn: string list -> string *)
 > cycle1([1]);
 (* val it = [1]: int list *)
 > cycle1(nil);
-(* poly: : warning: The type of (it) contains a free type variable. // Setting it to a unique monotype.
+(* poly: : warning: The type of (it) contains a free type variable. Setting it to a unique monotype.
 val it = []: _a list *)
 ```
 
 >[!esercizio] Esercizio 3.9
->Scrivere una funzione `cycleip` che, dato un intero `i` e una lista `L` = $[a_1, ..., a_n]$, cicla la lista per `i` volte, ossia produce $[a_i+1, a_i+2, ..., a_n, a_1, ..., a_i]$.
+>Scrivere una funzione `cycleip` che, dato un intero `i` e una lista $L = [a_1, ..., a_n]$, cicla la lista per `i` volte, ossia produce $[a_{i+1}, a_{i+2}, ..., a_n, a_1, ..., a_i]$.
 
 ```sml
 > fun cycleip (0, L) = L
@@ -147,7 +143,7 @@ val it = []: _a list *)
 ```
 
 >[!esercizio] Esercizio 3.11
->Scrivere una funzione `power` che calcola $x^i$ , dove `x` è un reale e `i` è un intero non negativo.
+>Scrivere una funzione `power` che calcola $x^i$, dove `x` è un reale e `i` è un intero non negativo.
 
 ```sml
 > fun power (n, 0) = 1.0
@@ -167,8 +163,8 @@ val it = []: _a list *)
     if a > b then a
     else b;
 
-> fun maxList (nil) = 0.0
-    | maxList (L: real list) = max(hd(L), maxList(tl(L)));
+> fun maxList ([x]: real list) = x
+    | maxList (x::xs) = max(x, maxList(xs));
 
 (* val max = fn: real * real -> real
 val maxList = fn: real list -> real *)

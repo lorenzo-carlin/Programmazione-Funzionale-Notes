@@ -1,5 +1,3 @@
-
----
 ## Tipi di dati astratti
 
 Quando definiamo una nuova struttura dati e non nascondiamo la sua specifica implementazione, noi potremmo tranquillamente lavorare sulla struttura interna del tipo di dato invece che utilizzare i metodi definiti apposta per interagire con essa.
@@ -26,6 +24,7 @@ La relazione tra `structure` e `signature` è many-to-many.
 ### `Structure`
 
 **Sintassi**:
+
 ```sml
 structure <identifier> = struct
 	<elements of the structure>
@@ -33,6 +32,7 @@ end
 ```
 
 **Esempio**:
+
 ```sml
 > structure IntLT = struct
 	type t = int
@@ -46,9 +46,11 @@ sig val eq: ''a * ''a -> bool
 	eqtype t
 end *)
 ```
-In questo caso è stata creata una struttura `IntLT` che ha una variabile `t` di tipo `Int` e due funzioni `lt` e `eq` che implementano rispettivamente il controllo minore o uguale e il controllo uguale.
+
+In questo caso è stata creata una struttura `IntLT` che dichiara un tipo `t` (alias di `int`) e due funzioni, `lt` e `eq`, che implementano rispettivamente il confronto minore e il confronto di uguaglianza.
 
 **Esempio**:
+
 ```sml
 structure IntDiv = struct
 	type t = int
@@ -56,13 +58,14 @@ structure IntDiv = struct
 	val eq = (op =)
 end;
 
-(* Structure IntDiv:
+(* structure IntDiv:
 sig val eq: ''a * ''a -> bool
 	val lt: int * int -> bool
 	eqtype t
 end; *)
 ```
-In questo esempio invece la struttura `IntDiv` ha una variabile intera `t` e implementa due funzioni `lt` e `eq` che controllato rispettivamente se un valore è divisibile per un altro dato e se due valori sono uguali.
+
+In questo esempio invece la struttura `IntDiv` dichiara il tipo `t` (alias di `int`) e implementa due funzioni, `lt` e `eq`, che controllano rispettivamente se un valore è divisibile per un altro e se due valori sono uguali.
 
 >[!warning] Attenzione
 >La funzione `lt` è introdotta dalla keyword `fun` perché si tratta di una definizione sintattica della funzione, ovvero stiamo definendo cosa fa quella funzione, che parametri riceve in input e cosa dà in output.
@@ -71,6 +74,7 @@ In questo esempio invece la struttura `IntDiv` ha una variabile intera `t` e imp
 #### Long identifiers
 
 I **long identifiers** servono per accedere alle funzioni di una struttura e, di conseguenza, usarle.
+
 ```sml
 IntLT.lt (3,4);
 (* val it = true: bool *)
@@ -89,6 +93,7 @@ Le signatures vanno più nello specifico, specificando il tipo delle variabili e
 Di fatto, la **signature** è come un **contratto che una structure deve rispettare**.  Dice che una structure deve avere determinati tipi e funzioni, con determinati nomi e tipi.
 
 **Esempio**:
+
 ```sml
 signature ORDERED = sig
 	type t
@@ -96,9 +101,11 @@ signature ORDERED = sig
 	val eq : t * t -> bool
 end;
 ```
+
 Questo esempio ci dice che la signature `ORDERED` prevede un tipo `t` e due funzioni `lt` e `eq` con determinati tipi. Quindi tutte le structure che vogliono implementare tale signature devono avere quelle caratteristiche.
 
 **Esempio**:
+
 ```sml
 signature QUEUE = sig
 	type 'a queue
@@ -112,15 +119,17 @@ end;
 ```
 
 **Esempio**:
+
 ```sml
 signature STACK =
 sig
-	val empty: 'a list
-	val pop: 'a list -> 'a option
-	val push: 'a * 'a list -> 'a list
 	eqtype 'a stack
+	val empty: 'a stack
+	val pop: 'a stack -> 'a option
+	val push: 'a * 'a stack -> 'a stack
 end;
 ```
+
 In questo esempio ci viene detto che `'a stack` è equality type, ossia un tipo che supporta operazioni di equivalenza.
 
 ### `structure` che implementa una `signature`
@@ -132,8 +141,8 @@ structure Stack = struct
 	type 'a stack = 'a list
 	val empty = []
 	val push = op::
-	fun pop [] =NONE
-	| pop (tos::rest) =SOME tos
+	fun pop [] = NONE
+	  | pop (tos::rest) = SOME tos
 end:> STACK;
 ```
 
@@ -142,11 +151,12 @@ end:> STACK;
 
 ## Alberi binari di ricerca (BST)
 
-**Proprietà fondamentale**: se `x` è la label di un nodo `n`, allora ogni label `y` nel subtree di sinistra di `n` è tale che `lt(y,x)` è vero (ossia y <= x) e ogni label `y` nel subtree di destra di n è tale che `lt(x,y)` è vera (ossia x <= y).
+**Proprietà fondamentale**: se `x` è la label di un nodo `n`, allora ogni label `y` nel subtree di sinistra di `n` soddisfa `lt(y,x)` (ossia $y < x$) e ogni label `y` nel subtree di destra soddisfa `lt(x,y)` (ossia $x < y$).
 
 Per i prossimi esempi avremo bisogno di una funzione `lt` che implementi l'ordinamento.
 
 **Esempi di funzioni di ordinamento per altri tipi**:
+
 ```sml
 > fun intLT (x,y) = x < y;
 (* val intLT = fn: int * int -> bool *)
@@ -156,15 +166,17 @@ Per i prossimi esempi avremo bisogno di una funzione `lt` che implementi l'ordin
 (* val lower = fn: char list -> char list *)
 
 > fun strLT (x,y) =
-implode (lower (explode x)) < implode (lower (explode y));
+    implode (lower (explode x)) < implode (lower (explode y));
 (* val strLT = fn: string * string -> bool *)
 ```
 
 ### Trovare un elemento in un BST
 
 Scriviamo una funzione `Lookup` che va a cercare un valore all'interno del BST:
+
 ```sml
-datatype 'a btree = Empty | Node of 'a * 'a btree * 'a btree
+> datatype 'a btree = Empty | Node of 'a * 'a btree * 'a btree;
+(* datatype 'a btree = Empty | Node of 'a * 'a btree * 'a btree *)
 
 > fun lookup lt Empty x = false
 	| lookup lt (Node(y,left,right)) x =
@@ -175,9 +187,10 @@ datatype 'a btree = Empty | Node of 'a * 'a btree * 'a btree
 ```
 
 **Esempio**:
+
 ```sml
 > val t = Node ("ML",
-	Node ("qas",
+	Node ("as",
 		Node ("a",Empty,Empty),
 		Node ("in",Empty,Empty)
 		),
@@ -193,6 +206,7 @@ datatype 'a btree = Empty | Node of 'a * 'a btree * 'a btree
 ### Inserire un elemento in un BST
 
 Scriviamo una funzione `insert` che inserisce un valore nel BST.
+
 ```sml
 > fun insert lt Empty x = Node(x,Empty,Empty)
 	| insert lt (T as Node (y,left,right)) x =
@@ -201,14 +215,15 @@ Scriviamo una funzione `insert` che inserisce un valore nel BST.
 			else T;
 (* val insert = fn: ('a * 'a -> bool) -> 'a btree -> 'a -> 'a btree *)
 
-> insert srtLT t "function";
-(* val it = ("ML", Node ("as", Node ("a", Empty, Empty), Node ("in", Node ("function", Empty, Empty), Empty)), Node ("types", Empty, Empty)): string btree *)
+> insert strLT t "function";
+(* val it = Node ("ML", Node ("as", Node ("a", Empty, Empty), Node ("in", Node ("function", Empty, Empty), Empty)), Node ("types", Empty, Empty)): string btree *)
 ```
 
 ### Rimuovere un elemento in un BST
 
 Scriviamo una funzione `delete` che rimuove un elemento dal BST, se tale elemento esiste.
 Come supporto, prima definiamo una funzione ausiliaria `deletemin` che, dati un BST, ritorna il BST dopo aver rimosso l'elemento con label minima (quindi quello più a sinistra).
+
 ```sml
 > exception EmptyTree;
 (* exception EmptyTree *)
@@ -239,6 +254,7 @@ Come supporto, prima definiamo una funzione ausiliaria `deletemin` che, dati un 
 ### Visitare tutti i nodi di un BST
 
 Scriviamo una funzione che somma tutti i valori del BST.
+
 ```sml
 > fun sum (Empty) = 0
 	| sum (Node(a,left,right)) = a + sum (left) + sum (right);
@@ -246,6 +262,7 @@ Scriviamo una funzione che somma tutti i valori del BST.
 ```
 
 Scriviamo una funzione che crea una lista con i nodi dell'albero visitati in pre-order.
+
 ```sml
 fun preOrder (Empty) = nil
 	| preOrder(Node(a,left,right)) = [a] @ preOrder (left) @ preOrder (right);
@@ -257,6 +274,7 @@ fun preOrder (Empty) = nil
 ### Dichiarazione
 
 Datatype per descrivere un albero radicato generico, non per forza binario.
+
 ```sml
 > datatype ('label) tree =
 	Node of 'label * 'label tree list;
@@ -279,13 +297,15 @@ Node (1, [Node (2, []), Node (3, [Node (4, []), Node (5, [Node (7, [...])]), Nod
 ### Somma dei valori dei nodi
 
 Scriviamo una funzione `sum` che somma tutte le label dei nodi dell'albero.
-``` sml
+
+```sml
 > fun sum (Node(a,nil)) = a
 	| sum (Node(a,t::ts)) = sum(t) + sum (Node(a,ts));
 (* val sum = fn: int tree -> int *)
 ```
 
 Possiamo farlo equivalentemente usando le funzioni di ordine superiore
+
 ```sml
 > fun sum (Node(a,L)) = a + foldr (op +) 0 (map sum L);
 (* val sum = fn: int tree -> int *)
@@ -311,6 +331,7 @@ end;
 ```
 
 Ora come ora è una struttura polimorfica, lo possiamo notare facendo
+
 ```sml
 > Mapping.create;
 (* val it = []: 'a list *)
@@ -331,7 +352,7 @@ end;
 
 ### Accesso ai campi della struttura
 
-Per accedere delle variabili e delle funzioni definite dentro alle strutture dobbiamo sempre ricordare di anteporre il nome della struttura ed un punto.
+Per accedere alle variabili e alle funzioni definite dentro alle strutture dobbiamo sempre ricordare di anteporre il nome della struttura e un punto.
 
 ```sml
 > val m = SiMapping.create;
@@ -346,13 +367,13 @@ Per accedere delle variabili e delle funzioni definite dentro alle strutture dob
 
 ### Apertura di una struttura
 
-Se invece volessimo accedere a variabili e funzioni di una struttura senza anteporre il nome una possibile soluzione sarebbe quella di "aprire" la struttura, ossia di portarla al livello del programma principale. Tutte le variabili e le funzioni definite nella struttura diventano quindi delle variabili e funzioni accettate dal linguaggio ML. Questa operazione di apertura si fa con la keyword `open`.
+Se invece volessimo accedere a variabili e funzioni di una struttura senza anteporre il nome, una possibile soluzione sarebbe quella di "aprire" la struttura, ossia di portarla al livello del programma principale. Tutte le variabili e le funzioni definite nella struttura diventano quindi delle variabili e funzioni accettate dal linguaggio ML. Questa operazione di apertura si fa con la keyword `open`.
 
 >[!warning] Attenzione
 >Quando apriamo una struttura con `open` dobbiamo ricordare che tutto ciò che normalmente ha lo stesso nome di ciò che è stato definito dentro alla struttura in questione verrà rinominato. Questo potrebbe portare a situazioni di disagio non volute.
 
 ```sml
-> 2 >1;
+> 2 > 1;
 (* val it = true: bool *)
 
 > open String;
@@ -444,7 +465,7 @@ end *)
 
 Possiamo notare che il tipo astratto `'a` rimane in alcuni posti.
 
-Qui entra in gioco il concetto di **funtore**. Un funtore è una struttura che prende come argomento una struttura e ritorna una nuova struttura. 
+Qui entra in gioco il concetto di **funtore**. Un funtore è una struttura che prende come argomento una struttura e ritorna una nuova struttura.
 
 ```sml
 functor <identifier> (<structure name>: <signature>) = <structure definition>
@@ -472,12 +493,12 @@ element -> bool end *)
 functor MakeBST (Lt: TOTALORDER):
 	sig
 		type 'label btree
-		exception EmptyTeee;
+		exception EmptyTree;
 		val create : Lt.element btree;
 		val lookup : Lt.element * Lt.element btree -> bool;
 		val insert : Lt.element * Lt.element btree -> Lt.element btree;
-		val deletemin : Lt.element btree -> Lt.element Lt.element btree;
-		val delete : Lt.element * LT.element btree -> Lt.element btree
+		val deletemin : Lt.element btree -> Lt.element * Lt.element btree;
+		val delete : Lt.element * Lt.element btree -> Lt.element btree
 end
 =
 	struct
@@ -486,8 +507,8 @@ end
 			Empty |
 			Node of 'label * 'label btree * 'label btree;
 		val create = Empty;
-		val lookup (x, Empty) = ...
-		val insert (x, Empty) = ...
+		fun lookup (x, Empty) = ...
+		fun insert (x, Empty) = ...
 		exception EmptyTree;
 		fun deletemin (Empty) = ...
 		fun delete (x,Empty) = ...

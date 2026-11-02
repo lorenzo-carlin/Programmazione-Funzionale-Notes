@@ -1,6 +1,3 @@
-
----
-
 >[!esercizio] Esercizio 2.1
 >Scrivere una funzione che calcola il cubo di un numero reale.
 
@@ -29,7 +26,7 @@
       if c < b then
         c
       else
-        b;      
+        b;
 (* val min3 = fn: int * int * int -> int *)
 > min3(13, 14, 15);
 (* val it = 13: int *)
@@ -44,6 +41,7 @@
 > third [12, 13, 14, 15];
 (* val it = 14: int *)
 ```
+
 Il warning esce perché ML indica che la funzione potrebbe dare problemi con liste di meno di 3 elementi. Per il momento lo ignoriamo.
 
 >[!esercizio] Esercizio 2.4
@@ -80,7 +78,7 @@ Il warning esce perché ML indica che la funzione potrebbe dare problemi con lis
 >Scrivere una funzione `min_max_pair` che, dati 3 interi (sotto forma di tupla), produca una coppia composta dall'elemento più piccolo e da quello più grande.
 
 ```sml
-fun min3 (a, b, c) = 
+fun min3 (a, b, c) =
   if a < b then
     if a < c then a
     else c
@@ -88,7 +86,7 @@ fun min3 (a, b, c) =
     if c < b then c
     else b;
 
-fun max3 (a, b, c) = 
+fun max3 (a, b, c) =
   if a > b then
     if a > c then a
     else c
@@ -112,7 +110,7 @@ fun min_max_pair (a, b, c) = (min3(a, b, c), max3(a, b, c));
 >Scrivere una funzione `sort` che, dati 3 interi (sotto forma di tupla), produca una lista ordinata dei 3.
 
 ```sml
-fun sort (a, b, c) = 
+fun sort (a, b, c) =
   if a < b then
     if b < c then [a, b, c]
     else
@@ -131,10 +129,11 @@ fun sort (a, b, c) =
 > sort (1, 3, 2);
 (* val it = [1, 2, 3]: int list *)
 > sort (2, 1, 2);
+(* val it = [1, 2, 2]: int list *)
 ```
 
 >[!esercizio] Esercizio 2.9
->Scrivere una funzione `rnd` che arrotonda un numero reale al numero decimale più vicino.
+>Scrivere una funzione `rnd` che arrotonda un numero reale al decimo più vicino.
 
 ```sml
 fun rnd (x: real) = real(round(x * 10.0)) / 10.0;
@@ -146,7 +145,7 @@ fun rnd (x: real) = real(round(x * 10.0)) / 10.0;
 ```
 
 >[!esercizio] Esercizio 2.10
->Scrivere una funzione `rem` che, data una lista, rimuove il secondo elemento (la lista ha 2 o + elementi).
+>Scrivere una funzione `rem` che, data una lista, rimuove il secondo elemento (la lista ha 2 o più elementi).
 
 ```sml
 fun rem (l) = [hd(l)] @ tl(tl(l));

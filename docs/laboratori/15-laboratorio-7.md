@@ -1,6 +1,3 @@
-
----
-
 >[!esercizio] Esercizio 7.1
 >Data una funzione `F`, che prende n parametri (con n fissato, in questo caso 3), definire una funzione curried che applica `F` e produce una funzione `G` tale che: $G x_1 ... x_n = F(x_1, ..., x_n)$.
 
@@ -41,11 +38,11 @@
 (* val it = "bc": string *)
 ```
 
->[!esercizio]  Esercizio 7.5
+>[!esercizio] Esercizio 7.5
 >Dato un datatype `btree`, scrivere la funzione `postOrder` che ritorna la lista dei nodi di un albero binario visitato in post-order. Ossia la label di un nodo segue l'attraversamento post-order di entrambi i suoi sottoalberi.
 
 ```sml
-> datatype 'a btree = 
+> datatype 'a btree =
     Empty |
     Node of 'a * 'a btree * 'a btree;
 
@@ -69,13 +66,13 @@ val postOrder = fn: 'a btree -> 'a list *)
 
 > fun inOrder Empty = nil
     | inOrder(Node(v, lTree, rTree)) = inOrder(lTree) @ [v] @ inOrder(rTree);
-    
+
 > inOrder (Node ("ML", Node ("as", Node ("a", Empty, Empty), Node ("in", Empty, Empty)), Node ("types", Empty, Empty)));
 (* val it = ["a", "as", "in", "ML", "types"]: string list *)
 ```
 
 >[!esercizio] Esercizio 7.7
->Definire un tipo `mapTree` che è una specializzazione di `btree` tale per cui ha la label che è un insieme di coppie. Definire un albero `t1` che ha un singolo nodo e ha la coppia `("a", 1)` come label.
+>Definire un tipo `mapTree` che è una specializzazione di `btree` tale per cui ogni label è una lista di coppie. Definire un albero `t1` che ha un singolo nodo e ha la lista di coppie `[("a", 1)]` come label.
 
 ```sml
 > datatype ('a, 'b) mapTree =
@@ -87,33 +84,36 @@ val postOrder = fn: 'a btree -> 'a list *)
 (* datatype ('a, 'b) mapTree =
     Empty
   | Node of ('a * 'b) list * ('a, 'b) mapTree * ('a, 'b) mapTree
-val t1 = Node ([("a", 1)], Empty, Empty): (string, int) mapTree
-val it = (): unit *)
+val t1 = Node ([("a", 1)], Empty, Empty): (string, int) mapTree *)
 ```
 
 >[!esercizio] Esercizio 7.8
->Scrivere una funzione `sumTree` per un `mapTree` T di tipo `('a, 'b) mapTree`. La funzione visita l'albero e ritorna la somma della seconda componente di tutte le label dei nodi.
+>Scrivere una funzione `sumTree` per un `mapTree` T di tipo `('a, 'b) mapTree`. La funzione visita l'albero e ritorna la somma della seconda componente di tutte le coppie presenti nelle label dei nodi.
 
 ```sml
 > datatype ('a, 'b) mapTree =
     Empty |
-    Node of ('a * 'b) * ('a, 'b) mapTree * ('a, 'b) mapTree;
+    Node of ('a * 'b) list * ('a, 'b) mapTree * ('a, 'b) mapTree;
+
+> fun sumPairs nil = 0
+    | sumPairs ((_,v)::rest) = v + sumPairs rest;
 
 > fun sumTree Empty = 0
-    | sumTree(Node((u,v), lTree, rTree)) = v + sumTree(lTree) + sumTree(rTree);
+    | sumTree (Node(label, lTree, rTree)) =
+        sumPairs(label) + sumTree(lTree) + sumTree(rTree);
 
 (* datatype ('a, 'b) mapTree =
     Empty
-  | Node of ('a * 'b) * ('a, 'b) mapTree * ('a, 'b) mapTree
-val sumTree = fn: ('a, int) mapTree -> int
-val it = (): unit *)
+  | Node of ('a * 'b) list * ('a, 'b) mapTree * ('a, 'b) mapTree
+val sumPairs = fn: ('a * int) list -> int
+val sumTree = fn: ('a, int) mapTree -> int *)
 
-> sumTree (Node(("a",1), Node(("c",2), Empty, Node(("d",3), Empty, Empty)), Empty));
+> sumTree (Node([("a",1),("b",2)], Node([("c",3)], Empty, Empty), Empty));
 (* val it = 6: int *)
 ```
 
 >[!esercizio] Esercizio 7.9
->Dato il datatype `btree`, definire una funzione `countInternalNodes` di tipo `('a -> bool) -> 'a btree -> int` che prende un predicato `p` (una funzione di tipo `'a -> bool`) e un `'a btree` e ritorna il numero di nodi interni (ossia nodi che hanno almeno un subtree non vuoto), il cuo valore soddisfa il predicato.
+>Dato il datatype `btree`, definire una funzione `countInternalNodes` di tipo `('a -> bool) -> 'a btree -> int` che prende un predicato `p` (una funzione di tipo `'a -> bool`) e un `'a btree` e ritorna il numero di nodi interni (ossia nodi che hanno almeno un subtree non vuoto), il cui valore soddisfa il predicato.
 
 ```sml
 > datatype 'a btree =
@@ -124,7 +124,7 @@ val it = (): unit *)
     | countInternalNodes p (Node(v, Empty, Empty)) = 0
     | countInternalNodes p (Node(v, lTree, rTree)) =
       if p(v) then 1+countInternalNodes p lTree + countInternalNodes p rTree
-      else countInternalNodes p lTree + countInternalNodes p  rTree;
+      else countInternalNodes p lTree + countInternalNodes p rTree;
 
 (* datatype 'a btree = Empty | Node of 'a * 'a btree * 'a btree
 val countInternalNodes = fn: ('a -> bool) -> 'a btree -> int *)
@@ -134,10 +134,10 @@ val countInternalNodes = fn: ('a -> bool) -> 'a btree -> int *)
 ```
 
 >[!esercizio] Esercizio 7.10
->Dato il datatype `bltree`, definire una funzione `doubleTree` di tipo `int bltree -> int bltree` che prende un albero di interi e ritorna un nuovo albero dove ogni valore (sia sulle foglia che sui nodi) viene moltiplicato per 2.
+>Dato il datatype `bltree`, definire una funzione `doubleTree` di tipo `int bltree -> int bltree` che prende un albero di interi e ritorna un nuovo albero dove ogni valore (sia sulle foglie che sui nodi) viene moltiplicato per 2.
 
 ```sml
-> datatype 'a bltree = 
+> datatype 'a bltree =
       Empty
     | Leaf of 'a
     | Node of 'a * 'a bltree * 'a bltree;

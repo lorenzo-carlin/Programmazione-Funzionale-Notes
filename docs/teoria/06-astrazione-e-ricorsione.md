@@ -1,5 +1,3 @@
-
----
 ## Modalità di passaggio di parametri a funzione
 
 Una **funzione** o procedura è un pezzo di codice identificato da un nome, con un environment locale ed in grado di scambiare informazioni con il resto del codice tramite dei parametri.
@@ -16,9 +14,9 @@ I parametri possono essere di tre tipologie:
 
 ### 1. Passaggio per valore
 
-Viene passata una copia del parametro (o dell'r-value passato alla funzione), che viene trattata come una variabile locale.
+Viene passata una copia del parametro (o del r-value passato alla funzione), che viene trattata come una variabile locale.
 La trasmissione avviene dal main alla funzione.
-Eventuali modifiche al parametro formale non toccano il parametro attuale e, una volta che la proceduta termina, il parametro formale viene eliminato.
+Eventuali modifiche al parametro formale non toccano il parametro attuale e, una volta che la procedura termina, il parametro formale viene eliminato.
 
 ```C++
 int y = 1;
@@ -86,7 +84,7 @@ y = 1;
 foo(y);
 ```
 
-In questo caso, quando la funzione `foo()` termina il valore di `x` viene assegnato alla variabile ottenuta tramite l'value di `y`.
+In questo caso, quando la funzione `foo()` termina il valore di `x` viene assegnato alla variabile corrispondente al parametro attuale (l-value) `y`.
 
 ### Chiamata per valore risultato
 
@@ -115,8 +113,7 @@ La comunicazione dunque è bidirezionale.
 
 ### Chiamata per nome
 
-Viene creata una copia del parametro attuale nel parametro formale.
-Una chiamata alla funzione `f` equivale a eseguire il corpo di `f` sopo aver sostituito i parametri attuali al parametro formale. Ogni volta che il parametro formale appare, valutiamo di nuovo quello attuale.
+Il parametro formale è associato al testo (non valutato) del parametro attuale: una chiamata alla funzione `f` equivale a eseguire il corpo di `f` dopo aver sostituito i parametri attuali al parametro formale. Ogni volta che il parametro formale appare, il parametro attuale viene rivalutato.
 I parametri in questione sono di input/output, la trasmissione è bidirezionale.
 Non è così semplice come appare, bisogna saper gestire variabili con lo stesso nome.
 Questo metodo di passaggio di parametri a funzione non viene più usato nella programmazione imperativa.
@@ -162,7 +159,7 @@ int foo(name int y) {
 int a = foo(x+1);
 ```
 
-Il parametro attuale `x` viene "catturato" dalla dichiarazione locale e si ha che `x+y` diventa `x+(x+1)`, ma una riga prima `x` è stata ridefinita a 2. 
+Il parametro attuale `x` viene "catturato" dalla dichiarazione locale e si ha che `x+y` diventa `x+(x+1)`, ma una riga prima `x` è stata ridefinita a 2.
 
 Per evitare questa situazione, il parametro non deve essere valutato nell'ambiente della funzione, ma in quello del chiamante. La soluzione è di passare una coppia (*closure*) `<exp,env>` invece di passare soltanto `x+1`, con:
 - `exp` che è il parametro attuale, non valutato
@@ -235,13 +232,13 @@ write(X);
 >[!esempio] Esempio
 >Scriviamo la funzione `reverse`, che inverte il contenuto di una lista.
 >- Caso base: una lista vuota ritorna una lista vuota
->- Passo induttivo: concateniamo la `tail` invertita della lista alla e la `head` della lista
+>- Passo induttivo: invertiamo la `tail` della lista e vi concateniamo la `head`
 
 ```sml
-> fun reverse L = 
-	if L = null then nil
+> fun reverse L =
+	if null L then nil
 	else reverse (tl L) @ [hd L];
-(* val reverse = fn: ''a list -> ''a list *)
+(* val reverse = fn: 'a list -> 'a list *)
 
 > reverse [1,2,3,4];
 (* val it = [4, 3, 2, 1]: int list *)
@@ -259,9 +256,10 @@ write(X);
 In ML, due funzioni possono chiamarsi a vicenda ricorsivamente.
 
 >[!esempio] Esempio
->Scriviamo una funzione che prende una lista `L` e produce una lista che contiene solo gli elementi di `L` che si trovano a indice dispari (il primo, il terzo, ...).
+>Scriviamo una funzione che prende una lista `L` e produce una lista che contiene solo gli elementi di `L` che si trovano a indice dispari (in posizione dispari: il primo, il terzo, ...).
 
 Proviamo a scrivere tale funzione così:
+
 ```sml
 > fun take(L) =
 	if L = nil then nil
@@ -269,7 +267,7 @@ Proviamo a scrivere tale funzione così:
 
 > fun skip(L) =
 	if L = nil then nil
-	else tale(tl(L));
+	else take(tl(L));
 
 (* poly: : error: Value or constructor (skip) has not been declared
 Found near if L = nil then nil else hd (L) :: skip (tl (L)) *)
@@ -287,6 +285,7 @@ and
 ```
 
 Riscriviamo dunque la soluzione all'esempio precedente usando `and`:
+
 ```sml
 > fun
 take(L) =
@@ -296,7 +295,7 @@ and
 skip(L) =
 	if L = nil then nil
 	else take(tl(L));
-	
+
 (* val skip = fn: ''a list -> ''a list
 val take = fn: ''a list -> ''a list *)
 

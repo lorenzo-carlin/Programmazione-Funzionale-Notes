@@ -1,5 +1,3 @@
-
----
 ## Pattern - *Parte 2*
 
 ### La keyword `as`
@@ -16,7 +14,7 @@
 >Scriviamo una funzione `merge` che unisca due liste di interi `L` e `M`, assumendo che entrambe siano ordinate in modo crescente, in modo tale che anche la lista finale risulti ordinata.
 
 - Caso base: se `L` è vuota, allora restituiamo `M` (e viceversa)
-- Passo induttivo: confrontiamo la testa di `L` e la testa di `M`. Aggiungiamo quella maggiore alla lista finale e ricorsivamente chiamiamo la funzione sull'altra lista e la tail di quella usata.
+- Passo induttivo: confrontiamo la testa di `L` e la testa di `M`. Aggiungiamo quella minore alla lista finale e ricorsivamente chiamiamo la funzione sull'altra lista e la tail di quella usata.
 
 ```sml
 > fun merge (nil,M) = M
@@ -62,8 +60,9 @@ Il pattern matching si può usare anche con la dichiarazione di funzione con `fn
 ### Costrutto `Case`
 
 È possibile fare pattern matching anche tramite il costrutto `case`, con la seguente sintassi:
+
 ```sml
-fn x => case x of
+case <expression> of
 	<pattern_1> => <expression_1>
 	| <pattern_2> => <expression_2>
 	...
@@ -77,6 +76,7 @@ Il `case`, di fatto, lavora come il pattern matching, ma a differenza di quest'u
 ## Environment locale in ML
 
 Per definire un environment locale si usa la seguente sintassi:
+
 ```sml
 > fun name(par) =
 	let
@@ -89,7 +89,7 @@ Per definire un environment locale si usa la seguente sintassi:
 	end;
 ```
 
-Dopo `let` si dichiarano le variabili locali e dopo `in` si possono valutare in espressioni.
+Dopo `let` si dichiarano le variabili locali e dopo `in` si possono usare nelle espressioni.
 
 >[!esempio]
 >Scrivere una funzione che calcola la potenza centesima di un reale `x`
@@ -109,7 +109,8 @@ Dopo `let` si dichiarano le variabili locali e dopo `in` si possono valutare in 
 (* val it = 1.2676506E30: real *)
 ```
 
-O anche, equivalentemente, 
+O anche, equivalentemente,
+
 ```sml
 > fun hundredthPower (x:real) =
 	let
@@ -142,7 +143,7 @@ O anche, equivalentemente,
 ```
 
 >[!esempio]
->Scrivere una funzione `merge` che esegue l'algoritmo di merge sort su una lista.
+>Scrivere la funzione `mergeSort` che esegue l'algoritmo di merge sort su una lista, usando `merge` e `split`.
 
 ```sml
 > fun merge (nil,M) = M
@@ -164,7 +165,7 @@ O anche, equivalentemente,
 		end;
 (* val mergeSort = fn: int list -> int list *)
 > mergeSort [1,4,2,3,8,7];
-(* val it = [1, 2, 4, 3, 7, 8]: int list *)
+(* val it = [1, 2, 3, 4, 7, 8]: int list *)
 > mergeSort([5,3,2,6,4,1]);
 (* val it = [1, 2, 3, 4, 5, 6]: int list *)
 ```

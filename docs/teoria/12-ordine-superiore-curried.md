@@ -1,5 +1,3 @@
-
----
 Alcuni linguaggi permettono di passare funzioni come argomenti a procedure o anche di ritornare funzioni come valore di ritorno delle procedure.
 
 ## Funzioni come parametri di funzioni
@@ -9,11 +7,11 @@ La funzione viene passata come parametro ad un'altra funzione e poi viene chiama
 ```C++
 {
 	int x = 1;
-	
+
 	int f(int y){
 		return x+y;
 	}
-	
+
 	void g (int h(int b)){
 		int x = 2;
 		return h(3) + x;
@@ -28,7 +26,7 @@ La funzione viene passata come parametro ad un'altra funzione e poi viene chiama
 
 La variabile `x` viene dichiarata tre volte. Quando chiamiamo `f`, quale `x` stiamo usando?
 - se assumiamo di usare scope statico, allora usiamo la prima `x`, quella settata a 1
-- se assumiamo di usare scope dinamico, allora andrebbe bene sia la seconda che la terza `x`, quindi dobbiamo specificare quale regola di binding viene applicata
+- se assumiamo di usare scope dinamico, il nome va risolto nell'ambiente attivo al momento della chiamata; per le funzioni passate come parametro bisogna però specificare se usare l'ambiente del passaggio (deep binding) o quello dell'invocazione (shallow binding)
 
 ## Regole di binding
 
@@ -39,7 +37,7 @@ Quando una procedura viene passata come parametro, si crea una referenza tra un 
 Nell'esempio precedente con deep binding si userebbe la terza `x`, mentre con shallow binding la seconda.
 
 >[!warning] Attenzione
->Con Static scope si usa sempre deep binding.
+>Lo scope statico corrisponde sempre al deep binding.
 
 ## Funzioni come valore di ritorno di funzioni
 
@@ -48,14 +46,14 @@ La generazione di funzioni come valore di ritorno di una funzione permette la cr
 ```C++
 {
 	int x = 1;
-	
+
 	void->int F () {
 		int g () {
 			return x+1;
 		}
 		return g;
 	}
-	
+
 	void->int gg = F();
 	int z = gg();
 }
@@ -65,14 +63,14 @@ La generazione di funzioni come valore di ritorno di una funzione permette la cr
 - `void -> int F()` è la dichiarazione della funzione, che ritorna una funzione che non prende nessun argomento e ritorna un `int`
 - `return g` ritorna la funzione, senza farne il run
 - `gg` viene dinamicamente associata con il valore di ritorno di `F` (ossia `g`)
-- la funzione `gg` ritorna un successore del parametro ricevuto in input
+- la funzione `gg` ritorna il successore della `x` catturata da `F`
 
 ## Funzioni di ordine superiore
 
 >[!esempio]
 >Supponiamo di voler scrivere una funzione che calcola l'approssimazione dell'integrale $\int_{a}^{b}f(x)dx$.
 
-Quello che la funzione deve fare è dividere l'intervallo da `a` a `b` in `n` parti uguale e somma le aree degli `n` trapezi risultanti.
+Quello che la funzione deve fare è dividere l'intervallo da `a` a `b` in `n` parti uguali e sommare le aree degli `n` trapezi risultanti.
 
 Definiamo la funzione `trap(a,b,n,F)`, dove `F` è la funzione da integrare e viene presa come parametro.
 
@@ -103,19 +101,19 @@ Definiamo la funzione `trap(a,b,n,F)`, dove `F` è la funzione da integrare e vi
 (* val simpleMap = fn: ('a -> 'b) * 'a list -> 'b list *)
 > simpleMap (square, [1.0,2.0,3.0]);
 (* val it = [1.0, 4.0, 9.0]: real list *)
-> simpleMap (~, [1,2,3]);
+> simpleMap (op ~, [1,2,3]);
 (* val it = [~1, ~2, ~3]: int list *)
 > simpleMap ( fn x => x*x, [1.0,2.0,3.0]);
 (* val it = [1.0, 4.0, 9.0]: real list *)
 ```
 
->[!warning] Attenzione
->Non possiamo scrivere `fun f(x) = #1(x);` perché ML non è certo della grandezza della tupla. Non essendo sicuro, restituisce errore.
+>[!osservazione]
+>`#1` è una funzione polimorfica: il tipo della tupla viene inferito dall'uso. Ad esempio `fun f x = #1 x` ha tipo `'a * 'b -> 'a`.
 
 >[!esercizio]
 >Scrivere una funzione `reduce` come segue:
 >- $[a_1]$ ritorna $a_1$
->- $[a_1, ..., a_n]$: riduce la tail applicando una funzione $F$ che prende una coppia e ritorna $b$ e poi calcola $F(a_1,b)$, ossia $reduce([a_1, ..., a_n],F)=F(a_1,F(a_2,...F(a_{n-1},a_n)))$
+>- $[a_1, ..., a_n]$: riduce la tail applicando una funzione $F$ che prende una coppia e ritorna $b$, poi calcola $F(a_1,b)$, ossia $reduce(F,[a_1, ..., a_n])=F(a_1,F(a_2,...F(a_{n-1},a_n)))$
 
 Questa funzione è tale che se la funzione in input è la somma restituisce la somma di tutti gli elementi, se è l'operatore di prodotto ritorna il prodotto di tutti gli elementi, e così via...
 
@@ -132,7 +130,7 @@ Questa funzione è tale che se la funzione in input è la somma restituisce la s
 >[!esercizio]
 >Usare le funzioni `simpleMap` e `reduce` per calcolare la varianza di una lista di reali.
 
-La varianza di una lista di reali è definita come 
+La varianza di una lista di reali è definita come
 $$
 \mathrm{Var}(a_1, \dots, a_n) = \frac{\sum_{i=1}^{n} a_i^2}{n} - \left( \frac{\sum_{i=1}^{n} a_i}{n} \right)^2
 $$
@@ -193,7 +191,7 @@ Usando `op` è possibile convertire un operatore infisso in un operatore prefiss
 
 ## Curried functions
 
-Le funzioni, in ML, possono avere un solo argomento (e per questo si dicono unary). Quindi una funzione a due argomenti in realtà è:
+In ML una funzione ha un solo parametro. Quindi una funzione a due argomenti in realtà è:
 - una funzione che prende come argomento una tupla
 - oppure una funzione che restituisce un'altra funzione (currying)
 
@@ -222,11 +220,11 @@ Questo è un altro modo, che fa uso del currying. Il significato del tipo della 
 - prende un `real`
 - restituisce una funzione `int -> real`
 
-Quando scriviamo `exponent2 3.0 4` ML lo interpreta come `(exponent 3.0) 4`, dove `esponent2 3.0` restituisce una funzione, che viene poi applicata al parametro `4`.
+Quando scriviamo `exponent2 3.0 4` ML lo interpreta come `(exponent2 3.0) 4`: `exponent2 3.0` restituisce una funzione, che viene poi applicata al parametro `4`.
 
-### Istanziazione parziale
+### Applicazione parziale
 
-La forma curried è utile perché permette di creare delle funzioni parzialmente istanziate (anche dette funzioni specializzate), dove solo alcuni argomenti sono dati.
+La forma curried è utile perché permette di creare delle funzioni parzialmente applicate (anche dette funzioni specializzate), dove solo alcuni argomenti sono dati.
 
 ```sml
 > val g = exponent2 3.0;
@@ -237,4 +235,4 @@ La forma curried è utile perché permette di creare delle funzioni parzialmente
 (* val it = 81.0: real *)
 ```
 
-Nella prima riga abbiamo istanziato parzialmente la funzione `exponent2`.  `g` è la funzione potenza con base `3.0`.
+Nella prima riga abbiamo applicato parzialmente la funzione `exponent2`.  `g` è la funzione potenza con base `3.0`.

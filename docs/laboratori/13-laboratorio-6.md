@@ -1,6 +1,3 @@
-
----
-
 >[!esercizio] Esercizio 6.1
 >Scrivere le espressioni per:
 >1. Aprire un file in lettura
@@ -28,9 +25,9 @@
 >Scrivere una funzione `getList(filename)` che legge un file, estrae le parole e le mette in una lista.
 
 ```sml
-> fun getWord(input: TextIO.instream) = 
+> fun getWord(input: TextIO.instream) =
     if TextIO.endOfStream(input) then ""
-    else 
+    else
       let
         val c = TextIO.inputN(input, 1);
       in
@@ -44,7 +41,8 @@
       let
         val next = getWord(input);
       in
-        next::getList(input)
+        if next = "" then getList(input)
+        else next::getList(input)
       end;
 
 (* val getWord = fn: TextIO.instream -> string
@@ -52,8 +50,7 @@ val getList = fn: TextIO.instream -> string list *)
 > val input = TextIO.openIn("Test.txt");
 (* val input = ?: TextIO.instream *)
 > getList(input);
-(* val it = ["Nel", "mezzo", "del", "cammin", "di", "nostra", "vita", "mi", "ritrovai", "per", ...]: string list
-val it = (): unit *)
+(* val it = ["Nel", "mezzo", "del", "cammin", "di", "nostra", "vita", "mi", "ritrovai", "per", ...]: string list *)
 ```
 
 >[!esercizio] Esercizio 6.3
@@ -88,10 +85,10 @@ val it = 0: int *)
 ```
 
 >[!esercizio] Esercizio 6.4
->Scrivere una funzione `fact` che, dato un intero `n`, ritorna $n!$ se $n > 0$, $1$ se $n = 0$ e $0$ se $n < 0$, con il messaggio di errore "Negative argument `x` found", dove `x` è l'argomento. 
+>Scrivere una funzione `fact` che, dato un intero `n`, ritorna $n!$ se $n > 0$, $1$ se $n = 0$ e $0$ se $n < 0$, con il messaggio di errore "Negative argument `x` found", dove `x` è l'argomento.
 
 ```sml
-> exception negativeArgument of int
+> exception negativeArgument of int;
 
 > fun fact1(0) = 1
     | fact1(n) =
@@ -100,8 +97,8 @@ val it = 0: int *)
 
 > fun fact(n) = fact1(n) handle negativeArgument(n) => (print("Negative argument " ^ Int.toString(n) ^ " found\n"); 0);
 
-(* val fact1 = fn: int -> int
-exception negativeArgument of int
+(* exception negativeArgument of int
+val fact1 = fn: int -> int
 val fact = fn: int -> int *)
 > fact(~2);
 (* Negative argument ~2 found
@@ -116,13 +113,12 @@ val it = 0: int *)
 >Scrivere una funzione `tabulate` che prende un valore iniziale `a`, un incremento `delta`, un numero di punti `n` e una funzione `F` (dai reali ai reali) e stampa una tabella con 2 colonne, rispettivamente `x` e `F(x)`, con `x` che parte da `a` e viene incrementato di `delta` `n` volte.
 
 ```sml
-> fun tabulate(a, delta, 0, f) = nil
+> fun tabulate(a, delta, 0, f) = ()
     | tabulate(a, delta, n, f) = (print(Real.toString(a) ^ " " ^ Real.toString(f(a)) ^ "\n"); tabulate(a+delta, delta, n-1, f));
 
-(* val tabulate = fn: real * real * int * (real -> real) -> 'a list *)
+(* val tabulate = fn: real * real * int * (real -> real) -> unit *)
 > tabulate(1.0,0.1,9,fn x => x*x);
-(* poly: : warning: The type of (it) contains a free type variable. Setting it to a unique monotype.
-1.0 1.0
+(* 1.0 1.0
 1.1 1.21
 1.2 1.44
 1.3 1.69
@@ -131,7 +127,7 @@ val it = 0: int *)
 1.6 2.56
 1.7 2.89
 1.8 3.24
-val it = []: _a list *)
+val it = (): unit *)
 ```
 
 >[!esercizio] Esercizio 6.6
@@ -144,7 +140,7 @@ val it = []: _a list *)
 > fun pos (a: real) =
     if a < 0.0 then 0.0
     else a
-  
+
 (* val simpleMap = fn: ('a -> 'b) * 'a list -> 'b list
 val pos = fn: real -> real *)
 > simpleMap(pos, [0.0,1.0,~2.1,~2.3]);
@@ -161,7 +157,7 @@ val pos = fn: real -> real *)
     | reduce(F, [a]) = a
     | reduce(F, x::xs) = F(x, reduce(F, xs));
 
-> fun max(a: real, b: real) = 
+> fun max(a: real, b: real) =
     if a > b then a
     else b;
 
@@ -192,7 +188,7 @@ val pos = fn: real -> bool *)
 ```
 
 >[!esercizio] Esercizio 6.9
->Scrivere una funzione `readAndSum` che, dato un file di testo  contenente un numero per ogni riga, trasforma ogni riga nell'intero corrispondente e ritorna la somma di tutti questi.
+>Scrivere una funzione `readAndSum` che, dato un file di testo contenente un numero per ogni riga, trasforma ogni riga nell'intero corrispondente e ritorna la somma di tutti questi.
 
 ```sml
 > fun readAndSum1(input: TextIO.instream) =
@@ -202,7 +198,7 @@ val pos = fn: real -> bool *)
         val line = valOf(TextIO.inputLine(input));
         val x = valOf(Int.fromString(line));
       in
-        x+readAndSum(input)
+        x+readAndSum1(input)
       end;
 
 > fun readAndSum(file: string) =

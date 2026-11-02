@@ -1,5 +1,3 @@
-
----
 ## Type systems
 
 Il type system di un linguaggio comprende:
@@ -7,47 +5,68 @@ Il type system di un linguaggio comprende:
 2. I meccanismi per definire nuovi tipi
 3. La specificazione se i tipi sono controllati staticamente o dinamicamente
 4. I meccanismi di controllo (equivalenza, compatibilità, inferenza)
+
 ### Tipi semplici vs tipi composti
-- **Tipi semplici** (o scalari): sono i tipi primitivi, non derivano da altri tipi
-- **Tipo composti**: ottenuti dalla combinazione di altri tipi, usando appositi costruttori
-Per definire un nuovo tipo si usa la sintassi `type newtype = expression;`
+
+- **Tipi semplici** (o scalari): sono i tipi primitivi, non derivano da altri tipi.
+- **Tipi composti**: sono ottenuti dalla combinazione di altri tipi, usando appositi costruttori.
+
+Con `type` si crea un **alias** di un tipo esistente, non un tipo nuovo e distinto. La sintassi è:
+
+```sml
+type nuovo_tipo = espressione_di_tipo;
+```
+
+Ad esempio, `type intlist = int list;` rende `intlist` un altro nome per `int list`.
+
 ### Controllo dei tipi
+
 - **Statico**: avviene a tempo di compilazione, prima di arrivare all'utente. Dunque è più efficiente a runtime, ma il design è più complesso e la compilazione richiede più tempo.
 - **Dinamico**: avviene durante l'esecuzione del codice. Identifica gli errori di tipo, ma lo fa soltanto a runtime e non è efficiente.
+
 ### Linguaggi Strongly typed vs linguaggi Weakly typed
-- **Strongly typed**: il linguaggio è molto rigido sui tipi, ma ciò garantisce che il tipo di una variabile non cambi in modo inaspettato (es. conversioni implicite).
-- **Weakly typed**: il linguaggio è più rilassato sulla manipolazione di tipi, ma il tipo di una variabile può cambiare in modo inaspettato.
+
+- **Strongly typed**: il linguaggio impedisce le operazioni non valide per il tipo di un valore e garantisce che gli errori di tipo non passino inosservati (di solito tramite controlli statici).
+- **Weakly typed**: il linguaggio è più permissivo e può permettere che errori di tipo passino inosservati (ad esempio tramite conversioni implicite o cast non controllati).
 
 >[!warning] Attenzione
 >ML è un linguaggio **strongly typed** che controlla i tipi in modo **statico**.
+
 ### Type safety
-Un type system è **type safe** se non è possibile che alcuni errori di tipo non vengano scovati. I linguaggi strongly typed hanno un alto grado di type safety.
-C e C++, per fare due nomi conosciuti, sono type unsafe!
+
+Un type system è **type safe** se non è possibile che errori di tipo passino inosservati. I linguaggi strongly typed hanno un alto grado di type safety.
+C e C++ sono staticamente tipizzati, ma non sono type safe: cast espliciti, aritmetica dei puntatori e union permettono di aggirare i controlli.
+
 ### Meccanismi di controllo
+
 #### Equivalenza di tipo
+
 Due tipi sono equivalenti se ogni oggetto del primo tipo appartiene anche al secondo tipo e viceversa.
 Esistono due regole per l'equivalenza di tipo:
-1. **Equivalenza per nome**: definizione del tipo opaca
-   Due tipo sono equivalenti per nome se hanno lo stesso nome
-2. **Equivalenza strutturale**: definizione del tipo trasparente
-   Due tipi sono  equivalenti se hanno la stessa struttura
+1. **Equivalenza per nome**: definizione del tipo opaca.
+   Due tipi sono equivalenti per nome se hanno lo stesso nome.
+2. **Equivalenza strutturale**: definizione del tipo trasparente.
+   Due tipi sono equivalenti se hanno la stessa struttura.
+
 #### Compatibilità e conversione
+
 `T` è compatibile con `S` se gli oggetti di tipo `T` possono essere usati in contesti dove ci si aspetta oggetti di tipo `S`.
 
->[!Esempio]
->```C
+>[!esempio]
+>```C++
 >int n;
 >float r;
 >r = r + n;
 >```
->In alcun linguaggi questo si può fare, in quei casi `int` e `float` sono compatibili.
+>In alcuni linguaggi questo si può fare; in quei casi `int` e `float` sono compatibili.
 
 La compatibilità è riflessiva e transitiva ma non è simmetrica.
 
-Se `T` è compatibile con `S`, allora esiste qualche meccanismo di **conversione** tra i due. I 2 principali metodi sono:
+Se `T` è compatibile con `S`, allora esiste qualche meccanismo di **conversione** tra i due. I due principali metodi sono:
 - **Conversione implicita** (coercizione), non menzionata nel programma
 - **Conversione esplicita** (cast), menzionata nel programma
 I linguaggi moderni preferiscono il cast alla coercizione.
+
 ### Type errors in ML
 
 ```sml
@@ -76,7 +95,7 @@ Static Errors *)
 ```
 
 >[!warning] Attenzione
-> L'operatore `+` può avere più tipi, ma ML si basa sul primo argomento passato per dichiarare l'errore, che si pone perché il secondo argomento non corrisponde al primo.
+> L'operatore `+` è overloaded: ML ne deduce il tipo unificando i tipi degli argomenti. L'errore nasce quando i due argomenti hanno tipi che non possono essere unificati.
 
 ```sml
 > #"a" ^ "bc";
@@ -94,8 +113,11 @@ Else: "bc" : string *)
 ```
 
 ### Conversione di tipi in ML
+
 Non esiste la conversione automatica dei tipi in ML, deve essere fatta esplicitamente. A questo proposito sono fornite una serie di funzioni apposite.
+
 #### Conversione tra interi e reali
+
 - `real: int -> real`
 - `floor: real -> int`, arrotonda per difetto
 - `ceil: real -> int`, arrotonda per eccesso
@@ -120,7 +142,9 @@ Non esiste la conversione automatica dei tipi in ML, deve essere fatta esplicita
 > trunc(~3.5);
 (* val it = ~3: int *)
 ```
+
 #### Conversione tra caratteri e interi
+
 - `ord: char -> int`
 - `chr: int -> char`
 
@@ -132,7 +156,9 @@ Non esiste la conversione automatica dei tipi in ML, deve essere fatta esplicita
 > chr 97;
 (* val it = #"a": char *)
 ```
+
 #### Conversione da caratteri a stringhe
+
 - `str: char -> string`
 
 ```sml
@@ -143,27 +169,27 @@ Non esiste la conversione automatica dei tipi in ML, deve essere fatta esplicita
 ## Nomi, Oggetti denotabili e variabili
 
 Un **nome** è una sequenza di caratteri usata per denotare qualcos'altro.
-Un **oggetto denotabile** è un oggetto a cui può essere associabile un nome.
+Un **oggetto denotabile** è un oggetto a cui può essere associato un nome.
 Il **binding** è l'associazione tra un nome e un oggetto denotabile. Tali associazioni non sono fissate una volta per tutte.
 L'**environment** è la collezione di tutte le associazioni tra nomi e oggetti denotabili a runtime a uno specifico punto del programma in uno specifico momento dell'esecuzione.
 La **dichiarazione** è il meccanismo (implicito o esplicito) che crea le associazioni.
 
 >[!osservazione]
-Lo stesso nome può indicare oggetti denotabili differenti in punti diversi del programma. Uno stesso oggetto può avere più nomi (alias) associati in punti diversi del codice.
+>Lo stesso nome può indicare oggetti denotabili differenti in punti diversi del programma. Uno stesso oggetto può avere più nomi (alias) associati in punti diversi del codice.
 
 Una **variabile** è un oggetto che può assumere dei valori all'interno di un dominio.
 
 >[!warning]
-In ML, il valore di una variabile non può essere modificato.
+>In ML un'associazione creata con `val` non può essere riassegnata; esistono però le referenze (`ref`) per gestire stato mutabile.
 
 ### Variabili
 
-Nei linguaggi di programmazione funzionali, come ML, una **variabile** è un identificatore che rappresenta un valore non modificabile, come in matematica.
-L'environment di ML è l'insieme delle coppie `(identificatore, valore)` e viene modificato tramite le val-declarations (~ assegnamenti): 
+Nei linguaggi di programmazione funzionali, come ML, una **variabile** è un identificatore associato a un valore; con `val` l'associazione non è modificabile, come in matematica.
+L'environment di ML è l'insieme delle coppie `(identificatore, valore)` e viene esteso tramite le val-declarations (simili agli assegnamenti):
 - `val <name> = <value>;`
 - `val <name>:<type> = <value>;`
 - `val <name> = <expression>;`
-Questo comando crea un'associazione tra  un nome e una variabile.
+Questo comando crea un'associazione tra un nome e un valore.
 
 ```sml
 > val pi = 3.14159;
@@ -173,7 +199,7 @@ Questo comando crea un'associazione tra  un nome e una variabile.
 ```
 
 >[!osservazione]
->Non è necessario specificare il tipo delle variabili e queste ultime non possono essere modificate.
+>Non è necessario specificare il tipo delle variabili; un'associazione creata con `val` non può essere modificata.
 
 Se avviene una nuova dichiarazione di una variabile con lo stesso nome di una già precedentemente dichiarata, esisteranno due versioni diverse di tale variabile e, quando si proverà ad accedere alla variabile in questione, si accederà alla seconda. Ma la prima rimane in memoria.
 
@@ -189,6 +215,7 @@ Se avviene una nuova dichiarazione di una variabile con lo stesso nome di una gi
 ```
 
 ### Tipi complessi in ML
+
 #### Tuple
 
 ```sml
@@ -206,7 +233,7 @@ Se avviene una nuova dichiarazione di una variabile con lo stesso nome di una gi
 (* val t = (1, (2, 3, 4)): int * (int * int * int) *)
 ```
 
-Per accedere alle componenti di una tupla si usa `#` 
+Per accedere alle componenti di una tupla si usa `#`.
 
 ```sml
 > val t = (4, 5.0, "six");
@@ -287,7 +314,7 @@ Can't unify int (*In Basis*) with string (*In Basis*)
 (Different type constructors) *)
 ```
 
-Con `::` si può combinare un elemento e una lista dello stesso tipo. Questa operazione è associativa.
+Con `::` si può combinare un elemento e una lista dello stesso tipo. Questa operazione è associativa a destra.
 
 ```sml
 > 2 :: [3,4];
@@ -328,9 +355,9 @@ E con `implode` si trasforma una lista di caratteri in una stringa.
 ## Il type system di ML
 
 - Tipi primitivi: `int`, `real`, `bool`, `char`, `string`, `unit`
-- Tipi complessi: 2 costruttori
-	- `T1 * T2 * ... * Tn (tuples)`
-	- `T list`
+- Tipi complessi: due costruttori
+    - `T1 * T2 * ... * Tn` (tuple)
+    - `T list`
 
 ```sml
 > [1, 2, 3];
@@ -343,7 +370,7 @@ E con `implode` si trasforma una lista di caratteri in una stringa.
 
 ## Funzioni in ML
 
-Le funzioni (rappresentate come espressioni parametrizzare) sono un altro tipo di valore in ML.
+Le funzioni (rappresentate come espressioni parametrizzate) sono un altro tipo di valore in ML.
 
 La sintassi è `fn <param> => <expression>;`, ma si può anche applicare direttamente la funzione al parametro richiesto:
 
@@ -352,7 +379,7 @@ La sintassi è `fn <param> => <expression>;`, ma si può anche applicare diretta
 (* val it = 6: int *)
 ```
 
-Si può associare le funzioni ad un nome, come se fossero valori:
+Si possono associare le funzioni a un nome, come se fossero valori:
 
 ```sml
 > val increment = fn n => n+1;
@@ -367,8 +394,8 @@ Esiste anche una notazione sintattica semplificata per le funzioni con nome:
 > increment 5;
 (* val it = 6: int *)
 ```
- 
-In caso di ambiguità, ML assegna dei tipi di default. Ad esempio, nella prima funzione `square(x)` il tipo assegnato è `int`, che vince su `real` solo per il fatto che è il tipo di default.
+
+In caso di ambiguità, ML assegna dei tipi di default. Ad esempio, nella prima definizione di `square(x)` il tipo assegnato è `int`: tra i tipi ammessi per `*`, `int` è quello di default.
 È possibile specificare esplicitamente i tipi di una funzione:
 
 ```sml

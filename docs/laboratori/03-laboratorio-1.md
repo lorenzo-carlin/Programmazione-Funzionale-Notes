@@ -1,6 +1,3 @@
-
----
-
 >[!esercizio] Esercizio 1.1
 >Scrivere l'espressione per convertire:
 >1. `123.45` nel numero intero inferiore più vicino
@@ -48,7 +45,7 @@
 ```
 
 >[!esercizio] Esercizio 1.3
->Come possiamo fixare gli errori in queste espressioni?
+>Come possiamo correggere gli errori in queste espressioni?
 >1. `ceil(4);`
 >2. `if true then 5+6 else 7.0;`
 
@@ -74,7 +71,7 @@
 ```
 
 >[!esercizio] Esercizio 1.5
->Fixa le seguenti espressioni:
+>Correggi le seguenti espressioni:
 >1. `explode ["bar"];`
 >2. `implode (#"a", #"b");`
 >3. `["r"]::["a", "t"];`
@@ -109,7 +106,7 @@
 
 >[!esercizio] Esercizio 1.7
 >Dai esempi di questi tipi di oggetti, senza usare liste vuote:
->1.`((int * int) * (bool list) * real) * (real * string)`
+>1. `((int * int) * (bool list) * real) * (real * string)`
 >2. `(bool * int) * char`
 >3. `real * int list list list list`
 

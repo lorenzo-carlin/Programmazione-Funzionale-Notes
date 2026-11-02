@@ -1,6 +1,3 @@
-
----
-
 >[!esercizio] Esercizio 8.1
 >Definire la signature `SET` che preveda:
 >- un parametro di tipo: `'a set`
@@ -28,7 +25,7 @@ end;*)
 ```
 
 >[!esercizio] Esercizio 8.2
->Con la signature `SET` data, aggiungere la definizione per la struttura `Set` che implementi tale signature tale structure.
+>Con la signature `SET` data, aggiungere la definizione per la struttura `Set` che implementi tale signature.
 
 ```sml
 signature SET = sig
@@ -40,8 +37,7 @@ structure Set = struct
 end:>SET;
 
 (*signature SET = sig type 'a set end
-structure Set: SET
-val it = (): unit*)
+structure Set: SET*)
 ```
 
 >[!esercizio] Esercizio 8.3
@@ -58,9 +54,11 @@ structure Set = struct
   val emptyset = []
 end:>SET;
 
+val a = Set.emptyset;
+
 (*signature SET = sig val emptyset: 'a set type 'a set end
 structure Set: SET
-val it = (): unit*)
+val a = []: 'a Set.set*)
 ```
 
 >[!esercizio] Esercizio 8.4
@@ -87,8 +85,7 @@ val b = Set.isin 1 a;
   sig val emptyset: ''a set val isin: ''a -> ''a set -> bool type 'a set end
 structure Set: SET
 val a = ?: ''a Set.set
-val b = false: bool
-val it = (): unit*)
+val b = false: bool*)
 ```
 
 >[!esercizio] Esercizio 8.5
@@ -126,8 +123,7 @@ structure Set: SET
 val a = ?: ''a Set.set
 val b = false: bool
 val c = ?: int Set.set
-val d = true: bool
-val it = (): unit*)
+val d = true: bool*)
 ```
 
 >[!esercizio] Esercizio 8.6
@@ -175,8 +171,7 @@ val c = ?: int Set.set
 val d = ?: int Set.set
 val e = true: bool
 val f = ?: int Set.set
-val g = false: bool
-val it = (): unit*)
+val g = false: bool*)
 ```
 
 >[!esercizio] Esercizio 8.7
@@ -202,8 +197,7 @@ signature TREE =
     val countNodes: 'a T -> int
     val depth: 'a T -> int
     val mirror: 'a T -> 'a T
-  end
-val it = (): unit*)
+  end*)
 ```
 
 >[!esercizio] Esercizio 8.8
@@ -259,13 +253,12 @@ val a = Br (1, Br (2, Lf, Lf), Br (3, Br (4, Lf, Lf), Br (5, Lf, Lf))):
 val b = 5: int
 val c = 3: int
 val d = Br (1, Br (3, Br (5, Lf, Lf), Br (4, Lf, Lf)), Br (2, Lf, Lf)):
-   int Tree.T
-val it = (): unit*)
+   int Tree.T*)
 ```
 
 >[!esercizio] Esercizio 8.9
->Dato il tipo `('a,'b) mapTree`, definito come un BST in cui l'ordine è definito dalla prima componente della tupla, scrivere una funzione `lookup lt T a` che cerca una coppia `(a, b)` la cui prima componente sia `a`. Se la trova, ritorna `b`, altrimenti ritorna l'eccezione `Missing`.
->Scrivere un `(int, String) mapTree` per testare la funzione.
+>Dato il tipo `('a,'b) mapTree`, definito come un BST in cui l'ordine è definito dalla prima componente della tupla, scrivere una funzione `lookup lt T a` che cerca una coppia `(a, b)` la cui prima componente sia `a`. Se la trova, ritorna `b`, altrimenti solleva l'eccezione `Missing`.
+>Scrivere un `(int, string) mapTree` per testare la funzione.
 
 ```sml
 datatype 'a btree =
@@ -317,13 +310,12 @@ val t =
 val test1 = "cinque": string
 val test2 = "uno": string
 val test3 = "sei": string
-val test4 = "dieci": string
-val it = (): unit*)
+val test4 = "dieci": string*)
 ```
 
 >[!esercizio] Esercizio 8.10
->Dato il tipo `(a,b) mapTree` definito in precedenza, scrivere la funzione `assign lt T a b` che cerca nel BST la coppia `(a, c)`. Se la trova, sostituisce `c` con `b`, altrimenti inserisce la coppia `(a, b)` nel posto corretto nel BST.
->Scrivere un `(int, String) mapTree` per testare la funzione.
+>Dato il tipo `('a, 'b) mapTree` definito in precedenza, scrivere la funzione `assign lt T a b` che cerca nel BST la coppia `(a, c)`. Se la trova, sostituisce `c` con `b`, altrimenti inserisce la coppia `(a, b)` nel posto corretto nel BST.
+>Scrivere un `(int, string) mapTree` per testare la funzione.
 
 ```sml
 datatype 'a btree =
@@ -386,6 +378,5 @@ val test2 =
      Node
       ((8, "otto"),
        Node ((6, "sei"), Empty, Node ((7, "sette"), Empty, Empty)),
-       Node ((10, "dieci"), Empty, Empty))): (int * string) btree
-val it = (): unit*)
+       Node ((10, "dieci"), Empty, Empty))): (int * string) btree*)
 ```

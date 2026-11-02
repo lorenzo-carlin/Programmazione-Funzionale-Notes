@@ -16,6 +16,7 @@ Phased plan to turn this repo from a flat Markdown dump into a maintainable, bro
 | :---: | :--- | :--- |
 | 0 | Commit migration, fix README, repo hygiene | Done (2026-11-02) |
 | 1 | Restructure content for a site | Done (2026-11-02) |
+| 1.5 | Content and formatting audit | Done (2026-11-02) |
 | 2 | MkDocs Material site + GitHub Pages | Not started |
 | 3 | Interactive study features | Not started |
 | 4 | Automation, PDF pipeline, polish | Not started |
@@ -98,6 +99,39 @@ Dispensa.pdf                  # repo root, linked from docs/index.md
 **Done when:** 21 content pages (11 theory + 9 labs + index) are reachable, every relative link resolves, and `git log --follow` still works on moved files.
 
 **Completed:** 2026-11-02. 21 pages in `docs/`; `07` split into theory + lab; 30 relative links checked, all resolve. Lesson/lab pages keep history across the move; `docs/index.md` is a rewrite of the cover, so Git tracks it as a new file.
+
+---
+
+## Phase 1.5 — Content and formatting audit
+
+**Goal:** make the existing notes correct and consistent before a site generator consumes them. This is a cleanup phase: no restructuring, no new features, no renumbering.
+
+**Scope:** all 11 theory pages and all 9 lab pages under `docs/`.
+
+### Tasks
+
+- [x] Fix Italian grammar, agreement, typos, and garbled words introduced by the Obsidian migration (e.g. `foglia`/`foglie`, `cuo`/`cui`, `cosa`/`coda`, `coppa`/`coppia`, `String`/`string`).
+- [x] Correct Standard ML concepts and transcripts:
+  - [x] type inference and equality types (`'a` vs `''a`; `real` and functions are not equality types);
+  - [x] `case`/`fn`/`fun` pattern syntax, exhaustiveness, and `handle`;
+  - [x] `datatype` declarations, mutually recursive `datatype ... and ...`, and `structure`/`signature`/`functor` syntax;
+  - [x] BST invariants and `lt` semantics (`<`, not `<=`, unless stated);
+  - [x] lambda-calculus free/bound variables, substitution, α-conversion, β-reduction, and Church encodings;
+  - [x] I/O functions and `option` handling (`SOME`/`NONE`, `valOf`).
+- [x] Reconcile lab `15` exercises 7.7 and 7.8 so both use the same `('a, 'b) mapTree` label type (a list of pairs).
+- [x] Normalize formatting:
+  - [x] remove leftover top-of-page `---` separators;
+  - [x] normalize callouts to `>[!type]` (map `NOTE`/`TIP` to `[!osservazione]`);
+  - [x] unify fence spelling (`sml`, `C++`, `txt`, bare fences) and add blank lines around headings and fences;
+  - [x] trim trailing whitespace, remove tabs outside code, replace curly quotes, and remove `//` comments from SML.
+- [x] Remove spurious `val it = (): unit` output after declarations, while keeping legitimate unit results from `print` and side-effecting expressions.
+- [x] Re-run the relative-link checker and a formatting lint before committing.
+
+**Done when:** prose is Italian, SML examples and inferred types are internally consistent, Markdown renders without broken fences/callouts, and all relative links resolve.
+
+**Completed:** 2026-11-02. 20 content pages edited; 30 relative links check clean. No SML toolchain is installed, so transcripts were verified by reasoning rather than execution.
+
+**Re-audit trigger:** after adding new notes, after converting callouts for Phase 2, or whenever `Dispensa.pdf` is rebuilt.
 
 ---
 

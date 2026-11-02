@@ -19,8 +19,41 @@
 ## Conventions
 
 - Keep prose in Italian; do not translate the notes. Preserve SML keywords and identifiers. Math uses `$...$` / `$$...$$`.
-- Callouts use Obsidian syntax: `>[!esercizio]`, `>[!esempio]` (also `[!Esempio]`), `>[!osservazione]`, `>[!warning]`, `>[!teorema]`. GitHub renders them as plain blockquotes; Phase 2 converts them, so do not convert ad hoc.
+- Callouts use Obsidian syntax with a lowercase type and no space after `>`: `>[!esercizio]`, `>[!esempio]`, `>[!osservazione]`, `>[!warning]`, `>[!teorema]`. Every body line starts with `>`. GitHub renders them as plain blockquotes; Phase 2 converts them, so do not convert ad hoc.
 - `sml` fences are REPL transcripts with `>` prompts and `(* val it = ... *)` expected output, not standalone runnable programs. Fence languages seen: `sml`, `C++` (capitalized), `txt`, and bare fences.
+- Pages intentionally start at `##`; do not add `#` headings or YAML front matter.
+
+## Content audit
+
+Re-read a page for meaning, not only for spelling. The notes were migrated from Obsidian, so formatting damage and factual drift often sit in the same block.
+
+### Standard ML correctness
+
+- Declarations (`val`, `fun`, `datatype`, `type`, `exception`, `structure`, `signature`, `functor`, `open`) do **not** produce `val it`. Only expressions do. Do not leave `val it = (): unit` after a declaration.
+- `print` and other side-effecting expressions return `unit`, so their transcripts legitimately end with `val it = (): unit`. Do not strip those.
+- `=` and `<>` require an equality type, printed as `''a`. `real` and functions are not equality types. `@`, `null`, `hd`, `tl`, `::` remain polymorphic, but `L = nil` forces `''a`. Check inferred types after changing a condition.
+- `type t = int` creates an alias, not a new type; `datatype` creates a new type. A structure field of type `t` is a type component, not a variable.
+- Inside a `structure`, use `fun` for functions and `val` for values. `structure S :> SIG` is opaque ascription; `:` is transparent.
+- For a BST, state the invariant precisely: with a strict `lt`, the left subtree is `< x` and the right subtree is `> x`; do not describe it as `<=`.
+- Check `case`/`fn`/`fun` pattern syntax, exhaustiveness, and `handle` placement. `fn` may have multiple clauses: `fn p1 => e1 | p2 => e2`.
+- Lambda calculus: keep free/bound sets, substitution, α-conversion, and β-reduction consistent. `(λx.λy.x y)y` needs α-conversion before substitution, otherwise `y` is captured.
+- No SML toolchain is installed (`sml`, `mlton`, `poly` are absent). Verify transcripts by reasoning and say so; do not claim a snippet was executed.
+
+### Formatting and migration artifacts
+
+- Watch for a leftover `---` at the top of a page. It is an Obsidian artifact, not a horizontal rule.
+- Normalize `> [!WARNING]` to `>[!warning]`; map `NOTE`/`TIP` to `[!osservazione]`. A callout ends at the first blank line, so every continuation line needs `>`.
+- Fences must start at column 0 unless intentionally nested. Do not leave a fence indented after converting an Obsidian list.
+- Add a blank line before and after headings and fenced blocks. Trim trailing whitespace; replace tabs outside code with spaces.
+- Replace curly quotes (`‘ ’ “ ”`) with ASCII quotes, especially in type variables (`‘a` → `'a`) and SML strings.
+- SML comments are `(* ... *)`; remove stray `//` comments. Do not rewrite a transcript into a standalone program or wrap it in `use`.
+- Common word-level damage: `foglia`/`foglie`, `cuo`/`cui`, `cosa`/`coda`, `coppa`/`coppia`, `String`/`string`, `srtLT`/`strLT`, `qas`/`as`, `EmptyTeee`/`EmptyTree`.
+
+### Safe bulk edits
+
+- Prefer a one-off script that **fails on a missing pattern** over silent global replacement. Review `git diff` afterwards.
+- Keep file moves and content edits in separate commits. Use the link checker after any path or heading change.
+- Check the whole page after a scripted edit: an apparently local fix can leave an output block or a later exercise inconsistent (for example, changing a `datatype` label type requires updating the functions and tests that use it).
 
 ## Editing guidance
 

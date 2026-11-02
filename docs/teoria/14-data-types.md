@@ -1,5 +1,3 @@
-
----
 ## Funzioni built-in di ordine superiore
 
 >[!osservazione]
@@ -30,37 +28,37 @@ Definizione di `map`:
 
 ### Funzione `foldr`
 
-Fa la stessa cosa della funzione `reduce`, dall'elemento più a destra e procedendo verso sinistra.
+Fa la stessa cosa della funzione `reduce`, ma parte dall'elemento più a destra e procede verso sinistra.
 
 ```sml
 > foldr (fn (a,b) => a+b) 2 [1,2,3]
 (* val it = 8: int *)
 ```
 
-Questo esempio fa $f(1, f(2, f(3, 2))) = 1+(2+(3+2))$.
+Questo esempio calcola $f(1, f(2, f(3, 2))) = 1+(2+(3+2)) = 8$.
 
 Definizione di `foldr`:
 
 ```sml
 > fun foldr F y nil = y
 	| foldr F y (x::xs) = F (x,foldr F y xs);
-(* val foldr = fn: ('a * 'b -> 'b) -> 'b -> 'a list -> ‘b *)
+(* val foldr = fn: ('a * 'b -> 'b) -> 'b -> 'a list -> 'b *)
 ```
 
 ### Funzione `foldl`
 
-Fa la stessa cosa della funzione `reduce`, dall'elemento più a sinistra e procedendo verso destra.
+Fa la stessa cosa della funzione `reduce`, ma parte dall'elemento più a sinistra e procede verso destra.
 
 ```sml
 > foldl (fn (a,b) => a+b) 2 [1,2,3]
 (* val it = 8: int *)
 ```
 
-Questo esempio fa $f(3, f(2, f(1,2))) = 3 + (2 + (1 + 2)))$.
+Questo esempio calcola $f(3, f(2, f(1, 2))) = 3 + (2 + (1 + 2)) = 8$.
 
 ### Funzione `List.filter`
 
-Processa una lista e ritorna una nuova lista contenente solo gli elementi che soddisfano un certo predicato. Prende in input una lista e un predicato.
+Processa una lista e ritorna una nuova lista contenente solo gli elementi che soddisfano un certo predicato. Prende in input un predicato e una lista (in forma curried).
 
 ```sml
 > List.filter;
@@ -133,7 +131,7 @@ Con la keyword `datatype` è possibile creare dei nuovi tipi. Necessita di due p
 (* datatype fruit = Apple | Grape | Pear *)
 ```
 
-In questo esempio il datatype è `fruit` e i sui possibili valori sono `Apple`, `Pear`, `Grape`.
+In questo esempio il datatype è `fruit` e i suoi possibili valori sono `Apple`, `Pear`, `Grape`.
 
 ```sml
 > fun isApple (x) = (x = Apple);
@@ -148,6 +146,7 @@ Found near isApple (Cherry) *)
 ```
 
 I costruttori dei possibili valori dei datatype possono prendere in input degli argomenti, secondo la seguente sintassi:
+
 ```sml
 > datatype (<parameters>) <identifier> =
 	  <first constructor expression> |
@@ -155,15 +154,19 @@ I costruttori dei possibili valori dei datatype possono prendere in input degli 
 	  <last constructor expression>
 ```
 
-E il costruttore del datatype può essere parametrizzato:
+Un costruttore può anche prendere un argomento:
+
 ```sml
-> Cherry of int
+> datatype fruit2 = Cherry of int;
+(* datatype fruit2 = Cherry of int *)
 ```
-In questo modo ogni espressione del tipo `Cherry(intero)` è accettata.
+
+In questo modo ogni espressione della forma `Cherry(intero)` è un valore di tipo `fruit2`.
 
 Il costruttore dei valori possibili viene usato per costruire delle espressioni che sono i valori per quel tipo.
 
 Possiamo usare questi tipi per creare unioni di tipi diversi, ad esempio possiamo definire il tipo `element` che è una coppia `('a * 'b)` ma può anche essere un singolo `'a`:
+
 ```sml
 > datatype ('a,'b) element =
 	P of 'a * 'b |
@@ -228,7 +231,7 @@ L'esempio tipico è quello dell'albero binario, in cui ogni nodo può:
 Si utilizza la keyword `and`, come per le funzioni.
 
 >[!esempio]
->Consideriamo i binary tree pari (ogni path dalla radice ad una fogli attraversa un numero pari di nodi) e i binary tree dispari. Proviamo a definirli.
+>Consideriamo i binary tree pari (ogni path dalla radice a una foglia attraversa un numero pari di nodi) e i binary tree dispari. Proviamo a definirli.
 
 ```sml
 > datatype 'label evenTree =
@@ -245,5 +248,5 @@ datatype 'a oddTree = Onode of 'a * 'a evenTree * 'a evenTree *)
 > val t3 = Enode (3,t1,t2);
 (* val t3 = Enode (3, Onode (1, Empty, Empty), Onode (1, Empty, Empty)): int evenTree *)
 > val t4 = Onode (4,t3,Empty);
-(* val t4 = Onode* 4, Enode (3, Onode (1, Empty, Empty), Onode (1, Empty, Empty)), Empty): int oddTree *)
+(* val t4 = Onode (4, Enode (3, Onode (1, Empty, Empty), Onode (1, Empty, Empty)), Empty): int oddTree *)
 ```
