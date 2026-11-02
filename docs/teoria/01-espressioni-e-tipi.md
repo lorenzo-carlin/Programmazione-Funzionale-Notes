@@ -204,4 +204,4 @@ Sintassi: `if <p> then <exp1> else <exp2>`. Il ramo `else` è obbligatorio e i d
 
 ---
 
-[← Torna all'Indice Principale](../README.md)
+[← Torna all'Indice del Corso](../index.md)

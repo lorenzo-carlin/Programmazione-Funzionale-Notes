@@ -15,7 +15,7 @@ Phased plan to turn this repo from a flat Markdown dump into a maintainable, bro
 | Phase | Scope | Status |
 | :---: | :--- | :--- |
 | 0 | Commit migration, fix README, repo hygiene | Done (2026-11-02) |
-| 1 | Restructure content for a site | Not started |
+| 1 | Restructure content for a site | Done (2026-11-02) |
 | 2 | MkDocs Material site + GitHub Pages | Not started |
 | 3 | Interactive study features | Not started |
 | 4 | Automation, PDF pipeline, polish | Not started |
@@ -57,40 +57,47 @@ Phased plan to turn this repo from a flat Markdown dump into a maintainable, bro
 
 ```text
 docs/
-├── index.md                  # cover + TOC (from PROGRAMMAZIONE FUNZIONALE.md)
+├── index.md                  # full TOC
 ├── teoria/
 │   ├── 01-espressioni-e-tipi.md
 │   ├── 02-type-system.md
 │   ├── 04-regole-di-scope.md
 │   ├── 06-astrazione-e-ricorsione.md
-│   ├── 07-pattern-matching.md   # theory half split out of file 07
+│   ├── 07-pattern-matching.md
 │   ├── 08-patterns-environment.md
 │   ├── 10-io-eccezioni-polimorfismo.md
 │   ├── 12-ordine-superiore-curried.md
 │   ├── 14-data-types.md
 │   ├── 16-data-types-astratti.md
 │   └── 18-lambda-calcolo.md
-├── laboratori/
-│   ├── 03-laboratorio-1.md
-│   ├── 05-laboratorio-2.md
-│   ├── 07-laboratorio-3.md
-│   └── … 09, 11, 13, 15, 17, 19
-└── assets/
-    └── dispensa.pdf          # or link the root PDF from the site
+└── laboratori/
+    ├── 03-laboratorio-1.md
+    ├── 05-laboratorio-2.md
+    ├── 07-laboratorio-3.md
+    ├── 09-laboratorio-4.md
+    ├── 11-laboratorio-5.md
+    ├── 13-laboratorio-6.md
+    ├── 15-laboratorio-7.md
+    ├── 17-laboratorio-8.md
+    └── 19-laboratorio-9.md
+
+Dispensa.pdf                  # repo root, linked from docs/index.md
 ```
 
 ### Tasks
 
-- [ ] Decide whether `Dispensa.pdf` stays at the repo root or moves to `docs/assets/`. Recommendation: keep it at the root and link to it, so the raw GitHub download keeps working.
-- [ ] Create `docs/` and move files with `git mv` (only after Phase 0 is committed).
-- [ ] Slugs: lowercase, hyphens, no spaces or `+`. Keep the `NN-` prefix.
-- [ ] Create `docs/index.md` from the 42-line cover/TOC. Keep it short: title, course, PDF link, theory list, lab list.
-- [ ] Split `07. Laboratorio 3 + Pattern Matching.md`: lab exercises stay in `laboratori/07-laboratorio-3.md`; the pattern-matching theory goes to `teoria/07-pattern-matching.md`. Do not duplicate content; move it.
-- [ ] Point `README.md` at the site/PDF and keep it short. It should not duplicate the full TOC.
-- [ ] Fix every relative link after the move (README, index, in-page links).
-- [ ] Add `title:` front matter to each page (or rely on the first `#`). Do not add `#` headings to pages that intentionally start at `##`.
+- [x] Decide whether `Dispensa.pdf` stays at the repo root or moves to `docs/assets/`. It stays at the root; `docs/index.md` links to `../Dispensa.pdf`.
+- [x] Create `docs/` and move files with `git mv` (only after Phase 0 is committed).
+- [x] Slugs: lowercase, hyphens, no spaces or `+`. Keep the `NN-` prefix.
+- [x] Create `docs/index.md` from the 42-line cover/TOC. Keep it short: title, course, PDF link, theory list, lab list.
+- [x] Split `07. Laboratorio 3 + Pattern Matching.md`: lab exercises stay in `laboratori/07-laboratorio-3.md`; the pattern-matching theory goes to `teoria/07-pattern-matching.md`. Do not duplicate content; move it.
+- [x] Point `README.md` at the site/PDF and keep it short. It should not duplicate the full TOC.
+- [x] Fix every relative link after the move (README, index, in-page links).
+- [x] Titles: rely on the MkDocs `nav` in Phase 2. Most pages intentionally start at `##`, so no `#` headings or front matter were added.
 
-**Done when:** 20 content pages (10 theory + 9 labs + index) are reachable, every relative link resolves, and `git log --follow` still works on moved files.
+**Done when:** 21 content pages (11 theory + 9 labs + index) are reachable, every relative link resolves, and `git log --follow` still works on moved files.
+
+**Completed:** 2026-11-02. 21 pages in `docs/`; `07` split into theory + lab; 30 relative links checked, all resolve. Lesson/lab pages keep history across the move; `docs/index.md` is a rewrite of the cover, so Git tracks it as a new file.
 
 ---
 
