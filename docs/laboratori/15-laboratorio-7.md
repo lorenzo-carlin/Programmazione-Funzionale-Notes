@@ -162,3 +162,7 @@ val doubleTree = fn: int bltree -> int bltree *)
 > doubleTree (Node(10, Leaf(5), Node(3, Empty, Leaf(1))));
 (* val it = Node (20, Leaf 10, Node (6, Empty, Leaf 2)): int bltree *)
 ```
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

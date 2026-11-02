@@ -424,3 +424,7 @@ Static Errors *)
 > rev3 [floor,trunc, ceil];
 (* val it = [fn, fn, fn]: (real -> int) list *)
 ```
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

@@ -250,3 +250,7 @@ La forma curried è utile perché permette di creare delle funzioni parzialmente
 ```
 
 Nella prima riga abbiamo applicato parzialmente la funzione `exponent2`.  `g` è la funzione potenza con base `3.0`.
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

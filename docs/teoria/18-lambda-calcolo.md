@@ -264,3 +264,7 @@ Scriviamo allora la funzione come: $G = \lambda f. \lambda n. if \; n = 0 \; the
 Vogliamo allora trovare una funzione $f$ tale che $f = G(f)$, dove $G$ è una funzione di ordine superiore che prende una funzione come argomento e ritorna una funzione.
 Un modo per calcolare tale funzione è la **Y combinator**: $\lambda f. (\lambda x. f(xx))(\lambda x. f(xx))$
 La Y combinator è una funzione che applicata a $G$ ritorna la funzione $f$ che stavamo cercando.
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

@@ -49,3 +49,7 @@ Exception- Match raised *)
 ```
 
 > Gli esercizi di questa parte sono nel [Laboratorio 3](../laboratori/07-laboratorio-3.md).
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

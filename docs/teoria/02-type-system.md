@@ -434,3 +434,7 @@ Tutte le funzioni in ML hanno un solo parametro, ma questo può essere una tupla
 > max3(5.0,4.0,7.0);
 (* val it = 7.0: real *)
 ```
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

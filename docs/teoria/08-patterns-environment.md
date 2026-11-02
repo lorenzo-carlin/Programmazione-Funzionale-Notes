@@ -177,3 +177,7 @@ O anche, equivalentemente,
 > mergeSort([5,3,2,6,4,1]);
 (* val it = [1, 2, 3, 4, 5, 6]: int list *)
 ```
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

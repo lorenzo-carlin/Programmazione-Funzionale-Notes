@@ -409,3 +409,7 @@ end;
 
 structure IntTripleBST = MakeBST (IntTriple);
 ```
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

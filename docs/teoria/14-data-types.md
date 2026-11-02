@@ -256,3 +256,7 @@ datatype 'a oddTree = Onode of 'a * 'a evenTree * 'a evenTree *)
 > val t4 = Onode (4,t3,Empty);
 (* val t4 = Onode (4, Enode (3, Onode (1, Empty, Empty), Onode (1, Empty, Empty)), Empty): int oddTree *)
 ```
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

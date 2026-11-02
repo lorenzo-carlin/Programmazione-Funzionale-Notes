@@ -165,3 +165,7 @@ fun rem (l) = [hd(l)] @ tl(tl(l));
 > rem [1,2];
 (* val it = [1]: int list *)
 ```
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

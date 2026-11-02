@@ -237,3 +237,7 @@ val prodDiff = fn: real list -> real *)
 > is_one_fn(3);
 (* val it = "anything else": string *)
 ```
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

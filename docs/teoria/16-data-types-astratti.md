@@ -541,3 +541,7 @@ end;
 ```sml
 structure StringBST = MakeBST (String);
 ```
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

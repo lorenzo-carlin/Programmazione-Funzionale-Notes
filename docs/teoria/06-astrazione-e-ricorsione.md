@@ -318,3 +318,7 @@ val take = fn: ''a list -> ''a list *)
 > take([1,2,3,4,5]);
 (* val it = [1,3,5]: int list *)
 ```
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

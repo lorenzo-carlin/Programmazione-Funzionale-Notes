@@ -185,3 +185,7 @@ val maxList = fn: real list -> real *)
 > maxList([2.0,5.1,4.2]);
 (* val it = 5.1: real *)
 ```
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

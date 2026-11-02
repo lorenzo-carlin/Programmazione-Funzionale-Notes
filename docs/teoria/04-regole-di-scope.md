@@ -179,3 +179,7 @@ write(X);
 > **⚠️ Attenzione**
 >
 > In ML si usa lo scope statico!
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

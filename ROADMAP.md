@@ -174,9 +174,9 @@ Dispensa.pdf                  # repo root, linked from docs/index.md
 
 ### Tasks
 
-- [ ] Make every lab solution collapsible (`???` / `pymdownx.details` or `<details>`), hidden by default. There are ~107 `**Esercizio ...**` blockquotes; audit them and wrap the answers that are currently visible.
+- [x] Make every lab solution collapsible at build time with `hooks/collapse_solutions.py` (`??? success "Soluzione"`). The 94 lab exercises keep the prompt visible and hide the answer; the Markdown source stays fully visible on GitHub.
 - [ ] Add per-theory "Ripasso lampo": 3–5 self-check questions with collapsible answers. Prioritize the highest-yield topics (types, scope, recursion, higher-order functions, data types, lambda calculus).
-- [ ] Add a back-to-index link or breadcrumb on every page (or rely on the theme nav + `back_to_top`).
+- [x] Add the standard `---` separator and `[← Torna all'Indice del Corso](../index.md)` back-link to all 20 content pages.
 - [ ] Add `tags` metadata (`teoria`, `laboratori`, topic) and a tags index page.
 - [ ] Add "Esegui in REPL" support:
   - [ ] Pick and verify an online SML REPL (check that it actually accepts the snippets).
@@ -186,6 +186,8 @@ Dispensa.pdf                  # repo root, linked from docs/index.md
 - [ ] Optional: progress checkboxes per page. Note that they do not persist without custom JS; treat as cosmetic unless persistence is explicitly wanted.
 
 **Done when:** answers are hidden by default, every lab has a reveal, and a reader can run at least one example without cloning the repo.
+
+**Status:** `mkdocs build --strict` passes with 94 collapsible lab solutions and back-links on all content pages. The REPL/devcontainer item is still open.
 
 ---
 

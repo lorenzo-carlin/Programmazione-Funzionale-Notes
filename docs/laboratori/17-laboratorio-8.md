@@ -392,3 +392,7 @@ val test2 =
        Node ((6, "sei"), Empty, Node ((7, "sette"), Empty, Empty)),
        Node ((10, "dieci"), Empty, Empty))): (int * string) btree*)
 ```
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

@@ -250,3 +250,7 @@ val half = fn: int -> int *)
 > applyList([square, neg, zero, half]) 10;
 (* val it = [100, ~10, 0, 5]: int list *)
 ```
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

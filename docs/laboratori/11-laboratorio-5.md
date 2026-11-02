@@ -201,3 +201,7 @@ val it = (): unit *)
 > printXs(3);
 (* XXXXXXXXval it = (): unit *)
 ```
+
+---
+
+[← Torna all'Indice del Corso](../index.md)

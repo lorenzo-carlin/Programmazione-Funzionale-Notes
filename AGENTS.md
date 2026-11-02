@@ -13,13 +13,15 @@
 - Theory: `01`, `02`, `04`, `06`, `07`, `08`, `10`, `12`, `14`, `16`, `18` under `docs/teoria/`.
 - Labs: `03`, `05`, `07`, `09`, `11`, `13`, `15`, `17`, `19` under `docs/laboratori/`.
 - `07` is split: `docs/teoria/07-pattern-matching.md` holds the first part of the pattern-matching theory; `docs/laboratori/07-laboratorio-3.md` holds the lab exercises. The two pages cross-link. `08` continues the theory.
-- `docs/teoria/01-espressioni-e-tipi.md` is the only content page with an H1 (`docs/index.md` also has one; the other pages start at `##`) and the only page with a back-link to `docs/index.md`.
+- `docs/teoria/01-espressioni-e-tipi.md` is the only content page with an H1 (`docs/index.md` also has one; the other pages start at `##`). Every content page ends with the standard back-link to `docs/index.md`.
 - Page titles come from the MkDocs `nav` in Phase 2, not from front matter. Do not add `#` headings to pages that intentionally start at `##`.
 
 ## Conventions
 
 - Keep prose in Italian; do not translate the notes. Preserve SML keywords and identifiers. Math uses `$...$` / `$$...$$`.
 - Callouts are portable bold blockquotes: `> **Esercizio 1.1**`, `> **Esempio**`, `> **Osservazione**`, `> **⚠️ Attenzione**`, `> **Teorema**`. Add a `>` blank line between the label and the body, and prefix every body line with `>`. Use `> **Osservazione — Titolo**` or `> **⚠️ Attenzione — Titolo**` when a custom title is needed. Do not reintroduce Obsidian `>[!type]` markers: GitHub only understands five native alert types, and the Italian custom types would render literally. `hooks/callouts.py` converts these blockquotes into Material admonitions at build time; keep the source in blockquote form so GitHub keeps rendering it.
+- Lab solutions stay visible in the Markdown and are collapsed into `??? success "Soluzione"` by `hooks/collapse_solutions.py` at build time. The hook only runs on `laboratori/` pages and stops at the next exercise, heading, `---`, or back-link. Add answers normally; never encode the collapse in the source.
+- Every content page ends with a `---` separator and `[← Torna all'Indice del Corso](../index.md)`. Keep the relative link, which works on both GitHub and MkDocs.
 - `sml` fences are REPL transcripts with `>` prompts and `(* val it = ... *)` expected output, not standalone runnable programs. Fence languages: `sml`, `cpp`, `text`.
 - Pages intentionally start at `##`; do not add `#` headings or YAML front matter.
 
@@ -57,7 +59,7 @@ Re-read a page for meaning, not only for spelling. The notes were migrated from 
 
 ## Editing guidance
 
-- Preview the site with `pip install -r requirements.txt` then `mkdocs serve`; verify a strict build with `mkdocs build --strict`. The build also converts callouts and checks internal links, so a broken relative link fails it.
+- Preview the site with `pip install -r requirements.txt` then `mkdocs serve`; verify a strict build with `mkdocs build --strict`. The build also converts callouts, collapses lab solutions, and checks internal links, so a broken relative link fails it.
 - Keep `README.md`, `docs/index.md`, the `mkdocs.yml` `nav`, and the actual `docs/` tree in sync when adding, renaming, or moving pages.
 - Use `git mv` for renames and update every relative link; do not bulk-rename without checking the link checker.
 - GitHub Pages deploys from `main` via `.github/workflows/docs.yml`; the PDF stays at repo root and is linked through its GitHub URL.

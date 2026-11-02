@@ -55,6 +55,7 @@ nav:
 
 hooks:
   - hooks/callouts.py
+  - hooks/collapse_solutions.py
 
 markdown_extensions:
   - admonition
