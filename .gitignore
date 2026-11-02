@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.obsidian/workspace*
+.vscode/
+
+# Python / MkDocs
+.venv/
+__pycache__/
+site/
+
+# Build artifacts
+*.aux
+*.log
+*.out
