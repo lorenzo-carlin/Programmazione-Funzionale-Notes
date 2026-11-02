@@ -91,7 +91,7 @@ val maxList = fn: string list -> string *)
 (* val it = "abc": string *)
 ```
 
-> La teoria del pattern matching è nella pagina [07. Pattern matching](../teoria/07-pattern-matching.md).
+> La teoria del pattern matching è nella pagina [05. Pattern matching](../teoria/05-pattern-matching.md).
 
 > **Esercizio 3.7**
 >

@@ -32,25 +32,25 @@ nav:
   - Teoria:
       - "01 — Introduzione a Standard ML, espressioni e tipi": teoria/01-espressioni-e-tipi.md
       - "02 — Type system, errori, variabili e funzioni": teoria/02-type-system.md
-      - "04 — Regole di scope": teoria/04-regole-di-scope.md
-      - "06 — Astrazione dei controlli e ricorsione": teoria/06-astrazione-e-ricorsione.md
-      - "07 — Pattern matching (parte 1)": teoria/07-pattern-matching.md
-      - "08 — Patterns ed environment locali": teoria/08-patterns-environment.md
-      - "10 — Input-output, eccezioni e polimorfismo": teoria/10-io-eccezioni-polimorfismo.md
-      - "12 — Ordine superiore e funzioni curried": teoria/12-ordine-superiore-curried.md
-      - "14 — Data types": teoria/14-data-types.md
-      - "16 — Data types astratti": teoria/16-data-types-astratti.md
-      - "18 — Lambda calcolo": teoria/18-lambda-calcolo.md
+      - "03 — Regole di scope": teoria/03-regole-di-scope.md
+      - "04 — Astrazione dei controlli e ricorsione": teoria/04-astrazione-e-ricorsione.md
+      - "05 — Pattern matching (parte 1)": teoria/05-pattern-matching.md
+      - "06 — Patterns ed environment locali": teoria/06-patterns-environment.md
+      - "07 — Input-output, eccezioni e polimorfismo": teoria/07-io-eccezioni-polimorfismo.md
+      - "08 — Ordine superiore e funzioni curried": teoria/08-ordine-superiore-curried.md
+      - "09 — Data types": teoria/09-data-types.md
+      - "10 — Data types astratti": teoria/10-data-types-astratti.md
+      - "11 — Lambda calcolo": teoria/11-lambda-calcolo.md
   - Laboratori:
-      - "Laboratorio 1": laboratori/03-laboratorio-1.md
-      - "Laboratorio 2": laboratori/05-laboratorio-2.md
-      - "Laboratorio 3 — Pattern matching": laboratori/07-laboratorio-3.md
-      - "Laboratorio 4": laboratori/09-laboratorio-4.md
-      - "Laboratorio 5": laboratori/11-laboratorio-5.md
-      - "Laboratorio 6": laboratori/13-laboratorio-6.md
-      - "Laboratorio 7": laboratori/15-laboratorio-7.md
-      - "Laboratorio 8": laboratori/17-laboratorio-8.md
-      - "Laboratorio 9": laboratori/19-laboratorio-9.md
+      - "Laboratorio 1": laboratori/01-laboratorio-1.md
+      - "Laboratorio 2": laboratori/02-laboratorio-2.md
+      - "Laboratorio 3 — Pattern matching": laboratori/03-laboratorio-3.md
+      - "Laboratorio 4": laboratori/04-laboratorio-4.md
+      - "Laboratorio 5": laboratori/05-laboratorio-5.md
+      - "Laboratorio 6": laboratori/06-laboratorio-6.md
+      - "Laboratorio 7": laboratori/07-laboratorio-7.md
+      - "Laboratorio 8": laboratori/08-laboratorio-8.md
+      - "Laboratorio 9": laboratori/09-laboratorio-9.md
   - Dispensa (PDF): https://github.com/lorenzo-carlin/Programmazione-Funzionale-Notes/raw/main/Dispensa.pdf
 
 hooks:

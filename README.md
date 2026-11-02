@@ -22,8 +22,8 @@ Appunti ed esercizi del corso di **Programmazione Funzionale** (A.A. 2025/2026),
 ├── docs/
 │   ├── index.md          # Indice del corso
 │   ├── javascripts/      # Configurazione MathJax
-│   ├── teoria/           # Appunti teorici (01–18)
-│   └── laboratori/       # Esercizi di laboratorio (03–19)
+│   ├── teoria/           # Appunti teorici (01–11)
+│   └── laboratori/       # Esercizi di laboratorio (01–09)
 ├── hooks/
 │   ├── callouts.py           # Converte i callout in admonition Material
 │   └── collapse_solutions.py # Nasconde le soluzioni dei laboratori

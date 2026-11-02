@@ -48,7 +48,7 @@ Setting it to a unique monotype.
 Exception- Match raised *)
 ```
 
-> Gli esercizi di questa parte sono nel [Laboratorio 3](../laboratori/07-laboratorio-3.md).
+> Gli esercizi di questa parte sono nel [Laboratorio 3](../laboratori/03-laboratorio-3.md).
 
 ---
 

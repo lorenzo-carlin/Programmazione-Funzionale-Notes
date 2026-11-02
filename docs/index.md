@@ -22,15 +22,15 @@ Gli appunti non hanno la pretesa di sostituire il materiale ufficiale del corso:
 | :-: | :--- | :-: |
 | **01** | **Introduzione a Standard ML, Espressioni e Tipi** | [Leggi →](teoria/01-espressioni-e-tipi.md) |
 | **02** | **Type system, errori, variabili e funzioni** | [Leggi →](teoria/02-type-system.md) |
-| **04** | **Regole di scope** | [Leggi →](teoria/04-regole-di-scope.md) |
-| **06** | **Astrazione dei controlli e ricorsione** | [Leggi →](teoria/06-astrazione-e-ricorsione.md) |
-| **07** | **Pattern matching — Parte 1** | [Leggi →](teoria/07-pattern-matching.md) |
-| **08** | **Patterns e environment locali in ML** | [Leggi →](teoria/08-patterns-environment.md) |
-| **10** | **Input-output, eccezioni e funzioni polimorfe** | [Leggi →](teoria/10-io-eccezioni-polimorfismo.md) |
-| **12** | **Funzioni di ordine superiore e curried** | [Leggi →](teoria/12-ordine-superiore-curried.md) |
-| **14** | **Data types** | [Leggi →](teoria/14-data-types.md) |
-| **16** | **Data types astratti** | [Leggi →](teoria/16-data-types-astratti.md) |
-| **18** | **Lambda calcolo** | [Leggi →](teoria/18-lambda-calcolo.md) |
+| **03** | **Regole di scope** | [Leggi →](teoria/03-regole-di-scope.md) |
+| **04** | **Astrazione dei controlli e ricorsione** | [Leggi →](teoria/04-astrazione-e-ricorsione.md) |
+| **05** | **Pattern matching — Parte 1** | [Leggi →](teoria/05-pattern-matching.md) |
+| **06** | **Patterns e environment locali in ML** | [Leggi →](teoria/06-patterns-environment.md) |
+| **07** | **Input-output, eccezioni e funzioni polimorfe** | [Leggi →](teoria/07-io-eccezioni-polimorfismo.md) |
+| **08** | **Funzioni di ordine superiore e curried** | [Leggi →](teoria/08-ordine-superiore-curried.md) |
+| **09** | **Data types** | [Leggi →](teoria/09-data-types.md) |
+| **10** | **Data types astratti** | [Leggi →](teoria/10-data-types-astratti.md) |
+| **11** | **Lambda calcolo** | [Leggi →](teoria/11-lambda-calcolo.md) |
 
 ---
 
@@ -38,21 +38,21 @@ Gli appunti non hanno la pretesa di sostituire il materiale ufficiale del corso:
 
 | Lab | Titolo | Link |
 | :-: | :--- | :-: |
-| **01** | **Laboratorio 1** | [Apri →](laboratori/03-laboratorio-1.md) |
-| **02** | **Laboratorio 2** | [Apri →](laboratori/05-laboratorio-2.md) |
-| **03** | **Laboratorio 3 + Pattern Matching** | [Apri →](laboratori/07-laboratorio-3.md) |
-| **04** | **Laboratorio 4** | [Apri →](laboratori/09-laboratorio-4.md) |
-| **05** | **Laboratorio 5** | [Apri →](laboratori/11-laboratorio-5.md) |
-| **06** | **Laboratorio 6** | [Apri →](laboratori/13-laboratorio-6.md) |
-| **07** | **Laboratorio 7** | [Apri →](laboratori/15-laboratorio-7.md) |
-| **08** | **Laboratorio 8** | [Apri →](laboratori/17-laboratorio-8.md) |
-| **09** | **Laboratorio 9** | [Apri →](laboratori/19-laboratorio-9.md) |
+| **01** | **Laboratorio 1** | [Apri →](laboratori/01-laboratorio-1.md) |
+| **02** | **Laboratorio 2** | [Apri →](laboratori/02-laboratorio-2.md) |
+| **03** | **Laboratorio 3 + Pattern Matching** | [Apri →](laboratori/03-laboratorio-3.md) |
+| **04** | **Laboratorio 4** | [Apri →](laboratori/04-laboratorio-4.md) |
+| **05** | **Laboratorio 5** | [Apri →](laboratori/05-laboratorio-5.md) |
+| **06** | **Laboratorio 6** | [Apri →](laboratori/06-laboratorio-6.md) |
+| **07** | **Laboratorio 7** | [Apri →](laboratori/07-laboratorio-7.md) |
+| **08** | **Laboratorio 8** | [Apri →](laboratori/08-laboratorio-8.md) |
+| **09** | **Laboratorio 9** | [Apri →](laboratori/09-laboratorio-9.md) |
 
 ---
 
 ## 📝 Nota sulla numerazione
 
-La numerazione segue l'ordine delle lezioni del corso: da `03` in poi i numeri dispari sono laboratori e i pari teoria, con l'eccezione del `07`, che è diviso tra la pagina di teoria sul pattern matching e il Laboratorio 3.
+La numerazione è progressiva all'interno di ogni sezione: `01–11` per la teoria e `01–09` per i laboratori. L'ordine di lettura consigliato resta quello delle lezioni del corso.
 
 ---
 
