@@ -7,8 +7,6 @@ Phased plan to turn this repo from a flat Markdown dump into a maintainable, bro
 - One phase = one focused commit/PR. Do not mix content edits with file moves.
 - Finish and commit a phase before starting the next one.
 - Keep the notes in Italian; keep SML keywords and identifiers untouched.
-- Read `AGENTS.md` first. Never run `git clean`, `git checkout -- .`, or `git restore .` here.
-- Update `AGENTS.md` at the end of any phase that changes paths, commands, or tooling.
 
 **Status**
 
@@ -17,8 +15,8 @@ Phased plan to turn this repo from a flat Markdown dump into a maintainable, bro
 | 0 | Commit migration, fix README, repo hygiene | Done (2026-11-02) |
 | 1 | Restructure content for a site | Done (2026-11-02) |
 | 1.5 | Content and formatting audit | Done (2026-11-02) |
-| 2 | MkDocs Material site + GitHub Pages | Not started |
-| 3 | Interactive study features | Not started |
+| 2 | MkDocs Material site + GitHub Pages | Done (2026-11-02) |
+| 3 | Interactive study features | In progress |
 | 4 | Automation, PDF pipeline, polish | Not started |
 
 ---
@@ -33,7 +31,7 @@ Phased plan to turn this repo from a flat Markdown dump into a maintainable, bro
   - `git add -A -- notes lezioni`
   - confirm `git status` shows renames (`R`), not delete + add
   - commit, e.g. `Move notes/ to lezioni/`
-- [x] Rewrite the README "Struttura della Repository" tree. It currently shows `01-espressioni-tipi.md`, `02-type-system.md`, `laboratori/lab-*.md`: none of these exist. Show the real layout (`lezioni/`, `Dispensa.pdf`, `README.md`, `AGENTS.md`, `ROADMAP.md`).
+- [x] Rewrite the README "Struttura della Repository" tree. It currently shows `01-espressioni-tipi.md`, `02-type-system.md`, `laboratori/lab-*.md`: none of these exist. Show the real layout (`docs/`, `Dispensa.pdf`, `README.md`, `ROADMAP.md`).
 - [x] Fix the theory table. It links to `lezioni/lezione-02.md` … `lezione-05.md`, which do not exist. Map each topic to its real file (`02. Type system…`, `04. Regole di scope…`, `06. Astrazione…`, `08. Patterns…`, and so on). Include all 10 theory topics, or replace the table with a compact grouped index.
 - [x] Fix the lab table. There is no `laboratori/` directory; point to the real `03`, `05`, `07`, `09`, `11`, `13`, `15`, `17`, `19` files.
 - [x] Fix "Come Navigare la Repo": it claims every page has a backlink, but only `lezioni/lezione-01.md` does. Either soften the claim now or add the backlinks in Phase 3.
@@ -207,9 +205,9 @@ Dispensa.pdf                  # repo root, linked from docs/index.md
 - [ ] Add a release workflow on tags: build site + PDF, attach artifacts.
 - [ ] Add a `LICENSE` (decision needed): notes `CC BY-NC-SA 4.0`, code snippets `MIT`, or no license.
 - [ ] Optional: short `CONTRIBUTING.md` (how to preview the site, style rules, callout syntax).
-- [ ] Update `AGENTS.md` with the final paths and commands (`mkdocs serve`, build/lint commands, PDF script).
+- [ ] Keep the README tree, the `mkdocs.yml` nav, and the actual `docs/` layout in sync when pages move.
 
-**Done when:** CI is green on a fresh clone, the PDF process is either automated or explicitly marked as a snapshot, and `AGENTS.md` matches the final repo.
+**Done when:** CI is green on a fresh clone, the PDF process is either automated or explicitly marked as a snapshot, and the README/nav/docs tree agree.
 
 ---
 

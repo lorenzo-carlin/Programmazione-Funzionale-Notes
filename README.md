@@ -32,7 +32,6 @@ Appunti ed esercizi del corso di **Programmazione Funzionale** (A.A. 2025/2026),
 ├── mkdocs.yml
 ├── requirements.txt
 ├── Dispensa.pdf
-├── AGENTS.md
 ├── ROADMAP.md
 └── README.md
 ```
