@@ -2,10 +2,13 @@
 
 Appunti ed esercizi del corso di **Programmazione Funzionale** (A.A. 2025/2026), in Standard ML.
 
+🌐 **Sito online: <https://lorenzo-carlin.github.io/Programmazione-Funzionale-Notes/>**
+
 ---
 
 ## 📖 Inizia da qui
 
+- 🌐 **[Sito navigabile](https://lorenzo-carlin.github.io/Programmazione-Funzionale-Notes/)** — teoria e laboratori con ricerca, matematica e soluzioni espandibili
 - 📚 **[Indice completo del corso](docs/index.md)** — teoria e laboratori
 - 📄 **[Dispensa in PDF](Dispensa.pdf)** — snapshot del 18 giugno 2026
 - 🗺️ **[Roadmap](ROADMAP.md)** — com'è organizzata la repository e cosa arriva dopo
@@ -22,7 +25,8 @@ Appunti ed esercizi del corso di **Programmazione Funzionale** (A.A. 2025/2026),
 │   ├── teoria/           # Appunti teorici (01–18)
 │   └── laboratori/       # Esercizi di laboratorio (03–19)
 ├── hooks/
-│   └── callouts.py       # Converte i callout in admonition Material
+│   ├── callouts.py           # Converte i callout in admonition Material
+│   └── collapse_solutions.py # Nasconde le soluzioni dei laboratori
 ├── .github/workflows/
 │   └── docs.yml          # Build e deploy su GitHub Pages
 ├── mkdocs.yml
@@ -39,7 +43,7 @@ La numerazione segue l'ordine delle lezioni: da `03` in poi i dispari sono labor
 
 ## 🛠️ Stato
 
-Il sito navigabile è configurato con **MkDocs Material** e viene pubblicato su GitHub Pages a ogni push su `main` tramite [`.github/workflows/docs.yml`](.github/workflows/docs.yml). La configurazione è in [`mkdocs.yml`](mkdocs.yml); [`docs/index.md`](docs/index.md) resta l'indice completo del corso.
+Il sito navigabile è online su **[lorenzo-carlin.github.io/Programmazione-Funzionale-Notes](https://lorenzo-carlin.github.io/Programmazione-Funzionale-Notes/)**. È costruito con **MkDocs Material** e viene pubblicato su GitHub Pages a ogni push su `main` tramite [`.github/workflows/docs.yml`](.github/workflows/docs.yml). La configurazione è in [`mkdocs.yml`](mkdocs.yml); [`docs/index.md`](docs/index.md) resta l'indice completo del corso.
 
 ## 🚀 Anteprima locale
 
