@@ -1,6 +1,7 @@
 ## Inferenza di tipi in ML
 
 ML si aspetta che:
+
 - nella valutazione di un'**espressione aritmetica**, tutti gli operandi abbiano lo stesso tipo
 - nella valutazione di un'**espressione di confronto**, entrambi gli argomenti siano dello stesso tipo
 - nella valutazione di un'**espressione condizionale**, i tipi di `then` e di `else` devono essere uguali
@@ -21,16 +22,19 @@ La **dichiarazione** è il meccanismo (implicito o esplicito) che crea le associ
 
 Un **blocco** è una sezione del programma che è identificata da un segno di apertura e uno di chiusura (`{}` in C e Java, `let ... in ... end` in ML) che contiene la dichiarazione locale a quella regione.
 Esistono:
+
 - **blocchi associati ad una procedura**: sono il corpo di una procedura
 - **blocchi in-line (anonimi)**: possono apparire in una posizione qualsiasi dove ci sono dei comandi
 I blocchi possono essere annidati tra loro in ML, come in C.
 
 L'environment in un blocco può essere suddiviso in:
+
 - **environment locale**: variabili locali, parametri formali
 - **environment non locale**: associazioni ereditate da altri blocchi esterni
 - **environment globale**: contiene associazioni comuni a tutti i blocchi (ex. variabili globali)
 
 Un environment è definito da:
+
 1. Regole di visibilità
 2. Regole di scope
 3. Regole per il passaggio dei parametri
@@ -45,6 +49,7 @@ Le dichiarazioni dentro a un blocco non sono visibili all'esterno di questo.
 
 Le regole di scope specificano meglio le regole di visibilità.
 Un riferimento non locale in un blocco può essere risolto in due modi:
+
 1. **Scope statico**: nel blocco che contiene sintatticamente il blocco corrente
 2. **Scope dinamico**: nel blocco che è stato eseguito immediatamente prima del blocco corrente
 
@@ -52,7 +57,7 @@ Un riferimento non locale in un blocco può essere risolto in due modi:
 
 Un nome non locale è risolto nel blocco che lo include testualmente.
 
-```C++
+```cpp
  {
 	 int x = 0;
 	 void fie(int n) {
@@ -73,6 +78,7 @@ In questo caso, secondo lo scope statico, viene stampato `4 0 4`, perché la var
 Se cambiassimo il nome della seconda `x` in `y`, di fatto non cambierebbe nulla.
 
 **Vantaggi**:
+
 - il programma è di più facile comprensione/lettura
 - il compilatore può collegare le occorrenze del nome con la loro dichiarazione corretta (=> ottimizzazione del codice)
 - il compilatore ha informazioni importanti sul metodo di storage delle variabili, rendendo l'esecuzione più efficiente
@@ -83,7 +89,7 @@ ALGOL, Pascal, C/C++, Ada, Scheme, **ML** e Java **usano scope statico**.
 
 Un nome non locale è risolto nel blocco che è stato attivato più recentemente e che non è stato ancora disattivato.
 
-```C++
+```cpp
  {
 	 int x = 0;
 	 void fie(int n) {
@@ -104,9 +110,11 @@ Nello stesso esempio di prima adesso viene stampato `4 4 4`, perché la seconda 
 In questo caso, se cambiassimo il nome della seconda `x` in `y`, l'output sarebbe decisamente diverso.
 
 **Vantaggi**:
+
 - si può cambiare il comportamento del programma tramite ridefinizione di variabili non locali
 
 **Svantaggi**:
+
 - rende più difficile la lettura del programma
 - è meno efficiente
 
@@ -115,7 +123,7 @@ In questo caso, se cambiassimo il nome della seconda `x` in `y`, l'output sarebb
 > Considera il seguente frammento di codice scritto in pseudo-codice e che usa scope statico. `read(Y)` consente la lettura di `Y` da standard input.
 > Qual è l'output del programma?
 
-```C++
+```cpp
 int X = 0;
 int Y;
 void fie() {
@@ -142,7 +150,7 @@ L'output è `2`, in quanto la `X` da considerare è la prima dichiarata e viene 
 > Considera il seguente frammento di codice scritto in pseudo-codice e che usa scope dinamico.
 > Qual è l'output del programma?
 
-```C++
+```cpp
 int X;
 X = 1;
 int Y;

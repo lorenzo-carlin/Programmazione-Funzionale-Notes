@@ -131,7 +131,7 @@ Dispensa.pdf                  # repo root, linked from docs/index.md
 
 **Completed:** 2026-11-02. 20 content pages edited; 167 callouts converted to portable bold blockquotes; 30 relative links check clean. No SML toolchain is installed, so transcripts were verified by reasoning rather than execution.
 
-**Re-audit trigger:** after adding new notes, after converting callouts for Phase 2, or whenever `Dispensa.pdf` is rebuilt.
+**Re-audit trigger:** after adding new notes, after changing `hooks/callouts.py`, or whenever `Dispensa.pdf` is rebuilt.
 
 ---
 
@@ -141,26 +141,30 @@ Dispensa.pdf                  # repo root, linked from docs/index.md
 
 ### Tasks
 
-- [ ] Add `requirements.txt` with pinned `mkdocs-material` and `pymdown-extensions`.
-- [ ] Add `mkdocs.yml`:
+- [x] Add `requirements.txt` with pinned `mkdocs-material` and `pymdown-extensions`.
+- [x] Add `mkdocs.yml`:
   - `site_name`, `site_url`, `repo_url`, `edit_uri`
   - theme features: `navigation.sections`, `navigation.top`, `search.highlight`, `content.code.copy`, `toc.follow`
   - `markdown_extensions`: `admonition`, `pymdownx.details`, `pymdownx.superfences`, `pymdownx.arithmatex`, `attr_list`, `md_in_html`, `tables`, `toc`
   - `nav` mirroring Phase 1 (Teoria / Laboratori / Dispensa)
-- [ ] Convert portable bold-blockquote callouts to Material admonitions. Mapping:
+- [x] Convert portable bold-blockquote callouts to Material admonitions at build time with `hooks/callouts.py`, so the Markdown source keeps rendering on GitHub. Mapping:
   - `> **Esercizio ...**` → `!!! question`
   - `> **Esempio**` / `> **Esempi ...**` → `!!! example`
   - `> **Osservazione ...**` → `!!! note`
   - `> **⚠️ Attenzione ...**` → `!!! warning`
   - `> **Teorema ...**` → `!!! abstract` (or a custom `theorem` type with CSS)
-  - Keep the Italian label as the admonition title. Do it with a one-off script, then review the diff.
-- [ ] Normalize fences: `C++` → `cpp`; bare fences → `text`; verify `sml` highlighting works (Pygments has an SML lexer). Do not reformat the REPL transcripts.
-- [ ] Math: enable `arithmatex` and MathJax (CDN or `docs/javascripts/mathjax.js`). Check inline `$...$` and display `$$...$$`.
-- [ ] Add `.github/workflows/docs.yml`: build with `mkdocs build --strict`, upload artifact, deploy to Pages via `actions/deploy-pages`.
+  - Keep the Italian label as the admonition title. Done with a one-off script, then reviewed the diff.
+- [x] Normalize fences: `C++` → `cpp`; `txt` → `text`; verify `sml` highlighting works (Pygments has an SML lexer). Do not reformat the REPL transcripts.
+- [x] Add blank lines before lists that directly follow a paragraph, so Python-Markdown renders them like GitHub does.
+- [x] Math: enable `arithmatex` and MathJax (CDN or `docs/javascripts/mathjax.js`). Check inline `$...$` and display `$$...$$`.
+- [x] Add `.github/workflows/docs.yml`: build with `mkdocs build --strict`, upload artifact, deploy to Pages via `actions/deploy-pages`.
 - [ ] Enable GitHub Pages with source = GitHub Actions (manual repo setting).
-- [ ] Verify locally with `mkdocs serve`, then on the deployed URL: search, nav, code copy, math, mobile.
+- [x] Verify locally with `mkdocs serve`: nav, 167 admonitions, math, code highlighting, and the PDF link.
+- [ ] Verify on the deployed URL: search, nav, code copy, math, mobile.
 
 **Done when:** the site deploys on push to `main`, `--strict` passes, and math/code/search render correctly.
+
+**Status:** `mkdocs build --strict` passes locally with 167 callouts converted into admonitions. Deployment still needs the manual GitHub Pages setting and a check on the deployed URL.
 
 ---
 
@@ -214,7 +218,7 @@ Dispensa.pdf                  # repo root, linked from docs/index.md
 | Split `07` into lab + theory? | Yes. The lab exercises and the theory are independent; mixing them breaks navigation. |
 | Sequential renumbering? | No. Keep original session numbers; gaps are meaningful. |
 | `Dispensa.pdf` location | Keep at repo root; link from the site. |
-| Callout syntax | Convert to Material admonitions; keep Italian labels. |
+| Callout syntax | Keep portable bold blockquotes in the source; convert them to Material admonitions at build time. |
 | Online SML REPL | Verify one before linking; otherwise ship the devcontainer first. |
 | PDF generation | Start with the snapshot (A), move to release-generated (C) once the site is stable. |
 | License | Ask the author; do not add one by default. |

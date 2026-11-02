@@ -4,7 +4,7 @@ Appunti del corso — A.A. 2025/2026
 
 **Lorenzo Carlin**
 
-[📄 Scarica la dispensa in PDF](../Dispensa.pdf)
+[📄 Scarica la dispensa in PDF](https://github.com/lorenzo-carlin/Programmazione-Funzionale-Notes/raw/main/Dispensa.pdf)
 
 ---
 
@@ -58,4 +58,4 @@ La numerazione segue l'ordine delle lezioni del corso: da `03` in poi i numeri d
 
 _Versione compilata il 18 giugno 2026._
 
-[← Torna al README](../README.md)
+[← Torna al README](https://github.com/lorenzo-carlin/Programmazione-Funzionale-Notes/blob/main/README.md)

@@ -31,6 +31,7 @@ val it = (): unit *)
 ```
 
 Per stampare un valore che ha tipo diverso da `string` è necessario usare funzioni di casting che trasformano altri tipi in `string`, permettendo di stamparli. Di seguito alcuni esempi:
+
 - stampare un carattere:
 
 ```sml
@@ -84,7 +85,7 @@ ML mette a disposizione numerose funzioni per la lettura in **input da un file d
 
 (si assuma che il file in lettura sia come segue)
 
-```txt
+```text
 12
 ab
 ```
@@ -130,6 +131,7 @@ ab
 > **Osservazione**
 >
 > Il tipo di ritorno di queste ultime funzioni è **`string option`**. In generale, `T option` vale:
+>
 > - `SOME v`, se il valore da ritornare è `v` di tipo `T`
 > - `NONE`, altrimenti
 >
@@ -322,6 +324,7 @@ Il **polimorfismo** di una funzione è la sua capacità di essere applicata a va
 ```
 
 **Operatori che impongono vincoli di tipo**:
+
 - operazioni aritmetiche: `+`, `-`, `*`, `~`
 - divisioni: `/`, `div`, `mod`
 - operatori di confronto: `<`, `>`, `<=`, `>=`
@@ -330,6 +333,7 @@ Il **polimorfismo** di una funzione è la sua capacità di essere applicata a va
 - operatori di conversione di tipi: `ord`, `chr`, `real`, `str`, `floor`, `ceil`, `round` e `trunc`
 
 Operatori che non impongono un tipo concreto (restano polimorfici):
+
 - costruttori e selettori delle tuple: `(..,..)`, `#1`, `#2`, ...
 - costruttori e selettori delle liste: `::`, `@`, `hd`, `tl`, `nil`, `[]`
 - `null`

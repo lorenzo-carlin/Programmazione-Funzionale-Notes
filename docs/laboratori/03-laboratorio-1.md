@@ -1,6 +1,7 @@
 > **Esercizio 1.1**
 >
 > Scrivere l'espressione per convertire:
+>
 > 1. `123.45` nel numero intero inferiore più vicino
 > 2. `-123.45` nel numero intero inferiore più vicino
 > 3. `123.45` nel numero intero superiore più vicino
@@ -23,6 +24,7 @@
 > **Esercizio 1.2**
 >
 > Scrivere l'espressione per convertire:
+>
 > 1. `#"Y"` a un intero
 > 2. `120` a un carattere
 > 3. `97.0` a un carattere
@@ -49,6 +51,7 @@
 > **Esercizio 1.3**
 >
 > Come possiamo correggere gli errori in queste espressioni?
+>
 > 1. `ceil(4);`
 > 2. `if true then 5+6 else 7.0;`
 
@@ -63,6 +66,7 @@
 > **Esercizio 1.4**
 >
 > Come possiamo fixare gli errori in queste espressioni?
+>
 > 1. `if 0 then 1 else 2;`
 > 2. `ord("a")`
 
@@ -77,6 +81,7 @@
 > **Esercizio 1.5**
 >
 > Correggi le seguenti espressioni:
+>
 > 1. `explode ["bar"];`
 > 2. `implode (#"a", #"b");`
 > 3. `["r"]::["a", "t"];`
@@ -95,6 +100,7 @@
 > **Esercizio 1.6**
 >
 > Dai esempi di questi tipi di oggetti, senza usare liste vuote:
+>
 > 1. `int list list list`
 > 2. `(int * char) list`
 > 3.  `string list * (int * (real * string)) * int`
@@ -113,6 +119,7 @@
 > **Esercizio 1.7**
 >
 > Dai esempi di questi tipi di oggetti, senza usare liste vuote:
+>
 > 1. `((int * int) * (bool list) * real) * (real * string)`
 > 2. `(bool * int) * char`
 > 3. `real * int list list list list`

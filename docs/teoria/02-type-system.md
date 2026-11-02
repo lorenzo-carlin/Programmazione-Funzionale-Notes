@@ -1,6 +1,7 @@
 ## Type systems
 
 Il type system di un linguaggio comprende:
+
 1. I tipi predefiniti
 2. I meccanismi per definire nuovi tipi
 3. La specificazione se i tipi sono controllati staticamente o dinamicamente
@@ -44,6 +45,7 @@ C e C++ sono staticamente tipizzati, ma non sono type safe: cast espliciti, arit
 
 Due tipi sono equivalenti se ogni oggetto del primo tipo appartiene anche al secondo tipo e viceversa.
 Esistono due regole per l'equivalenza di tipo:
+
 1. **Equivalenza per nome**: definizione del tipo opaca.
    Due tipi sono equivalenti per nome se hanno lo stesso nome.
 2. **Equivalenza strutturale**: definizione del tipo trasparente.
@@ -65,6 +67,7 @@ Esistono due regole per l'equivalenza di tipo:
 La compatibilità è riflessiva e transitiva ma non è simmetrica.
 
 Se `T` è compatibile con `S`, allora esiste qualche meccanismo di **conversione** tra i due. I due principali metodi sono:
+
 - **Conversione implicita** (coercizione), non menzionata nel programma
 - **Conversione esplicita** (cast), menzionata nel programma
 I linguaggi moderni preferiscono il cast alla coercizione.
@@ -191,6 +194,7 @@ Una **variabile** è un oggetto che può assumere dei valori all'interno di un d
 
 Nei linguaggi di programmazione funzionali, come ML, una **variabile** è un identificatore associato a un valore; con `val` l'associazione non è modificabile, come in matematica.
 L'environment di ML è l'insieme delle coppie `(identificatore, valore)` e viene esteso tramite le val-declarations (simili agli assegnamenti):
+
 - `val <name> = <value>;`
 - `val <name>:<type> = <value>;`
 - `val <name> = <expression>;`

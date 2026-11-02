@@ -124,6 +124,7 @@ Con la keyword `type` possiamo rinominare un tipo.
 ### Creare nuovi tipi: `datatype`
 
 Con la keyword `datatype` è possibile creare dei nuovi tipi. Necessita di due parti:
+
 1. Il **costruttore del tipo** (nome del datatype)
 2. I **costruttori dei possibili valori** che può assumere
 
@@ -195,6 +196,7 @@ Possiamo usare questi tipi per creare unioni di tipi diversi, ad esempio possiam
 ### Datatypes definiti ricorsivamente
 
 L'esempio tipico è quello dell'albero binario, in cui ogni nodo può:
+
 - essere vuoto
 - avere due figli, ognuno dei quali è a sua volta un nodo
 

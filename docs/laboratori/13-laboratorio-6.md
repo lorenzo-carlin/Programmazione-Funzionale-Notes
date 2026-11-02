@@ -1,6 +1,7 @@
 > **Esercizio 6.1**
 >
 > Scrivere le espressioni per:
+>
 > 1. Aprire un file in lettura
 > 2. Leggere 5 caratteri di tale file
 > 3. Leggere una riga di tale file

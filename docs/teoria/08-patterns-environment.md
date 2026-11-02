@@ -45,6 +45,7 @@ Se vogliamo catturare una variabile ma non ci interessa usarla si può usare una
 > **⚠️ Attenzione**
 >
 > Nei pattern non è consentito inserire:
+>
 > - operatori aritmetici
 > - concatenazione di liste (`@`)
 > - valori reali
@@ -129,6 +130,7 @@ O anche, equivalentemente,
 > **Esempio**
 >
 > Scrivere una funzione `split(L)` che divide una lista `L` in 2 liste:
+>
 > - una contenente il primo elemento, il terzo, il quinto, ...
 > - una contenente il secondo, il quarto, ...
 

@@ -3,7 +3,7 @@
 ## Repo at a glance
 
 - Italian university notes for **Programmazione Funzionale** (A.A. 2025/2026), Standard ML.
-- Content repo only: no app, package manifest, build, tests, linter, CI, or codegen. There is no `mkdocs.yml` yet; see `ROADMAP.md` for the planned site.
+- Content repo with a MkDocs Material site: Markdown in `docs/`, config in `mkdocs.yml`, pinned dependencies in `requirements.txt`, deploy workflow in `.github/workflows/docs.yml`. No app, tests, or linter.
 - Content lives in `docs/`: `index.md` (full TOC), `teoria/` (11 pages), `laboratori/` (9 pages). There is no longer a `lezioni/` directory.
 - `Dispensa.pdf` is a 130-page, 5.1 MB snapshot compiled 2026-06-18. No script generates it; editing Markdown makes the PDF stale.
 - `ROADMAP.md` is the phased plan. Work through its phases in order.
@@ -19,8 +19,8 @@
 ## Conventions
 
 - Keep prose in Italian; do not translate the notes. Preserve SML keywords and identifiers. Math uses `$...$` / `$$...$$`.
-- Callouts are portable bold blockquotes: `> **Esercizio 1.1**`, `> **Esempio**`, `> **Osservazione**`, `> **⚠️ Attenzione**`, `> **Teorema**`. Add a `>` blank line between the label and the body, and prefix every body line with `>`. Use `> **Osservazione — Titolo**` or `> **⚠️ Attenzione — Titolo**` when a custom title is needed. Do not reintroduce Obsidian `>[!type]` markers: GitHub only understands five native alert types, and the Italian custom types would render literally. Phase 2 maps these labels to Material admonitions.
-- `sml` fences are REPL transcripts with `>` prompts and `(* val it = ... *)` expected output, not standalone runnable programs. Fence languages seen: `sml`, `C++` (capitalized), `txt`, and bare fences.
+- Callouts are portable bold blockquotes: `> **Esercizio 1.1**`, `> **Esempio**`, `> **Osservazione**`, `> **⚠️ Attenzione**`, `> **Teorema**`. Add a `>` blank line between the label and the body, and prefix every body line with `>`. Use `> **Osservazione — Titolo**` or `> **⚠️ Attenzione — Titolo**` when a custom title is needed. Do not reintroduce Obsidian `>[!type]` markers: GitHub only understands five native alert types, and the Italian custom types would render literally. `hooks/callouts.py` converts these blockquotes into Material admonitions at build time; keep the source in blockquote form so GitHub keeps rendering it.
+- `sml` fences are REPL transcripts with `>` prompts and `(* val it = ... *)` expected output, not standalone runnable programs. Fence languages: `sml`, `cpp`, `text`.
 - Pages intentionally start at `##`; do not add `#` headings or YAML front matter.
 
 ## Content audit
@@ -44,7 +44,7 @@ Re-read a page for meaning, not only for spelling. The notes were migrated from 
 - Watch for a leftover `---` at the top of a page. It is an Obsidian artifact, not a horizontal rule.
 - Convert Obsidian callouts (`>[!warning]`, `> [!WARNING]`) to portable bold blockquotes. Do not leave `[!type]` markers in the Markdown: GitHub only understands five native alert types, and the Italian custom types would render literally. A callout block ends at the first blank line, so every body line needs `>` and the label needs a `>` blank line after it.
 - Fences must start at column 0 unless intentionally nested. Do not leave a fence indented after converting an Obsidian list.
-- Add a blank line before and after headings and fenced blocks. Trim trailing whitespace; replace tabs outside code with spaces.
+- Add a blank line before and after headings, fenced blocks, and lists. Python-Markdown (MkDocs) does not start a list directly after a paragraph line, while GitHub does; the blank line keeps both renderers consistent. Trim trailing whitespace; replace tabs outside code with spaces.
 - Replace curly quotes (`‘ ’ “ ”`) with ASCII quotes, especially in type variables (`‘a` → `'a`) and SML strings.
 - SML comments are `(* ... *)`; remove stray `//` comments. Do not rewrite a transcript into a standalone program or wrap it in `use`.
 - Common word-level damage: `foglia`/`foglie`, `cuo`/`cui`, `cosa`/`coda`, `coppa`/`coppia`, `String`/`string`, `srtLT`/`strLT`, `qas`/`as`, `EmptyTeee`/`EmptyTree`.
@@ -57,8 +57,8 @@ Re-read a page for meaning, not only for spelling. The notes were migrated from 
 
 ## Editing guidance
 
-- No build or verification command exists. Check Markdown paths and links with a one-off script; do not invent a toolchain.
-- Keep `README.md`, `docs/index.md`, and the actual `docs/` tree in sync when adding, renaming, or moving pages.
+- Preview the site with `pip install -r requirements.txt` then `mkdocs serve`; verify a strict build with `mkdocs build --strict`. The build also converts callouts and checks internal links, so a broken relative link fails it.
+- Keep `README.md`, `docs/index.md`, the `mkdocs.yml` `nav`, and the actual `docs/` tree in sync when adding, renaming, or moving pages.
 - Use `git mv` for renames and update every relative link; do not bulk-rename without checking the link checker.
-- There is no site/Pages setup yet. Do not assume `mkdocs.yml`, workflows, or a deployed site exists.
+- GitHub Pages deploys from `main` via `.github/workflows/docs.yml`; the PDF stays at repo root and is linked through its GitHub URL.
 - Do not mix file moves with content edits; one roadmap phase per commit.

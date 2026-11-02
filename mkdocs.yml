@@ -1,0 +1,78 @@
+site_name: Programmazione Funzionale
+site_description: Appunti ed esercizi del corso di Programmazione Funzionale (A.A. 2025/2026) in Standard ML.
+site_author: Lorenzo Carlin
+site_url: https://lorenzo-carlin.github.io/Programmazione-Funzionale-Notes/
+repo_url: https://github.com/lorenzo-carlin/Programmazione-Funzionale-Notes
+repo_name: lorenzo-carlin/Programmazione-Funzionale-Notes
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: it
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Passa al tema scuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Passa al tema chiaro
+
+nav:
+  - Home: index.md
+  - Teoria:
+      - "01 — Introduzione a Standard ML, espressioni e tipi": teoria/01-espressioni-e-tipi.md
+      - "02 — Type system, errori, variabili e funzioni": teoria/02-type-system.md
+      - "04 — Regole di scope": teoria/04-regole-di-scope.md
+      - "06 — Astrazione dei controlli e ricorsione": teoria/06-astrazione-e-ricorsione.md
+      - "07 — Pattern matching (parte 1)": teoria/07-pattern-matching.md
+      - "08 — Patterns ed environment locali": teoria/08-patterns-environment.md
+      - "10 — Input-output, eccezioni e polimorfismo": teoria/10-io-eccezioni-polimorfismo.md
+      - "12 — Ordine superiore e funzioni curried": teoria/12-ordine-superiore-curried.md
+      - "14 — Data types": teoria/14-data-types.md
+      - "16 — Data types astratti": teoria/16-data-types-astratti.md
+      - "18 — Lambda calcolo": teoria/18-lambda-calcolo.md
+  - Laboratori:
+      - "Laboratorio 1": laboratori/03-laboratorio-1.md
+      - "Laboratorio 2": laboratori/05-laboratorio-2.md
+      - "Laboratorio 3 — Pattern matching": laboratori/07-laboratorio-3.md
+      - "Laboratorio 4": laboratori/09-laboratorio-4.md
+      - "Laboratorio 5": laboratori/11-laboratorio-5.md
+      - "Laboratorio 6": laboratori/13-laboratorio-6.md
+      - "Laboratorio 7": laboratori/15-laboratorio-7.md
+      - "Laboratorio 8": laboratori/17-laboratorio-8.md
+      - "Laboratorio 9": laboratori/19-laboratorio-9.md
+  - Dispensa (PDF): https://github.com/lorenzo-carlin/Programmazione-Funzionale-Notes/raw/main/Dispensa.pdf
+
+hooks:
+  - hooks/callouts.py
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js

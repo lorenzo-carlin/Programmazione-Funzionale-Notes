@@ -1,6 +1,7 @@
 > **Esercizio 8.1**
 >
 > Definire la signature `SET` che preveda:
+>
 > - un parametro di tipo: `'a set`
 > - un valore per un set vuoto: `emptyset`
 > - un operatore per testare se un elemento fa parte del set o no: `isin`
@@ -183,6 +184,7 @@ val g = false: bool*)
 > **Esercizio 8.7**
 >
 > Con il datatype `'a T` dato, si definisca una signature `TREE` che preveda:
+>
 > - una funzione per calcolare il numero di nodi nell'albero, escludendo le foglie: `countNodes`
 > - una funzione per calcolare la profondità dell'albero, escludendo le foglie: `depth`
 > - una funzione che calcola l'albero specchiato, ossia l'albero ottenuto invertendo left e right subtree di ogni nodo: `mirror`

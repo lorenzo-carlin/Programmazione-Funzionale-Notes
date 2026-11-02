@@ -26,6 +26,7 @@ Se la macchina di Turing è il fondamento matematico per i linguaggi di programm
 > $(\lambda x.x^2)7 = 49$ è l'applicazione di tale funzione ad un'espressione.
 
 Un'**espressione** nel $\lambda$-calcolo può essere:
+
 - $x$, una variabile $\in V$
 - $\lambda x.e$, una funzione che prende in input un parametro $x$ e valuta l'espressione $e$
 - $e_1 \space e_2$, l'applicazione di due espressioni
@@ -40,10 +41,12 @@ Un'**espressione** nel $\lambda$-calcolo può essere:
 ## Terminologia
 
 Nella scrittura $\lambda x.e$ abbiamo che:
+
 - $\lambda x$ si chiama **binder**
 - $e$ si chiama **corpo** (o scope) dell'astrazione
 
 Se abbiamo $\lambda x.xy$ invece:
+
 - $\lambda x$ è il **binder**
 - $x$ è una **variabile bound**
 - $y$ è una **variabile free**
@@ -51,6 +54,7 @@ Se abbiamo $\lambda x.xy$ invece:
 ### Variabili free
 
 L'insieme delle **variabili free** di un'espressione è definito (a seconda del tipo di espressione) come:
+
 - $F_v(x) = \{x\}$
 - $F_v(\lambda x.e) = F_v(e) \setminus \{x\}$
 - $F_v(e_1e_2) = F_v(e_1) \cup F_v(e_2)$
@@ -62,6 +66,7 @@ L'insieme delle **variabili free** di un'espressione è definito (a seconda del 
 ### Variabili bound
 
 L'insieme delle **variabili bound** di una espressione è definito (a seconda del tipo di espressione) come:
+
 - $B_v(x) = \emptyset$
 - $B_v(\lambda x.e) = \{x\} \cup B_v(e)$
 - $B_v(e_1e_2) = B_v(e_1) \cup B_v(e_2)$
@@ -87,6 +92,7 @@ L'insieme delle **variabili bound** di una espressione è definito (a seconda de
 > **Esercizio**
 >
 > Nella seguente espressione dire quali sono, se ce ne sono, le variabili bound e a quali $\lambda$ sono associate, e quali sono free: $\lambda s.sz \lambda q.sq$
+>
 > - la prima $s$ è bound al $\lambda s$
 > - la $z$ è free
 > - la seconda $s$ è bound al $\lambda s$
@@ -95,6 +101,7 @@ L'insieme delle **variabili bound** di una espressione è definito (a seconda de
 > **Esercizio**
 >
 > Nella seguente espressione dire quali sono, se ce ne sono, le variabili bound e a quali $\lambda$ sono associate, e quali sono free: $( \lambda s.sz) \lambda q.w \lambda w.wqzs$
+>
 > - la prima $s$ è bound al $\lambda s$
 > - la prima $z$ è free
 > - la prima $w$ è free
@@ -191,6 +198,7 @@ $(yx)x$
 ## Codifiche in $\lambda$-calcolo
 
 Il $\lambda$-calcolo, per come visto finora, è molto astratto e molto limitato. Nonostante ciò, è molto potente ed espressivo:
+
 - è Turing completo
 - i booleani, le coppie, le costanti e le operazioni aritmetiche possono essere espresse tramite il $\lambda$-calcolo, vediamo come:
 
@@ -217,6 +225,7 @@ Il $\lambda$-calcolo, per come visto finora, è molto astratto e molto limitato.
 ### Coppie
 
 Codifica di una coppia $(a,b)$:
+
 - $(a,b) = \lambda x.x \; a \; b$
 - $first = \lambda f. f \; true$
 - $second = \lambda f.f \; false$
@@ -224,6 +233,7 @@ Codifica di una coppia $(a,b)$:
 ### Numeri naturali
 
 Per codificare i numeri naturali si fa uso degli assiomi di Peano:
+
 - 0 è un numero naturale
 - se `n` è un numero naturale, anche `succ(n)` lo è
 Dunque si codifica 0 come $\lambda f. \lambda x.x$, e poi si applica la funzione `succ()` $n$ volte per ottenere $n$. In particolare, $n$ è rappresentato tramite la funzione di ordine superiore che mappa una funzione $f$ alla sua composizione $n$ volte.

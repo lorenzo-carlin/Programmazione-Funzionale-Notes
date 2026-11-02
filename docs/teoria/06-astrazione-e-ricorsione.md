@@ -3,11 +3,13 @@
 Una **funzione** o procedura è un pezzo di codice identificato da un nome, con un environment locale ed in grado di scambiare informazioni con il resto del codice tramite dei parametri.
 
 Meccanismi per lo scambio di informazioni con il codice esterno:
+
 - parametri
 - valori di ritorno
 - environment non locale
 
 I parametri possono essere di tre tipologie:
+
 1. parametri di input
 2. parametri di output
 3. parametri di input/output
@@ -18,7 +20,7 @@ Viene passata una copia del parametro (o del r-value passato alla funzione), che
 La trasmissione avviene dal main alla funzione.
 Eventuali modifiche al parametro formale non toccano il parametro attuale e, una volta che la procedura termina, il parametro formale viene eliminato.
 
-```C++
+```cpp
 int y = 1;
 void foo(int x) {
 	x = x+1;
@@ -32,10 +34,12 @@ Quando viene chiamata `foo()` gli viene passato il parametro `y+1`, che equivale
 Dunque, alla fine del programma, `x` non esiste e `y` è uguale a 1.
 
 **PRO:**
+
 - semantica più semplice
 - accesso rapido al parametro formale
 
 **CONTRO:**
+
 - la chiamata può essere costosa se l'elemento da copiare è pesante
 
 ### Passaggio per riferimento
@@ -45,7 +49,7 @@ Il riferimento al parametro e il parametro attuale puntano alla stessa cosa (ali
 La trasmissione avviene dal main alla funzione e anche viceversa.
 Alla fine della funzione il riferimento tra parametro formale e parametro attuale viene cancellato.
 
-```C++
+```cpp
 int y = 1;
 void foo(reference int x) {
 	x = x+1;
@@ -59,9 +63,11 @@ Quando viene chiamata la funzione `foo()` viene creata `x`, ossia un riferimento
 Dunque, alla fine del programma, `x` non esiste e `y` è uguale a 2.
 
 **PRO:**
+
 - la chiamata è più efficiente, perché non viene copiato nulla
 
 **CONTRO:**
+
 - la semantica è più complicata
 - l'accesso al parametro formale è leggermente più lento
 
@@ -75,7 +81,7 @@ L'implementazione del passaggio è a discrezione del compilatore (i parametri pi
 Il parametro attuale è un'espressione il cui risultato è un l-value. Non c'è nessun collegamento tra il parametro formale e il parametro attuale nel corpo della funzione. Quando la procedura termina, il valore del parametro formale è assegnato alla variabile corrispondente all'l-value del parametro attuale.
 La trasmissione avviene output-only, ossia solo dalla procedura al main.
 
-```C++
+```cpp
 void foo(result int x) {
 	x = 8;
 }
@@ -91,7 +97,7 @@ In questo caso, quando la funzione `foo()` termina il valore di `x` viene assegn
 Simile alla precedente, ma questa volta la trasmissione è bidirezionale, con il parametro formale che è usato come una variabile locale. Il parametro attuale deve essere un'espressione che produce un l-value.
 All'inizio della funzione, il parametro attuale viene valutato e il suo r-value viene assegnato al parametro formale. Alla fine della funzione, il valore del parametro formale viene assegnato alla variabile corrispondente al parametro attuale.
 
-```C++
+```cpp
 void foo(value-result int x) {
 	x = x+1;
 }
@@ -101,6 +107,7 @@ foo(y);
 ```
 
 In questo caso, quando viene chiamata `foo()`:
+
 1. `x` viene creata come variabile locale
 2. ad `x` viene assegnato il valore di `y` (8)
 3. `x = x+1` (9)
@@ -118,7 +125,7 @@ I parametri in questione sono di input/output, la trasmissione è bidirezionale.
 Non è così semplice come appare, bisogna saper gestire variabili con lo stesso nome.
 Questo metodo di passaggio di parametri a funzione non viene più usato nella programmazione imperativa.
 
-```C++
+```cpp
 int z, w;
 void fie(name int x) {
 	int y;
@@ -132,7 +139,7 @@ fie(z+w);
 
 In questo caso la variabile `x` viene definita come `z+w` e quindi quando si va ad eseguire `y = x+1` in verità si ha `y = z+w+1`.
 
-```C++
+```cpp
 int z;
 void fie(name int x) {
 	int y;
@@ -150,7 +157,7 @@ In questo caso `x` è definita come `z` e quindi quando si va ad eseguire `x = x
 >
 > Se, all'interno della funzione, viene dichiarata una nuova variabile con lo stesso nome di una che definisce un parametro formale, come nell'esempio seguente, il risultato sarebbe incorretto.
 
-```C++
+```cpp
 int x = 0;
 int foo(name int y) {
 	int x = 2;
@@ -163,6 +170,7 @@ int a = foo(x+1);
 Il parametro attuale `x` viene "catturato" dalla dichiarazione locale e si ha che `x+y` diventa `x+(x+1)`, ma una riga prima `x` è stata ridefinita a 2.
 
 Per evitare questa situazione, il parametro non deve essere valutato nell'ambiente della funzione, ma in quello del chiamante. La soluzione è di passare una coppia (*closure*) `<exp,env>` invece di passare soltanto `x+1`, con:
+
 - `exp` che è il parametro attuale, non valutato
 - `env` è l'environment al momento della chiamata
 In questo modo `y` ha memoria della `x` dichiarata nell'environment del chiamante e quindi si ha `x + y = 2 + 0 + 1 = 3`.
@@ -173,7 +181,7 @@ In questo modo `y` ha memoria della `x` dichiarata nell'environment del chiamant
 >
 > Dire cosa verrà stampato dal seguente frammento di codice che usa scoping dinamico. I parametri sono passati per riferimento.
 
-```C++
+```cpp
 {
 	int x = 2;
 	int fie(reference int y) {
@@ -194,7 +202,7 @@ In questo modo `y` ha memoria della `x` dichiarata nell'environment del chiamant
 >
 > Dire cosa verrà stampato dal seguente frammento di codice che usa scoping dinamico. I parametri sono passati per nome.
 
-```C++
+```cpp
 {
 	int x = 2;
 	void fie(name int y) {
@@ -218,7 +226,7 @@ In questo modo `y` ha memoria della `x` dichiarata nell'environment del chiamant
 >
 > Dire cosa verrà stampato dal seguente frammento di codice. I parametri sono passati per valore risultato.
 
-```C++
+```cpp
 int X = 2;
 void foo(value-result int Y) {
 	Y++;
@@ -236,6 +244,7 @@ write(X);
 > **Esempio**
 >
 > Scriviamo la funzione `reverse`, che inverte il contenuto di una lista.
+>
 > - Caso base: una lista vuota ritorna una lista vuota
 > - Passo induttivo: invertiamo la `tail` della lista e vi concateniamo la `head`
 

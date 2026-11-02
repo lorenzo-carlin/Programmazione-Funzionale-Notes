@@ -81,6 +81,7 @@ val it = [2, 3, 4, 2]: int list *)
 > **Esercizio 9.5**
 >
 > Definire una structure `Tree` contenente il datatype `tree` per la rappresentazione di un albero generico. La structure deve contenere:
+>
 > - `create(a)`, che ritorna un nodo dell'albero con label a
 > - `build(a, L)`, che ritorna un albero con la radice che ha label a e ha L come lista dei sottoalberi
 > - `subtree(i, T)`, che trova l'i-esimo sottoalbero della radice, con tanto di eccezione `Missing` se questo non esiste.
@@ -191,6 +192,7 @@ val s2 = Node (3, []): int SimpleTree.tree *)
 > **Esercizio 9.8**
 >
 > Definire una structure `Stack` che rappresenta uno stack di elementi di un tipo arbitrario. Includere le funzioni:
+>
 > - `create`, per creare uno stack vuoto
 > - `push x s`, che inserisce `x` in cima allo stack
 > - `pop s`, che ritorna lo stack senza il primo elemento oppure alza un'eccezione `EmptyStack`
@@ -260,6 +262,7 @@ val s2 = Node (3, []): int SimpleTree.tree *)
 > **Esercizio 9.10**
 >
 > Realizzare una structure `Queue` che rappresenta una coda di elementi. Includere:
+>
 > - `create`, per creare una coda vuota
 > - `EmptyQueue`, un'eccezione
 > - `Enqueue(x, Q)`, che aggiunge un elemento alla fine e ritorna la coda
@@ -325,6 +328,7 @@ val s2 = Node (3, []): int SimpleTree.tree *)
 >
 > Scrivere una structure `IntTriple` che implementa la signature `TOTALORDER` che, al posto di `string`, definisce gli elementi di un albero binario di ricerca come tuple di 3 interi.
 > La funzione `lt((a, b, c), (x, y, z))` è vera se:
+>
 > - $a < x$
 > - $a = x$ e $b < y$
 > - $a = x$, $b = y$ e $c < z$

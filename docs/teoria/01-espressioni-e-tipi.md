@@ -17,6 +17,7 @@
 Le **espressioni** sono entità sintattiche la cui valutazione produce un valore oppure non termina (*undefined expression*).
 
 Esistono due modi per valutare le espressioni:
+
 1. **eager evaluation**: valuta prima tutti gli operandi e solo dopo applica gli operatori.
 2. **lazy evaluation**: valuta gli operandi solo quando strettamente necessario.
 
@@ -102,6 +103,7 @@ Un **data type** è un insieme di valori e di operatori definiti su tali valori.
 > **Osservazione — Caratteri Speciali nelle Stringhe**
 >
 > ML prevede i classici caratteri di escape:
+>
 > - `\n`: newline
 > - `\t`: tab
 > - `\\`: backslash

@@ -4,7 +4,7 @@ Alcuni linguaggi permettono di passare funzioni come argomenti a procedure o anc
 
 La funzione viene passata come parametro ad un'altra funzione e poi viene chiamata tramite il parametro attuale.
 
-```C++
+```cpp
 {
 	int x = 1;
 
@@ -25,12 +25,14 @@ La funzione viene passata come parametro ad un'altra funzione e poi viene chiama
 ```
 
 La variabile `x` viene dichiarata tre volte. Quando chiamiamo `f`, quale `x` stiamo usando?
+
 - se assumiamo di usare scope statico, allora usiamo la prima `x`, quella settata a 1
 - se assumiamo di usare scope dinamico, il nome va risolto nell'ambiente attivo al momento della chiamata; per le funzioni passate come parametro bisogna però specificare se usare l'ambiente del passaggio (deep binding) o quello dell'invocazione (shallow binding)
 
 ## Regole di binding
 
 Quando una procedura viene passata come parametro, si crea una referenza tra un nome (parametro formale `h`) e una procedura (parametro attuale `f`). Bisogna specificare quale environment non-locale viene applicato quando `f` viene eseguita, che può essere:
+
 - quello al momento in cui `f` viene passata come argomento (**deep binding**)
 - quello al momento in cui `f` viene invocata (**shallow binding**)
 
@@ -44,7 +46,7 @@ Nell'esempio precedente con deep binding si userebbe la terza `x`, mentre con sh
 
 La generazione di funzioni come valore di ritorno di una funzione permette la creazione dinamica di funzioni a runtime.
 
-```C++
+```cpp
 {
 	int x = 1;
 
@@ -117,6 +119,7 @@ Definiamo la funzione `trap(a,b,n,F)`, dove `F` è la funzione da integrare e vi
 > **Esercizio**
 >
 > Scrivere una funzione `reduce` come segue:
+>
 > - $[a_1]$ ritorna $a_1$
 > - $[a_1, ..., a_n]$: riduce la tail applicando una funzione $F$ che prende una coppia e ritorna $b$, poi calcola $F(a_1,b)$, ossia $reduce(F,[a_1, ..., a_n])=F(a_1,F(a_2,...F(a_{n-1},a_n)))$
 
@@ -137,6 +140,7 @@ Questa funzione è tale che se la funzione in input è la somma restituisce la s
 > Usare le funzioni `simpleMap` e `reduce` per calcolare la varianza di una lista di reali.
 
 La varianza di una lista di reali è definita come
+
 $$
 \mathrm{Var}(a_1, \dots, a_n) = \frac{\sum_{i=1}^{n} a_i^2}{n} - \left( \frac{\sum_{i=1}^{n} a_i}{n} \right)^2
 $$
@@ -199,6 +203,7 @@ Usando `op` è possibile convertire un operatore infisso in un operatore prefiss
 ## Curried functions
 
 In ML una funzione ha un solo parametro. Quindi una funzione a due argomenti in realtà è:
+
 - una funzione che prende come argomento una tupla
 - oppure una funzione che restituisce un'altra funzione (currying)
 
@@ -225,6 +230,7 @@ Questo è il primo modo possibile, classico.
 ```
 
 Questo è un altro modo, che fa uso del currying. Il significato del tipo della funzione (`real -> int -> real`) è in realtà `real -> (int -> real)`, cioè:
+
 - prende un `real`
 - restituisce una funzione `int -> real`
 
